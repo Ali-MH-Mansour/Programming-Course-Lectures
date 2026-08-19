@@ -1,0 +1,266 @@
+---
+title: "L08: Functions and Recursion"
+date: 2026-08-19
+lang: en
+---
+
+# L08: Functions and Recursion
+
+**Prerequisites:** L01–L07 (variables, operators, control flow, arrays, strings)
+
+---
+
+## 1. Why Functions?
+
+A function is a **named, reusable block of code**.
+
+**Three benefits:**
+
+- **Reuse** — write once, call anywhere
+- **Readability** — `cube(5)` reads better than `5 * 5 * 5`
+- **Testability** — isolated units are easy to verify individually
+
+---
+
+## 2. Defining and Calling a Function
+
+### Anatomy
+
+```c
+int cube(int n) {
+    return n * n * n;
+}
+```
+
+| Part | Meaning |
+|------|---------|
+| `int` (before name) | **return type** — the type of value the function sends back |
+| `cube` | **function name** |
+| `int n` | **parameter** — a local copy of the caller's argument |
+| `return n * n * n;` | compute and hand the result back |
+
+### Prototype (declaration)
+
+When the definition appears *after* `main`, declare a **prototype** above it:
+
+```c
+int cube(int n);        /* prototype */
+
+int main(void) {
+    printf("%d\n", cube(4));
+    return 0;
+}
+
+int cube(int n) {       /* definition */
+    return n * n * n;
+}
+```
+
+### `void` — no return value
+
+```c
+void print_greeting(char *name) {
+    printf("Hello, %s!\n", name);
+}
+```
+
+---
+
+## 3. Parameters and Return Values
+
+### Pass by value
+
+C **copies** the argument into the parameter. The original is never changed:
+
+```c
+void double_it(int x) {
+    x = x * 2;   /* only the local copy changes */
+}
+
+int main(void) {
+    int a = 5;
+    double_it(a);
+    printf("%d\n", a);   /* still 5 */
+}
+```
+
+`x` inside `double_it` is a separate memory location from `a` in `main`.
+
+### Early return
+
+```c
+int max(int a, int b) {
+    if (a > b) return a;
+    return b;
+}
+```
+
+---
+
+## 4. Scope
+
+| Type | Declared | Visible | Lifetime |
+|------|----------|---------|----------|
+| **Local** | Inside a function | That function only | One call |
+| **Global** | Outside all functions | Every function in file | Entire program |
+
+**Shadowing** — a local variable with the same name as a global hides the global:
+
+```c
+int x = 10;            /* global */
+void f(void) {
+    int x = 20;        /* local — hides the global */
+    printf("%d\n", x); /* 20 */
+}
+int main(void) {
+    printf("%d\n", x); /* 10 */
+    f();
+    printf("%d\n", x); /* still 10 */
+}
+```
+
+---
+
+## 5. The Call Stack
+
+Every call pushes a **stack frame** (parameters + local variables). When the function returns, the frame is popped and locals disappear.
+
+**Stack overflow** — infinite recursion keeps pushing frames until stack memory is exhausted → `Segmentation fault`.
+
+---
+
+## 6. Recursion
+
+A recursive function **calls itself**. Two mandatory parts:
+
+1. **Base case** — returns without a self-call (stops the chain)
+2. **Recursive case** — calls itself on a strictly smaller input
+
+### 6.1 Factorial
+
+```c
+int factorial(int n) {
+    if (n == 0) return 1;            /* base case */
+    return n * factorial(n - 1);    /* recursive case */
+}
+```
+
+Trace: `factorial(4)` → `4 * factorial(3)` → … → `4 * 3 * 2 * 1 * 1 = 24`
+
+### 6.2 Fibonacci
+
+```c
+int fib(int n) {
+    if (n <= 1) return n;            /* base case */
+    return fib(n - 1) + fib(n - 2); /* recursive case */
+}
+```
+
+> **Caution:** `fib(40)` makes ~2 billion calls — exponential time O(2^n). A loop version is O(n).
+
+### 6.3 Binary search (recursive)
+
+```c
+int binary_search(int arr[], int low, int high, int target) {
+    if (low > high) return -1;                    /* base case: not found */
+    int mid = low + (high - low) / 2;
+    if (arr[mid] == target) return mid;           /* base case: found */
+    if (arr[mid] < target)
+        return binary_search(arr, mid + 1, high, target);
+    return binary_search(arr, low, mid - 1, target);
+}
+```
+
+Each call halves the search space → **O(log n)**.
+
+---
+
+## Worked Examples
+
+### Example 1 — Custom string length
+
+```c
+#include <stdio.h>
+
+int my_strlen(const char *s) {
+    int count = 0;
+    while (s[count] != '\0') count++;
+    return count;
+}
+
+int main(void) {
+    char word[] = "Hello";
+    printf("Length = %d\n", my_strlen(word));  /* 5 */
+    return 0;
+}
+```
+
+This is the inline logic from L07 — now packaged as a reusable, named function.
+
+### Example 2 — Power: iterative vs recursive
+
+```c
+double power_iter(double base, int exp) {
+    double r = 1.0;
+    for (int i = 0; i < exp; i++) r *= base;
+    return r;
+}
+
+double power_rec(double base, int exp) {
+    if (exp == 0) return 1.0;
+    return base * power_rec(base, exp - 1);
+}
+```
+
+### Example 3 — Count digits (recursive)
+
+```c
+int count_digits(int n) {
+    if (n < 0) n = -n;
+    if (n < 10) return 1;              /* base case */
+    return 1 + count_digits(n / 10);  /* strip last digit */
+}
+```
+
+---
+
+## Key Terms
+
+| Term | Meaning |
+|------|---------|
+| Function | A named, reusable block of code |
+| Return type | The type of the value the function sends back |
+| Parameter | A local variable receiving the caller's argument |
+| Argument | The actual value passed at the call site |
+| Prototype | A forward declaration of a function's signature |
+| `void` | Return type for functions that produce no value |
+| Pass by value | C's default: functions receive a copy of arguments |
+| Scope | The region where a variable is visible |
+| Local variable | Visible inside one function only |
+| Global variable | Visible to every function in the file |
+| Shadowing | A local variable hiding a same-named global |
+| Call stack | Runtime structure storing active stack frames |
+| Stack frame | One function's parameters + locals on the stack |
+| Stack overflow | Crash from too-deep nesting exhausting stack memory |
+| Recursion | A function that calls itself |
+| Base case | The stop condition; returns without a self-call |
+| Recursive case | The self-call on a strictly smaller input |
+
+---
+
+## Discussion Questions
+
+1. What happens if a recursive function has no base case?
+2. Write a prototype for a function that takes two `double`s and returns a `double`.
+3. Why doesn't `double_it(a)` change the value of `a`?
+4. What does this print? `int x = 1; void f() { int x = 2; printf("%d ", x); } int main() { printf("%d ", x); f(); printf("%d\n", x); }`
+5. Why is recursive `fib(40)` much slower than a loop version for large `n`?
+6. How many stack frames are alive at the deepest point of `factorial(5)`?
+7. Rewrite `count_digits` with a `while` loop.
+8. When is recursion a better choice than a loop? Give an example.
+
+---
+
+## Next Lecture
+
+**L09: File I/O** — `fopen`, `fclose`, `fprintf`, `fscanf`, text vs binary files, error handling with `errno`.

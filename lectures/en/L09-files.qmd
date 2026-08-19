@@ -1,0 +1,279 @@
+---
+title: "Lecture 9: File Handling — Text and Binary Files"
+date: 2026-08-19
+lang: en
+---
+
+# Lecture 9 — File Handling: Text and Binary Files
+
+> **Module 5 — File Handling** | Prerequisite: L08 Functions and Recursion
+
+---
+
+## 1. Why Files?
+
+RAM is **volatile** — all variables are destroyed when a program exits. Files on disk are **persistent**. File I/O is how programs store results, read configuration, and communicate with other programs.
+
+The C standard library (`<stdio.h>`) treats files as **streams** — the same abstraction used by `printf`/`scanf`. `stdout` and `stdin` are simply pre-opened streams connected to the terminal.
+
+---
+
+## 2. Opening and Closing Files
+
+```c
+#include <stdio.h>
+
+FILE *fp = fopen("filename.txt", "mode");
+if (fp == NULL) {
+    perror("fopen");
+    return 1;
+}
+// ... use file ...
+fclose(fp);
+```
+
+**Common modes:**
+
+| Mode | Effect |
+|------|--------|
+| `"r"` | Read — file must exist |
+| `"w"` | Write — creates/truncates |
+| `"a"` | Append |
+| `"rb"` / `"wb"` | Binary equivalents |
+
+**Rule:** Always check `fopen` for `NULL`. Always call `fclose`. Forgetting `fclose` can cause data loss (buffered writes not flushed to disk).
+
+---
+
+## 3. Text File I/O
+
+### Writing
+
+```c
+fprintf(fp, "Score: %d\n", 95);
+fputs("Done.\n", fp);
+```
+
+### Reading — `fgets` (preferred)
+
+```c
+char line[256];
+while (fgets(line, sizeof(line), fp) != NULL) {
+    printf("%s", line);
+}
+```
+
+### The `feof` trap
+
+```c
+// WRONG — processes one extra iteration after EOF
+while (!feof(fp)) { fgets(line, sizeof(line), fp); ... }
+
+// CORRECT — test the return value of the read
+while (fgets(line, sizeof(line), fp) != NULL) { ... }
+```
+
+`feof` is only set *after* a failed read — using it as the loop condition causes an extra empty iteration.
+
+---
+
+## 4. Binary File I/O
+
+```c
+typedef struct { int id; char name[32]; float gpa; } Student;
+
+// Write
+FILE *fp = fopen("students.bin", "wb");
+if (!fp) { perror("fopen"); return 1; }
+fwrite(db, sizeof(Student), count, fp);
+fclose(fp);
+
+// Read
+Student s;
+fp = fopen("students.bin", "rb");
+if (!fp) { perror("fopen"); return 1; }
+while (fread(&s, sizeof(Student), 1, fp) == 1)
+    printf("[%d] %s — GPA %.2f\n", s.id, s.name, s.gpa);
+fclose(fp);
+```
+
+Use `"wb"`/`"rb"` modes — on Windows, text-mode translation corrupts binary data.
+
+### Random access
+
+```c
+fseek(fp, N * sizeof(Student), SEEK_SET);  // jump to record N
+long pos = ftell(fp);                       // current byte offset
+rewind(fp);                                 // back to beginning
+```
+
+---
+
+## 5. Error Handling
+
+```c
+#include <errno.h>
+#include <string.h>
+
+FILE *fp = fopen("missing.txt", "r");
+if (!fp) {
+    perror("fopen");            // prints: "fopen: No such file or directory"
+    // or: printf("%s\n", strerror(errno));
+    return 1;
+}
+if (ferror(fp)) {
+    perror("I/O error");
+    clearerr(fp);
+}
+```
+
+**Standard pattern:** open → check NULL → read/write → check `ferror` → close.
+
+---
+
+## 6. The Discipline and C++ Streams
+
+### Three rules
+
+1. If you `fopen`, you `fclose` — in all code paths.
+2. Check every `fopen` for `NULL`.
+3. Check `fread`/`fwrite` return values.
+
+### `fflush` — flush without closing
+
+```c
+fprintf(fp, "Step done.\n");
+fflush(fp);   // data committed to disk immediately
+```
+
+### C++ streams (RAII — auto-close)
+
+```cpp
+#include <fstream>
+#include <string>
+
+std::ofstream out("output.txt");
+out << "Score: " << 95 << "\n";
+// closes automatically when out goes out of scope
+
+std::ifstream in("data.txt");
+std::string line;
+while (std::getline(in, line))
+    std::cout << line << "\n";
+```
+
+C++ streams are type-safe and auto-close via RAII — the destructor calls `close()` when the stream object goes out of scope, preventing resource leaks.
+
+---
+
+## Worked Examples
+
+### Example 1 — Word/line/character counter
+
+```c
+#include <stdio.h>
+#include <ctype.h>
+
+int main(void) {
+    FILE *fp = fopen("essay.txt", "r");
+    if (!fp) { perror("fopen"); return 1; }
+
+    long chars = 0, words = 0, lines = 0;
+    int in_word = 0, c;
+
+    while ((c = fgetc(fp)) != EOF) {
+        chars++;
+        if (c == '\n') lines++;
+        if (isspace(c)) { in_word = 0; }
+        else { if (!in_word) { words++; in_word = 1; } }
+    }
+
+    if (ferror(fp)) perror("read");
+    fclose(fp);
+    printf("Lines: %ld  Words: %ld  Chars: %ld\n", lines, words, chars);
+    return 0;
+}
+```
+
+Note: `c` must be `int` to correctly detect `EOF = -1`.
+
+### Example 2 — Binary student records
+
+```c
+#include <stdio.h>
+typedef struct { int id; char name[32]; float gpa; } Student;
+
+int main(void) {
+    Student db[] = {{1,"Alice",3.9f},{2,"Bob",3.4f},{3,"Carol",3.7f}};
+
+    FILE *fp = fopen("students.bin", "wb");
+    if (!fp) { perror("fopen"); return 1; }
+    fwrite(db, sizeof(Student), 3, fp);
+    fclose(fp);
+
+    Student s;
+    fp = fopen("students.bin", "rb");
+    if (!fp) { perror("fopen"); return 1; }
+    while (fread(&s, sizeof(Student), 1, fp) == 1)
+        printf("[%d] %s — GPA %.2f\n", s.id, s.name, s.gpa);
+    fclose(fp);
+    return 0;
+}
+```
+
+### Example 3 — Binary file copy
+
+```c
+#include <stdio.h>
+#define BUF 4096
+
+int main(void) {
+    FILE *in  = fopen("source.jpg", "rb");
+    if (!in)  { perror("source"); return 1; }
+    FILE *out = fopen("backup.jpg", "wb");
+    if (!out) { perror("dest"); fclose(in); return 1; }
+
+    unsigned char buf[BUF];
+    size_t n;
+    while ((n = fread(buf, 1, BUF, in)) > 0)
+        fwrite(buf, 1, n, out);
+
+    fclose(in);
+    fclose(out);
+    return 0;
+}
+```
+
+---
+
+## Key Terms
+
+| Term | Meaning |
+|------|---------|
+| Stream | Ordered byte sequence — abstraction over files, terminal, network |
+| `FILE *` | Opaque handle to an open stream |
+| `fopen` / `fclose` | Open / close a stream |
+| `feof` | True *after* a read hits end-of-file |
+| `fgets` | Safe line reader — preferred over `gets`/`fscanf` |
+| `fread` / `fwrite` | Block binary read/write |
+| `fseek` / `ftell` | Random access / position query |
+| `errno` | Global error code from failed library calls |
+| `perror` | Print errno description to stderr |
+| `ferror` / `clearerr` | Test/clear stream error flag |
+| `fflush` | Flush buffer to disk without closing |
+| Binary mode | No end-of-line translation (`"rb"` / `"wb"`) |
+| RAII | C++ pattern: destructor auto-closes resource |
+| `ifstream` / `ofstream` | C++ file input / output streams |
+
+---
+
+## Discussion Questions
+
+1. What happens if you forget `fclose` on a file you wrote to?
+2. Why does `while (!feof(fp))` cause an off-by-one error?
+3. When would you choose binary over text format?
+4. What goes wrong opening a JPEG with `"r"` instead of `"rb"` on Windows?
+5. How do you find file size using `fseek` + `ftell`?
+6. What does `fread`'s return value tell you?
+7. How do you handle a missing required input file gracefully?
+8. Why is C++ `std::ifstream` safer than C `FILE *`?

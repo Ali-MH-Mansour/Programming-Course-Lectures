@@ -1,0 +1,273 @@
+---
+title: "Lecture 2 — Data Types, Declarations, Operators, and Operations"
+date: "2026-08-17"
+lang: en
+---
+
+> **Module:** 1 — Basics of C/C++, I/O, Linear Algorithms
+> **Duration:** 2 academic hours
+> **RPD reference:** Лекция1_2
+
+---
+
+## What you will learn
+
+By the end of this lecture, you should be able to:
+
+- Explain how a value is stored in memory as bits and bytes
+- Declare and initialize variables of every primitive C type
+- Use `sizeof` and `<limits.h>` to inspect a type's size and range
+- Apply arithmetic, relational, logical, bitwise, and assignment operators
+- Predict the value of an expression using precedence, associativity, and short-circuit rules
+- Recognise and avoid the integer-division and `=` vs `==` traps
+
+**The key idea:** a **type is a contract about size and interpretation**. Memory stores only bits; the type you declare tells the compiler how many bytes to reserve and how to read them.
+
+---
+
+## 1. How a Value Is Stored
+
+Memory stores only **bits** — 0s and 1s. The *meaning* of a bit pattern comes from its **type**. The pattern `01000001` is the number `65`, the letter `'A'`, or something else entirely, depending on the type the programmer declared.
+
+**The storage hierarchy:**
+
+```
+bit    →  a single 0 or 1
+byte   →  8 bits          (holds 2^8 = 256 distinct values)
+word   →  the CPU's natural unit (usually 4 or 8 bytes)
+```
+
+**Binary and hexadecimal:**
+
+```
+Decimal 65  =  binary 0100 0001  =  hex 0x41
+```
+
+- **Binary** is how the machine stores everything.
+- **Hexadecimal** (base 16) is shorthand: one hex digit = four bits, so one byte = two hex digits.
+
+---
+
+## 2. Primitive Types
+
+### Integer types
+
+| Type | Typical size | Typical range (signed) |
+|------|-------------|------------------------|
+| `char` | 1 byte | −128 … 127 |
+| `short` | 2 bytes | −32 768 … 32 767 |
+| `int` | 4 bytes | −2 147 483 648 … 2 147 483 647 |
+| `long` | 4 or 8 bytes | platform-dependent |
+| `long long` | 8 bytes | ±9.2 × 10¹⁸ |
+
+**Signed vs unsigned:**
+- **Signed** (the default): one bit records the sign.
+- **Unsigned** (`unsigned int`, `unsigned char`, …): no sign bit; range starts at zero.
+
+> ⚠️ **Never assume `int` is exactly 4 bytes** — ask the compiler with `sizeof`.
+
+### Floating-point types
+
+| Type | Typical size | Precision (approx.) |
+|------|-------------|---------------------|
+| `float` | 4 bytes | ~7 significant digits |
+| `double` | 8 bytes | ~15 significant digits |
+
+> ⚠️ Floating-point stores an **approximation**. `0.1 + 0.2` ≠ `0.3`. **Never compare two floating-point numbers with `==`.**
+
+### `char` and `bool`
+
+```c
+char c = 'A';
+printf("%c %d\n", c, c);    // prints:  A 65
+printf("%c\n", 'A' + 1);    // prints:  B
+```
+
+**`bool`** (from `<stdbool.h>` in C): `0` is false, any non-zero is true.
+
+---
+
+## 3. Sizes and Ranges: Ask the Compiler
+
+### `sizeof`
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    printf("int    : %zu bytes\n", sizeof(int));
+    printf("double : %zu bytes\n", sizeof(double));
+    return 0;
+}
+```
+
+> Use `%zu` for `sizeof` results.
+
+### `<limits.h>`
+
+```c
+#include <limits.h>
+
+printf("%d .. %d\n", INT_MIN, INT_MAX);
+printf("%u\n", UINT_MAX);
+```
+
+---
+
+## 4. Declarations and Initialization
+
+```c
+int count = 0;
+//  │     │    │
+//  │     │    └── initial value
+//  │     └────── name
+//  └──────────── type
+```
+
+> ⚠️ A declared-but-uninitialized local variable holds **garbage**. Always initialize: `int x = 0;`.
+
+### `const`
+
+```c
+const double PI = 3.14159;
+PI = 3.2;   // COMPILER ERROR
+```
+
+---
+
+## 5. Operators
+
+### Arithmetic: `+  -  *  /  %`
+
+```c
+printf("%d\n", 7 / 2);      // 3    — integer division TRUNCATES
+printf("%f\n", 7.0 / 2);    // 3.5  — floating-point
+printf("%d\n", 7 % 2);      // 1    — remainder
+```
+
+### Relational and logical
+
+```c
+if (x = 3) { ... }   // ⚠️ BUG: ASSIGNS 3 to x — always true
+if (x == 3) { ... }  // CORRECT: COMPARES x to 3
+```
+
+> ⚠️ `=` assigns, `==` compares. `if (x = 3)` is legal C but a logic error.
+
+### Bitwise: `&  |  ^  ~  <<  >>`
+
+```c
+printf("%d\n", 6 & 3);   // 2   (0110 & 0011 = 0010)
+printf("%d\n", 1 << 4);  // 16  (shift left by 4 = multiply by 2^4)
+```
+
+### Assignment and compound assignment
+
+```c
+x += 5;   // same as  x = x + 5;
+x *= 2;   // same as  x = x * 2;
+x++;      // increment by 1
+```
+
+---
+
+## 6. Precedence, Associativity, Short-Circuit
+
+```c
+printf("%d\n", 2 + 3 * 4);   // 14 — * binds tighter than +
+```
+
+> **Engineering rule:** when in doubt, use parentheses.
+
+**Short-circuit evaluation:**
+
+```c
+if (n != 0 && total / n > 5) { ... }   // n != 0 protects the division
+```
+
+If `n` is `0`, the left side is false and `total / n` is never evaluated — no divide-by-zero.
+
+---
+
+## Summary
+
+1. **Bits, bytes, words** — memory stores only bits; the *type* gives them meaning.
+2. **Primitive types** — integer (signed/unsigned), floating-point, `char`, `bool`.
+3. **Sizes and ranges** — never assume; use `sizeof` and `<limits.h>`.
+4. **Declaration and initialization** — always initialize; `const` for constants.
+5. **Operators** — arithmetic (mind integer division), relational, logical, bitwise, assignment.
+6. **Precedence and short-circuit** — parenthesise when unsure; `&&`/`||` stop early.
+
+---
+
+## Key Terms
+
+| Term | Definition |
+|------|-----------|
+| Bit / byte / word | Units of storage |
+| Data type | Contract specifying size and bit interpretation |
+| Primitive type | Built-in type: `int`, `float`, `char`, `bool` |
+| Signed / unsigned | Sign bit present or absent |
+| `sizeof` | Operator giving byte size of a type or value |
+| Declaration | Statement introducing a name and its type |
+| Initialization | Giving a variable its first value at declaration |
+| `const` | Qualifier marking an immutable value |
+| Modulo (`%`) | Integer-remainder operator |
+| Integer division | `/` on two integers truncates fractional part |
+| Short-circuit evaluation | `&&`/`||` stop as soon as result is known |
+
+---
+
+## Worked Examples
+
+### Example 1 — Inspecting a type's size and range
+
+```c
+#include <stdio.h>
+#include <limits.h>
+
+int main(void) {
+    printf("int  : %zu bytes, range %d .. %d\n",
+           sizeof(int), INT_MIN, INT_MAX);
+    printf("char : %zu byte,  range %d .. %d\n",
+           sizeof(char), CHAR_MIN, CHAR_MAX);
+    return 0;
+}
+```
+
+### Example 2 — The integer-division bug and its fix
+
+```c
+int a = 7, b = 8, c = 10;
+double avg = (a + b + c) / 3;   // BUG: integer division → 8.000000
+double avg = (a + b + c) / 3.0; // FIX: floating-point → 8.333333
+```
+
+### Example 3 — Evaluating a compound expression
+
+```c
+int a = 1, b = 2, c = 3, d = 4, e = 0;
+int result = a + b * c > d && !e;
+// Trace: b*c=6, a+6=7, !e=1, 7>4=1, 1&&1=1  → result = 1
+```
+
+---
+
+## Discussion Questions
+
+1. The number 65 and the letter 'A' can be the identical bits in memory. What makes one a number and the other a character?
+2. Why does C provide `short`, `int`, `long`, and `long long` instead of one integer type?
+3. What is the difference between a signed and an unsigned type of the same size?
+4. What does `if (x = 3)` actually do, and why is it dangerous?
+5. `7 / 2` gives `3` but `7.0 / 2` gives `3.5`. Explain why.
+6. In `n != 0 && total / n > 5`, why does the order of conditions matter?
+
+---
+
+## Preparation for Lecture 3
+
+Next lecture: **Arithmetic and computational operations in C** — integer vs floating-point arithmetic, type conversions, `++`/`--`, and `<math.h>`.
+
+Before Lecture 3:
+1. Compile and run Worked Example 1. Note the size of each type.
+2. Predict: what does `printf("%d\n", 10 % 3);` print? And `printf("%d\n", -10 % 3);`?

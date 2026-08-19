@@ -1,0 +1,276 @@
+---
+title: "L10 — Dynamic Memory Allocation"
+date: "2026-08-19"
+lang: en
+---
+
+# Dynamic Memory Allocation
+
+**Module 6 · Lecture 10**
+
+---
+
+## 1. Why Dynamic Memory?
+
+Stack-allocated arrays (`int arr[100]`) require the size to be known at **compile time**. When the size is only known at **runtime**, you must allocate from the **heap**.
+
+| Property | Stack | Heap |
+|----------|-------|------|
+| Size known at | Compile time | Runtime |
+| Managed by | Compiler (automatic) | You (manual) |
+| Lifetime | Until function returns | Until you call `free` |
+| Max size | ~1–8 MB typical | Available system RAM |
+
+---
+
+## 2. `malloc` and `calloc`
+
+```c
+#include <stdlib.h>
+
+void *malloc(size_t size);                 /* uninitialized */
+void *calloc(size_t nmemb, size_t size);   /* zero-initialized */
+```
+
+**`malloc` — uninitialized allocation:**
+```c
+int    *arr    = malloc(n * sizeof(int));
+double *grades = malloc(n * sizeof(double));
+```
+
+**`calloc` — zero-initialized allocation:**
+```c
+double *grades = calloc(n, sizeof(double));   /* all 0.0 */
+int    *flags  = calloc(n, sizeof(int));      /* all 0 */
+```
+
+Always use `sizeof(type)` — never hardcode byte sizes.
+
+---
+
+## 3. The NULL Guard (mandatory)
+
+`malloc` and `calloc` return `NULL` on failure. Always check:
+
+```c
+int *arr = malloc(n * sizeof(int));
+if (arr == NULL) {
+    fprintf(stderr, "Allocation failed\n");
+    exit(EXIT_FAILURE);
+}
+```
+
+Never skip this check — dereferencing `NULL` causes a crash or silent heap corruption.
+
+---
+
+## 4. `realloc` — Resizing
+
+```c
+void *realloc(void *ptr, size_t new_size);
+```
+
+**Safe pattern:**
+```c
+int *tmp = realloc(arr, capacity * sizeof(int));
+if (tmp == NULL) {
+    free(arr);
+    exit(EXIT_FAILURE);
+}
+arr = tmp;
+```
+
+**Never:**
+```c
+arr = realloc(arr, ...);    /* if it fails: arr = NULL, old block leaked */
+```
+
+---
+
+## 5. `free` — Returning Memory
+
+```c
+void free(void *ptr);   /* free(NULL) is safe — no-op */
+```
+
+After every `free`, set the pointer to `NULL`:
+```c
+free(arr);
+arr = NULL;
+```
+
+**Three rules:**
+1. Every `malloc`/`calloc` has exactly one `free`.
+2. Only `free` heap pointers.
+3. Set to `NULL` after freeing.
+
+---
+
+## 6. Common Memory Bugs
+
+| Bug | Cause | Consequence | Defense |
+|-----|-------|-------------|---------|
+| Memory leak | Forgetting `free` | Growing memory use | Every `malloc` → one `free` |
+| Dangling pointer | Use after `free` | Heap corruption / crash | `ptr = NULL` after `free` |
+| Double-free | `free` twice | Heap corruption / crash | `ptr = NULL` after `free` |
+
+```bash
+valgrind --leak-check=full ./myprogram   # detects leaks and invalid accesses
+```
+
+---
+
+## 7. C++ `new` / `delete` and Smart Pointers
+
+```cpp
+int *p   = new int;         /* one int */
+int *arr = new int[n];      /* array */
+
+delete p;                   /* single */
+delete[] arr;               /* array — must match new[] */
+```
+
+**Smart pointers (preferred in modern C++):**
+```cpp
+#include <memory>
+
+auto p = std::make_unique<int>(42);   // auto-freed on scope exit
+auto s = std::make_shared<int>(42);   // reference-counted
+```
+
+RAII: the destructor frees the resource — cannot leak even if an exception is thrown.
+
+---
+
+## 8. Worked Examples
+
+### Example 1 — Dynamic Grade Array
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+    int n;
+    printf("Number of students: ");
+    scanf("%d", &n);
+    if (n <= 0) { fprintf(stderr, "Invalid\n"); return EXIT_FAILURE; }
+
+    double *grades = calloc(n, sizeof(double));
+    if (!grades) { fprintf(stderr, "Allocation failed\n"); return EXIT_FAILURE; }
+
+    for (int i = 0; i < n; i++) {
+        printf("Grade %d: ", i + 1);
+        scanf("%lf", &grades[i]);
+    }
+
+    double sum = 0.0;
+    for (int i = 0; i < n; i++) sum += grades[i];
+    printf("Average: %.2f\n", sum / n);
+
+    free(grades);
+    grades = NULL;
+    return 0;
+}
+```
+
+### Example 2 — Growing Buffer with `realloc`
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+    int capacity = 4, count = 0;
+    int *arr = malloc(capacity * sizeof(int));
+    if (!arr) { exit(EXIT_FAILURE); }
+
+    int value;
+    while (1) {
+        printf("Enter integer (-1 to stop): ");
+        if (scanf("%d", &value) != 1 || value == -1) break;
+
+        if (count == capacity) {
+            capacity *= 2;
+            int *tmp = realloc(arr, capacity * sizeof(int));
+            if (!tmp) { free(arr); exit(EXIT_FAILURE); }
+            arr = tmp;
+        }
+        arr[count++] = value;
+    }
+
+    printf("Stored %d numbers:", count);
+    for (int i = 0; i < count; i++) printf(" %d", arr[i]);
+    printf("\n");
+
+    free(arr);
+    arr = NULL;
+    return 0;
+}
+```
+
+### Example 3 — Struct Array on the Heap
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct {
+    char name[50];
+    double gpa;
+} Student;
+
+int main(void) {
+    int n = 3;
+    Student *students = malloc(n * sizeof(Student));
+    if (!students) { exit(EXIT_FAILURE); }
+
+    strcpy(students[0].name, "Alice"); students[0].gpa = 3.9;
+    strcpy(students[1].name, "Bob");   students[1].gpa = 3.4;
+    strcpy(students[2].name, "Carol"); students[2].gpa = 3.7;
+
+    for (int i = 0; i < n; i++)
+        printf("%s: GPA %.1f\n", students[i].name, students[i].gpa);
+
+    free(students);
+    students = NULL;
+    return 0;
+}
+```
+
+---
+
+## 9. Key Terms
+
+| Term | Definition |
+|------|-----------|
+| Heap | Large memory pool; managed manually at runtime |
+| Stack | Automatic memory for local variables; freed on return |
+| `malloc` | Allocate uninitialized heap memory |
+| `calloc` | Allocate zero-initialized heap memory |
+| `realloc` | Resize an existing heap allocation |
+| `free` | Return heap memory to the allocator |
+| NULL guard | Check `malloc`/`calloc` result for NULL before use |
+| Memory leak | Allocated memory never freed |
+| Dangling pointer | Pointer to freed memory |
+| Double-free | Calling `free` twice on the same pointer |
+| RAII | Resource lifetime tied to variable scope |
+| `std::unique_ptr` | C++ smart pointer; single owner; auto-frees |
+
+---
+
+## 10. Discussion Questions
+
+1. Why does `calloc` zero-initialize while `malloc` does not? Name one situation where this matters.
+2. List three cases where you must use dynamic allocation.
+3. A program allocates 1 MB in a loop of 10,000 iterations and frees it once at the end. Is this a leak? How much?
+4. Why use `int *tmp = realloc(arr, ...)` instead of `arr = realloc(arr, ...)`?
+5. What happens when you call `free()` on a stack variable pointer?
+6. Why is double-free dangerous? What breaks in the allocator?
+7. What does RAII mean? How does `std::unique_ptr` implement it?
+8. When would you prefer `calloc` over `malloc(n * sizeof(type))`?
+
+---
+
+**Next:** L11 — Structs and unions — user-defined data types, `typedef`, nested structures.

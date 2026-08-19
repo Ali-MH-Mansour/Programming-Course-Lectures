@@ -1,0 +1,56 @@
+project:
+  type: book
+  output-dir: _book
+
+book:
+  title: "Programming — Year 1"
+  subtitle: "C/C++ Lecture Series · Южный Федеральный Университет, 2026"
+  author: "Ali-MH-Mansour"
+  date: "2026"
+  repo-url: "https://github.com/Ali-MH-Mansour/Programming-Course-Lectures"
+  repo-actions: [edit]
+
+  chapters:
+    - index.qmd
+
+    - part: "Module 1 — Basics of C/C++, I/O, Linear Algorithms"
+      chapters:
+        - lectures/en/L01-course-orientation.qmd
+        - lectures/en/L02-data-types.qmd
+        - lectures/en/L03-arithmetic.qmd
+        - lectures/en/L04-io.qmd
+
+    - part: "Module 2 — Branching and Loops"
+      chapters:
+        - lectures/en/L05-conditionals-loops.qmd
+
+    - part: "Module 3 — Arrays, Pointers, Strings"
+      chapters:
+        - lectures/en/L06-arrays-pointers.qmd
+        - lectures/en/L07-strings.qmd
+
+    - part: "Module 4 — Subroutines"
+      chapters:
+        - lectures/en/L08-functions.qmd
+
+    - part: "Module 5 — File Handling"
+      chapters:
+        - lectures/en/L09-files.qmd
+
+    - part: "Module 6 — User-Defined Data Types"
+      chapters:
+        - lectures/en/L10-dynamic-memory.qmd
+        # L11-L18 added as produced
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    code-copy: true
+    code-block-border-left: true
+    highlight-style: github
+    lang: en
+
+execute:
+  freeze: auto

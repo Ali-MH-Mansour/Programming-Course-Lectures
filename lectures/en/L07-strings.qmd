@@ -1,0 +1,299 @@
+---
+title: "Lecture 7 — Strings in C/C++"
+date: "2026-08-19"
+lang: en
+---
+
+> **Module 3:** Arrays, Pointers, Strings · **Prerequisites:** arrays and pointers (L06)
+
+---
+
+## What you will learn
+
+By the end of this lecture, you should be able to:
+
+- Explain how a C string is stored as a `char` array with a null terminator
+- Declare and initialize strings correctly, and identify the pointer-to-literal trap
+- Read strings safely using `scanf("%s")` (with a width limit) and `fgets`
+- Use the standard string functions: `strlen`, `strcpy`, `strcat`, `strcmp`, `strchr`, `strstr`
+- Explain what a buffer overflow is and apply the safe practices that prevent it
+- Use `std::string` in C++ for string handling without manual memory management
+
+**The key idea:** A C string is just a `char` array where the last element is always `'\0'`. Every string function reads until it finds that terminator — forgetting it or writing past it corrupts memory.
+
+---
+
+## 1. What Is a String?
+
+In C, a **string** is a sequence of characters stored in a `char` array, terminated by the **null character** `'\0'` (ASCII value 0).
+
+```c
+char greeting[] = "Hello";
+```
+
+Memory layout:
+
+```
+Index:    0     1     2     3     4     5
+Value:   'H'   'e'   'l'   'l'   'o'  '\0'
+          72   101   108   108   111    0
+```
+
+- `sizeof(greeting)` = 6 (5 characters + 1 null terminator)
+- `strlen(greeting)` = 5 (characters only)
+
+---
+
+## 2. Declaring and Initializing Strings
+
+```c
+char s1[] = "Hello";          // (a) array — modifiable; size = 6
+char s2[10] = "Hello";        // (b) array — modifiable; 10 bytes, 4 unused
+char *s3 = "Hello";           // (c) pointer to read-only literal — DO NOT MODIFY
+```
+
+> ⚠️ **`char *s3 = "Hello"` is dangerous.** The string literal is in read-only memory. `s3[0] = 'h';` is undefined behaviour — typically a crash.
+
+**Building a string character by character — always terminate:**
+
+```c
+char name[6];
+name[0] = 'A'; name[1] = 'n'; name[2] = 'd'; name[3] = 'y';
+name[4] = '\0';   // REQUIRED
+```
+
+---
+
+## 3. Reading Strings from the User
+
+### `scanf("%s", name)` — one word
+
+```c
+char name[50];
+scanf("%49s", name);   // width limit: at most 49 chars (array is 50)
+```
+
+### `fgets` — full line, safe
+
+```c
+char name[50];
+fgets(name, sizeof(name), stdin);   // length-limited
+name[strcspn(name, "\n")] = '\0';   // strip the newline
+```
+
+| | `scanf("%s")` | `fgets` |
+|---|---|---|
+| Stops at | whitespace | newline or length limit |
+| Reads spaces? | No | Yes |
+| Buffer safe? | Only with width | Always |
+
+> **Never use `gets`** — removed from C11 for having no length limit.
+
+---
+
+## 4. Standard String Functions (`<string.h>`)
+
+### `strlen` — string length
+
+```c
+strlen("Hello")    // 5 (excludes '\0')
+strlen("")         // 0
+```
+
+### `strcpy` — string copy
+
+```c
+char dest[10];
+strcpy(dest, src);                  // unsafe: no length check
+strncpy(dest, src, sizeof(dest)-1); // safe; add '\0' manually
+dest[sizeof(dest)-1] = '\0';
+```
+
+### `strcat` — string concatenation
+
+```c
+char result[20] = "Hello";
+strcat(result, ", world!");         // unsafe: no length check
+strncat(dest, src, sizeof(dest) - strlen(dest) - 1);  // safe
+```
+
+### `strcmp` — string comparison
+
+```c
+if (strcmp(password, "secret") == 0) { /* equal */ }
+```
+
+| Return value | Meaning |
+|---|---|
+| `0` | Strings are **equal** |
+| `< 0` | `s1` comes before `s2` |
+| `> 0` | `s1` comes after `s2` |
+
+> ⚠️ `if (strcmp(s1, s2))` tests for **inequality** (non-zero). Write `== 0` explicitly for equality.
+
+> ⚠️ `s1 == s2` compares **addresses**, not content — always wrong for strings.
+
+### Other useful functions
+
+```c
+strchr(s, 'e')         // pointer to first 'e', or NULL
+strstr(s, "ell")       // pointer to first "ell", or NULL
+```
+
+---
+
+## 5. Buffer Overflow and Safe Practices
+
+A **buffer overflow** occurs when you write more bytes into an array than it can hold. Adjacent memory is overwritten — crashes and security vulnerabilities result.
+
+**Safe string programming checklist:**
+
+1. Allocate `strlen + 1` bytes — always room for `'\0'`.
+2. Use `fgets` not `gets` (or `scanf` with a width limit).
+3. Use `strncpy`/`strncat` not `strcpy`/`strcat`.
+4. After `strncpy`, manually null-terminate.
+5. Use `snprintf` for formatted string building:
+
+```c
+char buf[50];
+snprintf(buf, sizeof(buf), "Name: %s, Age: %d", name, age);
+```
+
+---
+
+## 6. `std::string` in C++
+
+```cpp
+#include <string>
+using namespace std;
+
+string s = "Hello";
+s += ", world!";
+cout << s << "\n";          // Hello, world!
+cout << s.length() << "\n"; // 13
+```
+
+**Key operations:**
+
+```cpp
+s.length()             // character count (= s.size())
+s.empty()              // true if length == 0
+s.substr(0, 5)         // "Hello"
+s.find("world")        // index, or string::npos if absent
+s.compare(t)           // 0 if equal
+const char *c = s.c_str();  // interop with C functions
+```
+
+No null terminator to manage. No buffer overflow. Use `std::string` in new C++ code.
+
+---
+
+## Summary
+
+1. **C string** — `char` array ending in `'\0'`; `sizeof` counts terminator, `strlen` does not.
+2. **Initialization** — `char s[]` for modifiable; `char *s = "..."` points to read-only memory.
+3. **Reading** — `fgets` for full lines; `scanf("%Ns")` for words with width limit; never `gets`.
+4. **`strlen`** — length excluding `'\0'`; UB on non-terminated arrays.
+5. **`strcpy`/`strcat`** — copy and append; overflow-prone; use `strncpy`/`strncat`.
+6. **`strcmp`** — 0 if equal; `if (strcmp(a,b))` means NOT equal.
+7. **Buffer overflow** — #1 C security vulnerability.
+8. **`std::string`** — C++ safe string; use `.c_str()` for C interop.
+
+---
+
+## Key Terms
+
+| Term | Definition |
+|------|-----------|
+| String | `char` array terminated by `'\0'` |
+| Null terminator (`'\0'`) | Zero byte marking end of a C string |
+| ASCII | Standard character-to-integer mapping |
+| Buffer | Fixed-size array for data |
+| Buffer overflow | Writing past a buffer into adjacent memory |
+| `strlen` | Character count excluding `'\0'` |
+| `strcpy` / `strncpy` | Copy a string (strncpy is length-limited) |
+| `strcat` / `strncat` | Append a string (strncat is length-limited) |
+| `strcmp` | Compare strings; returns 0 if equal |
+| `fgets` | Read a full line safely |
+| String literal | Constant string in quotes; read-only memory |
+| `std::string` | C++ string class; automatic memory management |
+
+---
+
+## Worked Examples
+
+### Example 1 — String Reversal In Place
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+void reverse_string(char *s) {
+    int left = 0, right = (int)strlen(s) - 1;
+    while (left < right) {
+        char tmp = s[left];
+        s[left]  = s[right];
+        s[right] = tmp;
+        left++; right--;
+    }
+}
+
+int main(void) {
+    char word[] = "race";
+    printf("Before: %s\n", word);   // race
+    reverse_string(word);
+    printf("After:  %s\n", word);   // ecar
+    return 0;
+}
+```
+
+### Example 2 — Counting Vowels
+
+```c
+int count_vowels(const char *s) {
+    int count = 0;
+    const char *vowels = "aeiouAEIOU";
+    for (int i = 0; s[i] != '\0'; i++)
+        if (strchr(vowels, s[i]) != NULL)
+            count++;
+    return count;
+}
+```
+
+### Example 3 — Safe Input + Validation
+
+```c
+char name[50];
+printf("Enter your name: ");
+fgets(name, sizeof(name), stdin);
+name[strcspn(name, "\n")] = '\0';
+
+if (strlen(name) == 0) {
+    printf("Error: name cannot be empty.\n");
+    return 1;
+}
+printf("Hello, %s! (%zu chars)\n", name, strlen(name));
+```
+
+---
+
+## Discussion Questions
+
+1. Why does C use a null terminator instead of storing the string length separately?
+2. What happens if you forget the null terminator?
+3. Why is `s1 == s2` always wrong for comparing strings in C?
+4. What is a buffer overflow and why is it a security vulnerability?
+5. When should you use `fgets` instead of `scanf("%s")`?
+6. What is the difference between `char s[] = "Hello"` and `char *s = "Hello"`?
+7. Why is `std::string` safer than C strings?
+8. How would you safely concatenate two strings in C?
+
+---
+
+## Preparation for L08
+
+Next lecture: **Functions and recursion** — defining and calling functions, scope, the call stack, return values, and recursive algorithms.
+
+Before L08:
+1. Write a program that reads two strings and prints which comes first alphabetically.
+2. Write `int is_palindrome(const char *s)` that returns 1 if the string reads the same forwards and backwards.

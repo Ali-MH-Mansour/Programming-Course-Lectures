@@ -1,0 +1,35 @@
+---
+title: "Programming — Year 1"
+subtitle: "C/C++ Lecture Series"
+---
+
+# Welcome
+
+This is the companion website for the **Programming** (Программирование) course at Южный Федеральный Университет, 2026.
+
+**Language:** C / C++
+**Structure:** 1 semester · 18 lectures · 8 modules
+**RPD:** А.С. Свиридов, 2026
+
+---
+
+## How to use this site
+
+Each lecture page is the **student handout** — clean reference material covering the key concepts, worked examples, a key-terms table, and discussion questions.
+
+Navigate using the table of contents on the left (or the menu on mobile).
+
+---
+
+## Course Structure
+
+| Module | Topic | Lectures |
+|--------|-------|---------|
+| 1 | Basics of C/C++, I/O, Linear Algorithms | L01–L04 |
+| 2 | Branching and Loops | L05 |
+| 3 | Arrays, Pointers, Strings | L06–L07 |
+| 4 | Subroutines | L08 |
+| 5 | File Handling | L09 |
+| 6 | User-Defined Data Types | L10–L11 |
+| 7 | Multithreaded Programming + AI | L12–L15 |
+| 8 | Libraries, Standard Structures, Algorithms | L16–L18 |

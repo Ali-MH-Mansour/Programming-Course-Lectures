@@ -1,0 +1,240 @@
+---
+title: "Lecture 6 — Arrays and Pointers in C"
+date: "2026-08-19"
+lang: en
+---
+
+> **Module 3:** Arrays, Pointers, Strings · **Prerequisites:** loops (L05)
+
+---
+
+## 1. Why Arrays?
+
+A single variable holds one value. An **array** holds many values of the **same type** under one name, stored contiguously in memory.
+
+```c
+int scores[30];      // 30 integers
+double temps[7];     // 7 doubles
+char letters[26];    // 26 characters
+```
+
+**Memory layout:** elements are packed with no gaps. `scores[0]` is at the base address; `scores[1]` is exactly `sizeof(int)` bytes later.
+
+---
+
+## 2. Declaring and Initializing Arrays
+
+```c
+int primes[5] = {2, 3, 5, 7, 11};   // fully initialized
+int zeros[100] = {0};                 // all 100 elements → 0
+int partial[5] = {1, 2};             // = {1, 2, 0, 0, 0}
+int auto_size[] = {10, 20, 30};      // size inferred = 3
+```
+
+- Array size must be a **compile-time constant** in standard C.
+- Partial initialization zeros the remaining elements automatically.
+
+---
+
+## 3. Indexing
+
+Indices run **0 to N−1**. Accessing outside this range is **undefined behavior** — C does not check bounds.
+
+```c
+int arr[5] = {10, 20, 30, 40, 50};
+printf("%d\n", arr[0]);   // 10 — first element
+printf("%d\n", arr[4]);   // 50 — last element
+```
+
+**Getting array size (only works on the original declaration):**
+```c
+int n = sizeof(arr) / sizeof(arr[0]);   // = 5
+```
+
+**The off-by-one trap:**
+```c
+for (int i = 0; i <= n; i++) { ... }   // ❌ reads arr[n] — out of bounds
+for (int i = 0; i < n; i++)  { ... }   // ✅ correct
+```
+
+---
+
+## 4. Core Processing Patterns
+
+**Sum and average:**
+```c
+int sum = 0;
+for (int i = 0; i < n; i++) sum += arr[i];
+double avg = (double)sum / n;
+```
+
+**Maximum (initialize from first element):**
+```c
+int max = arr[0];
+for (int i = 1; i < n; i++)
+    if (arr[i] > max) max = arr[i];
+```
+
+> Initialize from `arr[0]`, not `0` — if all values are negative, `0` would be wrong.
+
+**Linear search:**
+```c
+int found = -1;
+for (int i = 0; i < n; i++)
+    if (arr[i] == target) { found = i; break; }
+```
+
+---
+
+## 5. Pointers
+
+A **pointer** is a variable that stores a **memory address**.
+
+```c
+int x = 42;
+int *p = &x;        // p holds the address of x
+printf("%d\n", *p); // *p → value at that address = 42
+*p = 100;           // write through pointer → x becomes 100
+```
+
+| Operator | Meaning |
+|----------|---------|
+| `&x` | address-of `x` |
+| `*p` | dereference `p` — value at that address |
+
+---
+
+## 6. Arrays and Pointers Are Closely Related
+
+```c
+int arr[5] = {10, 20, 30, 40, 50};
+int *p = arr;        // arr decays to pointer to first element
+
+p[1]       == arr[1]   // 20
+*(p + 2)   == arr[2]   // 30
+```
+
+**`arr[i]` is always identical to `*(arr + i)`.**
+
+**Pointer arithmetic:** `p + 1` advances by `sizeof(int)` bytes automatically.
+
+---
+
+## 7. Arrays as Function Parameters
+
+Arrays **decay to pointers** when passed to functions — the function gets the address of the first element, not a copy.
+
+```c
+void print_array(int *arr, int n) {
+    for (int i = 0; i < n; i++) printf("%d ", arr[i]);
+    printf("\n");
+}
+
+void scale_array(int *arr, int n, int factor) {
+    for (int i = 0; i < n; i++) arr[i] *= factor;   // modifies original!
+}
+```
+
+> ⚠️ **`sizeof(arr)` inside a function gives the pointer size (8 bytes), not the array size. Always pass `n` explicitly.**
+
+To prevent modification: `void print_array(const int *arr, int n);`
+
+---
+
+## 8. Two-Dimensional Arrays
+
+```c
+int m[2][3] = {{1, 2, 3},
+               {4, 5, 6}};
+
+printf("%d\n", m[1][2]);   // 6 — row 1, column 2
+```
+
+**Row-major storage:** `m[0][0]`, `m[0][1]`, `m[0][2]`, `m[1][0]`, `m[1][1]`, `m[1][2]` — row by row, contiguous.
+
+---
+
+## Worked Examples
+
+### Example 1: Grade Statistics
+
+```c
+#define N 5
+int grades[N] = {85, 92, 78, 95, 88};
+int sum = 0, max = grades[0], min = grades[0];
+
+for (int i = 0; i < N; i++) {
+    sum += grades[i];
+    if (grades[i] > max) max = grades[i];
+    if (grades[i] < min) min = grades[i];
+}
+
+printf("Average: %.1f\n", (double)sum / N);
+printf("Max: %d  Min: %d\n", max, min);
+```
+
+### Example 2: Reverse an Array In Place
+
+```c
+void reverse(int *arr, int n) {
+    for (int i = 0; i < n / 2; i++) {
+        int tmp = arr[i];
+        arr[i] = arr[n - 1 - i];
+        arr[n - 1 - i] = tmp;
+    }
+}
+```
+
+### Example 3: Pointer Arithmetic Trace
+
+```c
+int a[3] = {10, 20, 30};
+int *p = a;
+printf("%d\n", *(p + 0));   // 10
+printf("%d\n", *(p + 1));   // 20
+printf("%d\n", *(p + 2));   // 30
+```
+
+---
+
+## Key Terms
+
+| Term | Definition |
+|------|-----------|
+| Array | Contiguous block of same-type values |
+| Element | One item in the array |
+| Index | Position number, 0-based |
+| Off-by-one | Loop bound error (`<=N` vs `<N`) |
+| Out-of-bounds | Index outside valid range — undefined behavior |
+| Pointer | Variable holding a memory address |
+| Address-of `&` | Returns memory address of a variable |
+| Dereference `*` | Read/write value at pointer's address |
+| Pointer arithmetic | Advancing a pointer by element-sized steps |
+| Array decay | Array auto-converts to pointer when passed |
+| Row-major order | 2D: stored row by row |
+| Linear search | Sequential scan for a target value |
+
+---
+
+## Discussion Questions
+
+1. Why does C use 0-based indexing?
+2. What is undefined behavior? Why doesn't C catch out-of-bounds access at runtime?
+3. If you can index a pointer like an array (`p[i]`), when would you prefer one over the other?
+4. Why must you pass the array size separately to a function?
+5. If `arr` points to `arr[0]`, what does `arr + 1` point to?
+6. Why is `sizeof(arr)/sizeof(arr[0])` wrong inside a function?
+7. Why does 2D initialization use `{{1,2,3},{4,5,6}}` with double braces?
+8. How would you modify `scale_array` to return a **new** array rather than modifying the original?
+
+---
+
+## Preparation for L07
+
+Next lecture covers **strings in C/C++**:
+
+- `char` arrays and the null terminator `'\0'`
+- Declaring and reading strings: `char name[50]`, `scanf("%s", name)`, `fgets`
+- Standard string functions: `strlen`, `strcpy`, `strcat`, `strcmp` (`<string.h>`)
+- `std::string` in C++ and why it is preferred
+- Buffer overflow: the most dangerous array mistake

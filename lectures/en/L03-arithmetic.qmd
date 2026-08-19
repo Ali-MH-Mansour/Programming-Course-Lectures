@@ -1,0 +1,240 @@
+---
+title: "Lecture 3 — Arithmetic and Computational Operations in C"
+date: "2026-08-17"
+lang: en
+---
+
+> **Module:** 1 — Basics of C/C++, I/O, Linear Algorithms
+> **Duration:** 2 academic hours
+> **RPD reference:** Лекция1_3
+
+---
+
+## What you will learn
+
+By the end of this lecture, you should be able to:
+
+- Predict the result of an integer expression, including division, remainder, and overflow
+- Explain why floating-point arithmetic is approximate (the IEEE-754 model)
+- Apply the implicit-promotion rules to a mixed-type expression
+- Write an explicit cast, and say when it is necessary and when it is dangerous
+- Distinguish prefix from postfix `++`/`--` and predict `a = i++` vs `a = ++i`
+- Use `<math.h>` / `<cmath>` for square roots, powers, and rounding
+
+**The key idea:** **arithmetic in C is typed arithmetic.** The same `+` means different things for `int` and for `double`.
+
+---
+
+## 1. Integer Arithmetic
+
+### Division and remainder
+
+```c
+printf("%d\n", 17 / 5);   // 3   — quotient, truncated toward zero
+printf("%d\n", 17 % 5);   // 2   — remainder
+```
+
+Identity: `(a / b) * b + (a % b) == a`.
+
+**Negative numbers:** C truncates **toward zero**, and `%` follows the sign of the dividend:
+
+```c
+printf("%d %d\n", -17 / 5, -17 % 5);   // -3 -2
+```
+
+### Integer overflow
+
+```c
+int big = INT_MAX;          // 2 147 483 647
+printf("%d\n", big + 1);    // -2 147 483 648  — wraps to INT_MIN
+```
+
+> ⚠️ **Signed overflow is undefined behaviour.** Choose a type wide enough.
+
+---
+
+## 2. Floating-Point Arithmetic
+
+### Why it is approximate — the IEEE-754 model
+
+```
+float (32 bits):
+[ sign : 1 bit ][ exponent : 8 bits ][ mantissa : 23 bits ]
+```
+
+**Why `0.1` is not exact:** `0.1` in binary repeats forever, like `1/3` in decimal. The machine stores the closest approximation.
+
+```c
+printf("%.17f\n", 0.1 + 0.2);   // 0.30000000000000004
+```
+
+### Comparing floating-point values
+
+```c
+#include <math.h>
+
+double a = 0.1 + 0.2, b = 0.3;
+if (fabs(a - b) < 1e-9) { /* "equal enough" */ }
+```
+
+> **Never write `a == b` for `double`.** Use `fabs(a - b) < epsilon`.
+
+**Default to `double`.** `float` only when memory genuinely matters.
+
+---
+
+## 3. Mixed-Type Expressions and Implicit Promotion
+
+When operands differ in type, C converts the **narrower** one to the **wider** type:
+
+```c
+int    n = 5;
+double d = 2.0;
+printf("%f\n", n / d);   // 2.500000 — n becomes 5.0
+```
+
+**Type hierarchy (widest wins):**
+```
+long double  >  double  >  float  >  long long  >  long  >  int
+```
+
+> ⚠️ Promotion happens **per operation**:
+>
+> ```c
+> double f = (9 / 5) * 100.0;    // 100.0  — WRONG: 9/5 = 1 (integer)
+> double g = (9.0 / 5) * 100.0;  // 180.0  — RIGHT
+> ```
+
+---
+
+## 4. Explicit Casts
+
+```c
+int total = 25, count = 3;
+double avg = (double)total / count;   // 8.333...
+```
+
+```c
+double avg = (double)total / count;              // C style
+double avg = static_cast<double>(total) / count; // C++ style
+```
+
+> ⚠️ **Precedence:** `(double)total / count` casts *then* divides (correct). `(double)(total / count)` casts *too late*.
+
+**When a cast is dangerous:**
+```c
+int n = (int)3.99;      // 3   — truncates (does not round)
+char c = (char)300;     // 44  — narrowing: data loss
+```
+
+---
+
+## 5. Increment and Decrement
+
+```c
+int i = 5;  int a = i++;   // postfix: a = 5, i = 6   (use THEN change)
+int j = 5;  int b = ++j;   // prefix:  b = 6, j = 6   (change THEN use)
+```
+
+> **One side effect per statement** — avoid `int x = i++ + ++i;` (undefined behaviour).
+
+---
+
+## 6. The Mathematical Library
+
+```c
+#include <math.h>
+
+sqrt(2.0)      // 1.414...
+pow(2.0, 10)   // 1024.0
+fabs(-3.5)     // 3.5        ← use fabs, NOT abs, for doubles
+ceil(2.1)      // 3.0
+floor(2.9)     // 2.0
+round(2.5)     // 3.0
+```
+
+In C++: `#include <cmath>`, use `std::sqrt`, etc.
+
+---
+
+## Summary
+
+1. **Integer arithmetic** — `/` truncates toward zero; `%` follows the dividend's sign; signed overflow is UB.
+2. **Floating-point** — IEEE-754 model; approximate; compare with tolerance, not `==`; default to `double`.
+3. **Mixed-type expressions** — narrower operand promoted to wider type, per operation.
+4. **Explicit casts** — force floating-point division; be suspicious of narrowing.
+5. **Increment/decrement** — postfix = "use then change"; prefix = "change then use".
+6. **Math library** — `fabs` not `abs` for doubles.
+
+---
+
+## Key Terms
+
+| Term | Definition |
+|------|-----------|
+| Integer division | `/` on two integers; truncates toward zero |
+| Remainder / modulo (`%`) | Integer remainder; sign follows dividend in C |
+| Integer overflow | Result exceeds type's range; wraps (UB for signed) |
+| IEEE-754 | Standard for floating-point: sign, exponent, mantissa |
+| Epsilon comparison | `fabs(a - b) < tolerance` instead of `a == b` |
+| Implicit promotion | Automatic conversion of narrower operand to wider type |
+| Explicit cast | Programmer-commanded conversion: `(type)expr` |
+| `static_cast` | Checked C++ cast: `static_cast<type>(expr)` |
+| Narrowing conversion | Conversion to type that cannot hold all source values |
+| Prefix / postfix | `++i` changes then yields; `i++` yields then changes |
+
+---
+
+## Worked Examples
+
+### Example 1 — Truncation vs rounding
+
+```c
+double x = 2.7;
+printf("cast   : %d\n",   (int)x);      // 2    — truncates
+printf("floor  : %.1f\n", floor(x));    // 2.0  — rounds down
+printf("ceil   : %.1f\n", ceil(x));     // 3.0  — rounds up
+printf("round  : %.1f\n", round(x));    // 3.0  — nearest
+printf("neg    : %d\n",   (int)-2.7);   // -2   — toward zero
+```
+
+### Example 2 — Prefix vs postfix, traced
+
+```c
+int i = 5;  int a = i++;   // a = 5, i = 6
+int j = 5;  int b = ++j;   // b = 6, j = 6
+```
+
+### Example 3 — Mixed-type division bug and its three fixes
+
+```c
+int marks = 25, students = 3;
+
+double bad  = marks / students;            // 8.000000 — wrong
+double fix1 = (double)marks / students;    // 8.333333
+double fix2 = marks / (double)students;    // 8.333333
+double fix3 = marks / 3.0;                 // 8.333333
+```
+
+---
+
+## Discussion Questions
+
+1. `(9 / 5) * temperature + 32` is wrong for every input. Locate the bug and give two different fixes.
+2. What is `-17 / 5` and `-17 % 5` in C?
+3. Why can a computer store `0.5` exactly but not `0.1`?
+4. How do you test two `double` values for equality?
+5. In `int n = 5; double d = 2.0; n / d`, which operand is converted and to what?
+6. What is the difference between `(double)total / count` and `(double)(total / count)`?
+7. Given `int i = 5;`, what are `a` and `i` after `int a = i++;`? After `int b = ++i;` (reset to 5)?
+8. Why is `fabs` and not `abs` correct for a `double`?
+
+---
+
+## Preparation for Lecture 4
+
+Next lecture: **Formatted input and output** — `printf`/`scanf` format specifiers, `cin`/`cout`, reading characters and strings.
+
+Before Lecture 4:
+1. Compile and run Worked Example 3. Confirm all three fixes print `8.333333`.
+2. What does `printf("%d\n", (int)(3.99 + 0.5));` print, and why?

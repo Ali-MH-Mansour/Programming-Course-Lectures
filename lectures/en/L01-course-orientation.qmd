@@ -1,0 +1,301 @@
+---
+title: "Lecture 1 — Course Orientation"
+subtitle: "The C Language, Toolchain, and Programming Workflow"
+date: "2026-08-16"
+lang: en
+---
+
+> **Module:** 1 — Basics of C/C++, I/O, Linear Algorithms
+> **Duration:** 2 academic hours
+> **RPD reference:** Лекция1_1
+
+---
+
+## What you will learn
+
+By the end of this lecture, you should be able to:
+
+- Define **algorithm** and identify its four required properties
+- Explain the position of C/C++ in the programming language landscape
+- Name the four stages of the C/C++ compilation toolchain and describe what each produces
+- Write, compile, and run a minimal C program from the command line
+- Distinguish between compiler errors, runtime errors, and logic errors
+
+---
+
+## 1. What Is a Program?
+
+A **program** is a set of instructions, written by a human in a programming language, that a machine can execute. The machine runs programs in binary — sequences of 1s and 0s. Between the human-readable language and the machine, something translates.
+
+---
+
+### Algorithm
+
+An **algorithm** is a step-by-step procedure for solving a problem. For an algorithm to be valid, every step must be stated precisely enough that a machine — or someone who has never seen the problem before — can follow it without guessing.
+
+**The four required properties of an algorithm:**
+
+| Property | Meaning |
+|----------|---------|
+| **Definiteness** | Each step is clear and unambiguous |
+| **Finiteness** | The procedure terminates in a finite number of steps |
+| **Input/Output** | It takes some data as input and produces a result as output |
+| **Effectiveness** | Each step is actually executable — no impossible operations |
+
+**Example — ATM directions written as a valid algorithm:**
+
+```
+INPUT: starting room number
+OUTPUT: route to the nearest ATM
+
+STEP 1: Exit room, turn left into corridor
+STEP 2: Walk to the end of corridor (approximately 30 steps)
+STEP 3: Take the staircase down to ground floor
+STEP 4: Exit building through main door
+STEP 5: Turn right; walk 50 metres on the pavement
+STEP 6: The ATM is on the right side of building entrance — use it
+STEP 7: STOP
+```
+
+Notice: "Turn left at the big tree" would fail the **definiteness** property — "big tree" is not unambiguous. "Find the ATM" with no termination condition would fail **finiteness**.
+
+**Think about:** Is a cooking recipe an algorithm? Which of the four properties might it violate?
+
+---
+
+### Flowcharts
+
+A **flowchart** is a graphical way to represent an algorithm. Standard symbols:
+
+| Symbol | Shape | Meaning |
+|--------|-------|---------|
+| Oval | Rounded rectangle | Start or End |
+| Rectangle | Plain rectangle | Action step |
+| Diamond | Diamond | Decision (yes/no) |
+| Arrow | → | Direction of flow |
+
+**Example — ATM algorithm with a decision:**
+
+```
+[Start]
+   ↓
+[Walk to ATM]
+   ↓
+[Is ATM working?]
+   ├─ YES → [Use ATM] → [End]
+   └─ NO  → [Find next ATM] → [Walk to ATM]
+```
+
+---
+
+## 2. Programming Languages
+
+### What the CPU actually executes
+
+The CPU executes **binary machine code** — sequences of 1s and 0s, each encoding a specific operation. Nobody writes machine code directly. We write in a human-readable programming language, and a tool translates it.
+
+### High-level vs low-level
+
+```
+Machine code   →   Assembly   →   C / C++   →   Java / Go   →   Python
+  (binary)                       (this course)
+
+← Hardest to write           Middle ground          Easiest to write →
+← Fastest to execute                                Slowest to execute →
+← Least portable                                    Most portable →
+```
+
+**C/C++ is in the middle:** high enough to write readable code, low enough to control exactly what the machine does.
+
+### Compiled vs interpreted
+
+| | **Compiled (C/C++)** | **Interpreted (Python)** |
+|---|---|---|
+| When is it translated? | Once, before it runs | At runtime, line by line |
+| Speed | Fast — machine code is already ready | Slower — translation overhead on every run |
+| Error detection | Before running: compiler catches problems | At runtime: errors appear when that line executes |
+
+**Concrete performance difference:**
+
+```
+Task: write 100 million integers to memory and sum them
+
+C program:     ~0.3 seconds
+Python script: ~15 seconds
+```
+
+---
+
+## 3. Brief History of C
+
+**1972, Bell Labs, New Jersey.** Dennis Ritchie designs C to rewrite Unix portably — powerful enough to write an OS, portable across hardware.
+
+**1983, AT&T Bell Labs.** Bjarne Stroustrup adds object-oriented features to C → **C++**.
+
+**Today, 2026.** C remains the language of every major OS kernel, embedded systems, and AI framework backends (TensorFlow, PyTorch).
+
+---
+
+## 4. The C/C++ Toolchain
+
+```
+hello.c  (text file you write)
+    ↓
+  [Preprocessor]  — #include, #define
+    ↓
+hello.i  (expanded text)
+    ↓
+  [Compiler]  — syntax check, translate to assembly
+    ↓
+hello.s  (assembly)
+    ↓
+  [Assembler]  — translate to binary
+    ↓
+hello.o  (object file — binary, not yet runnable)
+    ↓
+  [Linker]  — combine with libraries
+    ↓
+hello    (executable)
+```
+
+### Running from the command line
+
+```bash
+gcc -Wall -std=c11 -o hello hello.c    # compile
+./hello                                 # run
+```
+
+| Flag | Meaning |
+|------|---------|
+| `-Wall` | Enable all common warnings — always use this |
+| `-o hello` | Name the output file `hello` |
+| `-std=c11` | Compile as C11 |
+
+---
+
+## 5. Hello World: Anatomy
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    printf("Hello, world!\n");
+    return 0;
+}
+```
+
+- `#include <stdio.h>` — copies the standard I/O header (declares `printf`)
+- `int main(void)` — entry point; `int` = exit code returned to OS
+- `printf(...)` — prints to standard output; `\n` = newline
+- `return 0;` — exit code 0 = success
+
+**Common escape sequences:**
+
+| Sequence | Meaning |
+|----------|---------|
+| `\n` | Newline |
+| `\t` | Tab |
+| `\\` | Literal backslash |
+| `\"` | Literal double-quote |
+| `\0` | Null character |
+
+---
+
+## 6. The Edit–Compile–Run–Debug Cycle
+
+```
+[Edit] → [Compile] → [Run] → [Debug] → [Edit] → ...
+```
+
+**Three kinds of error:**
+
+| Error type | When you see it | Example |
+|------------|----------------|---------|
+| **Compiler error** | During compilation | Missing `;`, undeclared variable |
+| **Runtime error / crash** | While running | Dividing by zero |
+| **Logic error** | Program runs but output is wrong | Off-by-one in a loop |
+
+---
+
+## Summary
+
+1. **Algorithm** — finite, definite, effective; four required properties.
+2. **High-level vs low-level languages** — C/C++ is close to hardware: fast, powerful, industry-relevant.
+3. **Compiled vs interpreted** — C/C++ compiled once; ~50× faster for compute-intensive work.
+4. **The toolchain** — source → preprocessor → compiler → assembler → linker → executable.
+5. **Hello world** — `#include`, `main`, `printf`, `\n`, `return 0`; every character has a purpose.
+6. **Edit–Compile–Run–Debug** — your working method for the rest of the semester.
+
+---
+
+## Key Terms
+
+| Term | Definition |
+|------|-----------|
+| Algorithm | A finite, definite, effective procedure that produces an output from given input |
+| Pseudocode | Informal structured notation for expressing an algorithm in plain language |
+| Flowchart | A graphical representation of an algorithm using standard symbols |
+| Compiled language | Source code is translated to machine code once, before execution |
+| Interpreted language | Source code is translated line-by-line at runtime |
+| Preprocessor | First stage: processes `#include`, `#define` |
+| Compiler | Translates C source to assembly; checks syntax and types |
+| Assembler | Translates assembly to binary object code |
+| Linker | Combines object files with libraries to produce a standalone executable |
+| Entry point | `main` — where execution begins |
+| Exit code | `0` = success; non-zero = failure |
+| Escape sequence | Two-character notation: `\n` = newline, `\t` = tab |
+| Compiler error | Caught at compile time |
+| Runtime error | Occurs during execution |
+| Logic error | Program runs but produces incorrect output |
+
+---
+
+## Worked Examples
+
+### Example 1 — Compiling and running hello.c
+
+```bash
+gcc -Wall -std=c11 -o hello hello.c
+./hello
+```
+
+Expected output: `Hello, world!`
+
+### Example 2 — Reading a compiler error
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    printf("Hello, world!\n")   /* missing semicolon */
+    return 0;
+}
+```
+
+```
+hello.c:5:5: error: expected ';' before 'return'
+```
+
+The error is reported at line 5, but the mistake is at the end of line 4. The compiler reports where it *noticed* the problem.
+
+---
+
+## Discussion Questions
+
+1. What are the four properties of an algorithm? Can a cooking recipe satisfy all four?
+2. What is the difference between a compiled language and an interpreted language?
+3. Describe the four stages of the C compilation pipeline.
+4. What does `#include <stdio.h>` actually do?
+5. What does `return 0` in `main` communicate to the operating system?
+6. What is the difference between a compiler error and a runtime error?
+
+---
+
+## Preparation for Lecture 2
+
+Next lecture: **Data types, declarations, operators, and operations.**
+
+Before Lecture 2:
+1. Verify `gcc` is installed: run `gcc --version`.
+2. Modify `hello.c` to print your name. Compile and run.
+3. *(Challenge)* Make the program print three lines — your name, department, and year — using a single `printf` call.
