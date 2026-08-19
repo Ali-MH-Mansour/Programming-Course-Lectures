@@ -40,7 +40,20 @@ book:
     - part: "Module 6 — User-Defined Data Types"
       chapters:
         - lectures/en/L10-dynamic-memory.qmd
-        # L11-L18 added as produced
+        - lectures/en/L11-structs.qmd
+
+    - part: "Module 7 — Modern C++: Concurrency, AI, and Vibe Coding"
+      chapters:
+        - lectures/en/L12-multithreading.qmd
+        - lectures/en/L13-ai-algorithms.qmd
+        - lectures/en/L14-heterogeneous-hardware.qmd
+        - lectures/en/L15-vibe-coding.qmd
+
+    - part: "Module 8 — Libraries, Standard Structures, Algorithms"
+      chapters:
+        - lectures/en/L16-preprocessor-build.qmd
+        - lectures/en/L17-standard-libraries.qmd
+        - lectures/en/L18-algorithms-complexity.qmd
 
 format:
   html:

@@ -1,0 +1,154 @@
+---
+title: "L14 — AI on Heterogeneous Hardware"
+subtitle: "Module 7 · GPU Architecture, CUDA C++, FPGA Basics, Model Optimization"
+---
+
+## The Heterogeneous Computing Landscape
+
+| Platform | Cores | Power | Best for |
+|----------|-------|-------|----------|
+| CPU | 4–64 | 10–200 W | Control flow, general algorithms |
+| GPU | 1K–10K | 50–700 W | Data-parallel training and inference |
+| FPGA | custom | 1–30 W | Ultra-low latency, edge inference |
+| MCU/NPU | 1–8 | mW | Wearables, sensors, always-on |
+
+**Workflow:** Train (GPU) → Quantize/Prune → Deploy (MCU/FPGA/NPU).
+
+---
+
+## GPU Architecture
+
+**SIMT:** thousands of threads execute the same instruction simultaneously.
+
+**Thread hierarchy:**
+```
+Grid → Block (shares Shared Memory, ≤1,024 threads) → Thread
+Warp = 32 threads in lockstep (hardware scheduling unit)
+```
+
+**Memory (fast → slow):** Registers → Shared memory → L1 → Global memory
+
+**Key:** load into shared memory once, compute many times — avoid repeated global memory access.
+
+---
+
+## CUDA C++ — Minimal Kernel
+
+```cpp
+// Compile: nvcc vector_add.cu -o vector_add
+#include <stdio.h>
+
+__global__ void add(float *a, float *b, float *c, int n) {
+    int i = blockIdx.x * blockDim.x + threadIdx.x;
+    if (i < n)
+        c[i] = a[i] + b[i];
+}
+
+int main() {
+    const int N = 1024;
+    float *h_a = (float*)malloc(N*sizeof(float));
+    float *h_b = (float*)malloc(N*sizeof(float));
+    float *h_c = (float*)malloc(N*sizeof(float));
+    for (int i = 0; i < N; i++) { h_a[i] = i; h_b[i] = 2*i; }
+
+    float *d_a, *d_b, *d_c;
+    cudaMalloc(&d_a, N*sizeof(float));
+    cudaMalloc(&d_b, N*sizeof(float));
+    cudaMalloc(&d_c, N*sizeof(float));
+
+    cudaMemcpy(d_a, h_a, N*sizeof(float), cudaMemcpyHostToDevice);
+    cudaMemcpy(d_b, h_b, N*sizeof(float), cudaMemcpyHostToDevice);
+
+    add<<<4, 256>>>(d_a, d_b, d_c, N);   // 4 blocks × 256 = 1,024 threads
+
+    cudaMemcpy(h_c, d_c, N*sizeof(float), cudaMemcpyDeviceToHost);
+    cudaFree(d_a); cudaFree(d_b); cudaFree(d_c);
+    free(h_a); free(h_b); free(h_c);
+}
+```
+
+**Thread index:** `i = blockIdx.x * blockDim.x + threadIdx.x`
+
+**CUDA qualifiers:**
+
+| Qualifier | Runs on | Called from |
+|-----------|---------|-------------|
+| `__global__` | GPU | CPU |
+| `__device__` | GPU | GPU |
+| `__host__` | CPU | CPU |
+
+---
+
+## AI Workloads on GPU
+
+**GEMM (C = A × B)** — every neural network layer. Each output element is an independent dot product → one thread per element.
+
+**NVIDIA libraries:**
+- **cuBLAS** — optimized GEMM.
+- **cuDNN** — convolution, pooling.
+- **TensorRT** — fusion + quantization for inference.
+
+---
+
+## FPGA Basics
+
+- Configurable hardware: user sets the logic via VHDL/Verilog or **HLS** from C/C++.
+- Pipeline parallelism: new item every clock cycle.
+- Deterministic latency: no OS jitter.
+- Very low power (mW–W vs GPU's hundreds of watts).
+
+```cpp
+void dot(int *a, int *b, int *c, int n) {
+#pragma HLS PIPELINE II=1
+    for (int i = 0; i < n; i++) c[i] = a[i] * b[i];
+}
+```
+
+Trade-off: GPU = fast development; FPGA = slow development but ultra-low latency/power.
+
+---
+
+## Model Optimization
+
+**Quantization:** `float32 → int8` — 4× smaller, faster integer math, ~0.1–1% accuracy drop.
+
+**Pruning:** zero small weights → skip zero multiplications.
+```
+50–90% weights pruned → <1% accuracy drop (typical)
+```
+
+**Knowledge distillation:** train small (student) model to mimic large (teacher).
+
+---
+
+## Key Terms
+
+| Term | Meaning |
+|------|---------|
+| SIMT | One instruction, thousands of threads |
+| Thread / Block / Grid | CUDA hierarchy |
+| Warp | 32 threads in lockstep |
+| Shared memory | Per-block fast memory |
+| Global memory | All-thread GPU DRAM (slow) |
+| `__global__` | Kernel: runs on GPU, called from CPU |
+| `cudaMalloc` / `cudaMemcpy` | GPU memory management |
+| GEMM | Matrix multiply — backbone of deep learning |
+| cuBLAS / cuDNN / TensorRT | NVIDIA AI libraries |
+| FPGA | Field-Programmable Gate Array |
+| HLS | High-Level Synthesis (C/C++ → FPGA) |
+| Quantization | float32 → int8 for deployment |
+| Pruning | Zero small weights |
+| Knowledge distillation | Student mimics teacher |
+
+---
+
+## Discussion Questions
+
+1. Why can a GPU have thousands of cores? What does each core sacrifice vs a CPU core?
+2. What is the difference between global and shared memory in CUDA?
+3. Why must data be explicitly copied between CPU and GPU?
+4. How does each thread compute its unique index?
+5. Why is GEMM the central operation in deep learning?
+6. Compare FPGAs and GPUs for inference: when would you choose each?
+7. A pruned model has 80% zero weights — how does that save computation?
+8. Why train in float32 then quantize, rather than train in int8 from the start?

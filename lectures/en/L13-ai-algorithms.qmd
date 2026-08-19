@@ -1,0 +1,180 @@
+---
+title: "L13 — AI Algorithms on Resource-Constrained Platforms"
+subtitle: "Module 7 · Linear Regression, Naïve Bayes, K-Means, Decision Trees, Quantization"
+---
+
+## Why C/C++ for AI on Constrained Hardware?
+
+Python + PyTorch handle most AI training — but embedded systems (robots, smart sensors, MCUs) have no Python runtime, limited RAM, and must respond in milliseconds. C/C++ provides: no garbage collector, no runtime overhead, fine-grained memory control.
+
+---
+
+## Linear Regression — Gradient Descent
+
+**Model:** `y = w·x + b`
+
+**MSE Loss:** `(1/n) Σ (w*x_i + b - y_i)²`
+
+**Gradient descent update (one epoch):**
+
+```cpp
+double dw = 0.0, db = 0.0;
+for (int i = 0; i < n; i++) {
+    double error = (w * x[i] + b) - y[i];
+    dw += error * x[i];
+    db += error;
+}
+w -= alpha * (2.0 / n) * dw;
+b -= alpha * (2.0 / n) * db;
+```
+
+`alpha` (learning rate): too large → diverges; too small → slow.
+
+---
+
+## Naïve Bayes Classifier
+
+**Rule:** `class = argmax_c [ log P(class_c) + Σ log P(feature_i | class_c) ]`
+
+Use **log probabilities** — multiplying many small numbers underflows.
+
+**Laplace smoothing** prevents `log(0)`:
+```
+P(word | class) = (count + 1) / (total_words_in_class + vocab_size)
+```
+
+```cpp
+double lp_spam = log(prior_spam);
+for (int f = 0; f < n_features; f++)
+    if (feature[f])
+        lp_spam += log(p_word_given_spam[f]);
+```
+
+---
+
+## K-Means Clustering
+
+**Goal:** partition n points into k clusters.
+
+**Algorithm:**
+1. Initialize k centroids randomly.
+2. **Assign** each point to its nearest centroid.
+3. **Update** each centroid to the mean of its assigned points.
+4. Repeat until convergence.
+
+```cpp
+// Assignment step
+for (int i = 0; i < n; i++) {
+    double best = 1e18; int best_c = 0;
+    for (int c = 0; c < k; c++) {
+        double d = dist_sq(pts[i], centroids[c]);
+        if (d < best) { best = d; best_c = c; }
+    }
+    assign[i] = best_c;
+}
+```
+
+**k-means++** initializes centroids far apart — reduces bad local optima.
+
+---
+
+## Decision Tree
+
+**Gini impurity:** `Gini(S) = 1 − Σ p_c²` (0 = pure, 0.5 = even two-class split)
+
+**Information gain:** `IG = Gini(parent) − (n_L/n)·Gini(L) − (n_R/n)·Gini(R)`
+
+**Recursive build:**
+```
+build(data, depth):
+  if depth ≥ MAX or all_same_class → return leaf(majority)
+  find feature + threshold maximizing IG
+  split → left_data, right_data
+  return node(left=build(left_data, depth+1),
+              right=build(right_data, depth+1))
+```
+
+Stopping criteria (max depth, min samples) **prevent overfitting**.
+
+---
+
+## Data Pipeline
+
+**Feature vector as struct:**
+```cpp
+typedef struct { double features[N]; int label; } Sample;
+```
+
+**Train/test split (80/20):**
+```cpp
+shuffle(samples, n);
+int n_train = (int)(n * 0.8);
+```
+
+**Accuracy:**
+```cpp
+int correct = 0;
+for (int i = n_train; i < n; i++)
+    if (predict(model, samples[i].features) == samples[i].label) correct++;
+printf("Accuracy: %.1f%%\n", 100.0 * correct / (n - n_train));
+```
+
+---
+
+## Quantization
+
+Convert `float32` weights to `int8` for inference on constrained hardware:
+
+```
+quantized   = round(float_val / scale)   // [-128, 127]
+dequantized = quantized * scale
+```
+
+- 4× smaller weights → fit in cache.
+- Integer math faster than floating-point on MCUs/NPUs.
+- Typical accuracy drop: 0.1–1%.
+
+---
+
+## Key Terms
+
+| Term | Meaning |
+|------|---------|
+| Gradient descent | Iterative weight update toward loss minimum |
+| Learning rate | Step size; too large → diverges |
+| Naïve Bayes | Classifier using Bayes' theorem + feature independence |
+| Laplace smoothing | Add-1 to prevent log(0) |
+| K-means | Assign + update centroid loop |
+| k-means++ | Spread-apart centroid initialization |
+| Gini impurity | Split quality: 0 = pure |
+| Information gain | Reduction in Gini from a split |
+| Overfitting | Model fits training noise — fails on test data |
+| Quantization | float32 → int8 for faster inference |
+
+---
+
+## Worked Example — Naïve Bayes Spam Classifier
+
+**Vocabulary:** `{free, money, click, hello, friend}`
+
+Training (3 spam, 3 not-spam). With Laplace smoothing, classify "free money click":
+
+```
+log P(spam | msg) ≈ -4.34
+log P(notspam | msg) ≈ -7.23
+```
+
+→ Classified as **SPAM**.
+
+---
+
+## Discussion Questions
+
+1. Why use log-probabilities in Naïve Bayes?
+2. What does k-means++ do differently from random initialization?
+3. Why does a decision tree without stopping criteria overfit?
+4. Gini of a pure node vs an even two-class split?
+5. Why is `int8` faster than `float32` on MCUs?
+6. Can you run training on an MCU for real-time robot control? Justify.
+7. What is the purpose of the train/test split?
+8. Gradient descent diverges — how do you detect it from loss values?

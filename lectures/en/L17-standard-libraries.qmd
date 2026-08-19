@@ -1,0 +1,188 @@
+---
+title: "L17 — Standard Libraries and Type Conversions"
+subtitle: "Module 8 · stdlib, string.h, time.h, ctype.h, Safe Conversions, C++ STL"
+---
+
+## `<stdlib.h>` — General Utilities
+
+### Sorting with `qsort`
+
+```c
+int compare_int(const void *a, const void *b) {
+    int ia = *(const int *)a;
+    int ib = *(const int *)b;
+    return (ia > ib) - (ia < ib);   // safe — never overflows
+    // NOT: return ia - ib;  — overflows for large values
+}
+
+int arr[] = {5, 2, 8, 1, 9};
+qsort(arr, 5, sizeof(int), compare_int);
+// arr = {1, 2, 5, 8, 9}
+```
+
+**Struct comparator:**
+```c
+int by_grade_desc(const void *a, const void *b) {
+    double ga = ((const Student*)a)->grade;
+    double gb = ((const Student*)b)->grade;
+    return (ga < gb) - (ga > gb);
+}
+```
+
+### `bsearch` — Binary Search
+
+Array **must be sorted**. Returns `NULL` if not found.
+
+### Random Numbers
+
+```c
+srand(time(NULL));          // seed ONCE
+int die = rand() % 6 + 1;  // 1–6
+```
+
+Not cryptographically secure.
+
+---
+
+## `<string.h>` — Memory Functions
+
+```c
+memcpy(dst, src, n);    // copy n bytes — no overlap
+memmove(dst, src, n);   // copy n bytes — overlap-safe
+memset(ptr, 0, n);      // fill n bytes with 0
+memcmp(a, b, n);        // compare n bytes
+```
+
+**⚠️ `memset` zero-init is portable for integers; use `calloc` for `double`.**
+
+---
+
+## `<math.h>` / `<cmath>`
+
+```c
+sqrt(x)  pow(x,y)  fabs(x)  ceil(x)  floor(x)  round(x)
+sin(x)   cos(x)    log(x)   exp(x)   atan2(y,x)
+```
+
+`abs()` from `<stdlib.h>` is integer-only — use `fabs()` for `double`.
+
+Link: `gcc prog.c -o prog -lm`
+
+---
+
+## `<time.h>` — Timing and Dates
+
+```c
+// Timing:
+clock_t t0 = clock();
+do_work();
+printf("%.4f s\n", (double)(clock()-t0)/CLOCKS_PER_SEC);
+
+// Date/time:
+time_t now  = time(NULL);
+struct tm *lt = localtime(&now);
+char buf[64];
+strftime(buf, sizeof(buf), "%Y-%m-%d %H:%M:%S", lt);
+puts(buf);
+```
+
+---
+
+## `<ctype.h>` — Character Classification
+
+```c
+isdigit(c)  isalpha(c)  isalnum(c)  isspace(c)
+isupper(c)  islower(c)  toupper(c)  tolower(c)
+```
+
+Argument must be `unsigned char` or `EOF`.
+
+---
+
+## Safe Type Conversion
+
+**`atoi` — unsafe:**
+```c
+int n = atoi("hello");   // returns 0 silently — no error detection!
+```
+
+**`strtol` — safe:**
+```c
+char *end; errno = 0;
+long val = strtol("42abc", &end, 10);
+if (end == input)        puts("No digits");
+else if (*end != '\0')   printf("Trailing: %s\n", end);
+else if (errno == ERANGE) puts("Overflow");
+else                     printf("OK: %ld\n", val);
+```
+
+**C++ alternatives:**
+```cpp
+int    n = std::stoi("42");         // throws on failure
+double d = std::stod("3.14");
+std::string s = std::to_string(42);
+```
+
+---
+
+## C++ STL Glimpse
+
+### `<vector>` — Resizable Array
+
+```cpp
+std::vector<int> v;
+v.push_back(10); v.push_back(20);
+for (int x : v) std::cout << x << " ";
+v.resize(5, 0);
+```
+
+### `<algorithm>`
+
+```cpp
+std::sort(v.begin(), v.end());
+std::sort(v.begin(), v.end(), std::greater<int>());
+auto it = std::find(v.begin(), v.end(), 10);
+int m   = *std::max_element(v.begin(), v.end());
+```
+
+### `<string>`
+
+```cpp
+std::string s = "Alice";
+s += " Smith";
+s.length();          // 11
+s.find("Smith");     // 6
+s.substr(6, 5);      // "Smith"
+```
+
+---
+
+## Key Terms
+
+| Term | Meaning |
+|------|---------|
+| `qsort` | C standard sort with function-pointer comparator |
+| `bsearch` | Binary search on sorted array |
+| `memcpy` | Copy bytes (no overlap) |
+| `memmove` | Copy bytes (overlap-safe) |
+| `memset` | Fill bytes |
+| `clock()` | CPU time used by process |
+| `strftime` | Format date/time as string |
+| `atoi` | Unsafe string→int |
+| `strtol` | Safe string→long with error detection |
+| `std::vector` | C++ resizable array |
+| `std::sort` | O(n log n) sort on any range |
+| `std::stoi` | Safe C++ string→int (throws on failure) |
+
+---
+
+## Discussion Questions
+
+1. Why is `atoi` dangerous? What should you use instead?
+2. What must `qsort`'s comparator return, and why is `a - b` wrong?
+3. Difference between `memcpy` and `memmove`?
+4. Is `memset(arr, 0, sizeof(arr))` safe for `double`?
+5. Why link with `-lm` on Linux for `sqrt`?
+6. "99abc" → `strtol` — what does it tell you that `atoi` cannot?
+7. What does `std::vector` give you that C dynamic arrays don't?
+8. How do you sort a `std::vector<Student>` by grade descending?

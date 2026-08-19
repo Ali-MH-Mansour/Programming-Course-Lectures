@@ -1,0 +1,179 @@
+---
+title: "L16 — Preprocessor, Multi-Module Programs, Build Systems"
+subtitle: "Module 8 · Macros, Include Guards, ODR, Makefile, CMake, Internationalization"
+---
+
+## The Preprocessor
+
+Runs **before** the compiler — text substitution, not C parsing.
+
+```c
+#include <stdio.h>          // paste stdio.h contents
+#include "myutils.h"        // paste user header
+
+#define PI     3.14159265   // text replacement
+#define MAX(a,b)  ((a)>(b)?(a):(b))  // function-like macro
+
+#ifdef DEBUG                // conditional compilation
+    printf("debug\n");
+#endif
+```
+
+View preprocessor output: `gcc -E file.c`
+
+---
+
+## Include Guards
+
+Prevent double-inclusion errors:
+
+```c
+#ifndef MYUTILS_H
+#define MYUTILS_H
+
+void my_function(int x);
+typedef struct { int a, b; } Pair;
+
+#endif
+```
+
+**Or simply:** `#pragma once` (supported by GCC, Clang, MSVC).
+
+---
+
+## Macro Pitfalls — Prefer C++ Alternatives
+
+```c
+// Trap: double evaluation
+#define SQUARE(x) ((x)*(x))
+SQUARE(i++);   // evaluates i++ twice!
+
+// Trap: precedence without parens
+#define DOUBLE(x) x*2
+DOUBLE(3+4);   // → 3+4*2 = 11, not 14
+```
+
+**C++ fixes:**
+```cpp
+const double PI = 3.14159265;       // typed, no side effects
+inline int square(int x) { return x*x; }
+constexpr int N = 100;
+```
+
+---
+
+## Translation Units, ODR, Linkage
+
+- **Translation unit (TU):** one `.c` file + all included headers.
+- **Declaration:** announces existence (no storage). `extern int counter;`
+- **Definition:** creates storage or code. `int counter = 0;`
+
+**One Definition Rule (ODR):** declare as often as needed; **define exactly once** program-wide.
+
+```c
+// Defining in a .h included by two .c files → linker error: multiple definition
+```
+
+**Linkage:**
+```c
+static int private = 0;   // internal linkage — invisible to other TUs
+```
+
+---
+
+## Header / Source Split
+
+**Header (`.h`) — declarations:**
+```c
+#pragma once
+typedef struct { int id; char name[50]; double grade; } Student;
+void sort_students(Student *arr, int n);
+```
+
+**Source (`.c`) — definitions:**
+```c
+#include "students.h"
+void sort_students(Student *arr, int n) { /* body */ }
+```
+
+**Rule:** declarations in `.h`; definitions in `.c`.
+
+---
+
+## Build Systems
+
+**Manual:**
+```sh
+gcc -c main.c students.c   # compile each to .o
+gcc main.o students.o -o program
+```
+
+**Makefile:**
+```makefile
+CC = gcc
+CFLAGS = -Wall -g
+
+program: main.o students.o
+	$(CC) $^ -o $@
+
+%.o: %.c students.h
+	$(CC) $(CFLAGS) -c $<
+
+clean:
+	rm -f *.o program
+```
+
+`make` rebuilds only files whose dependencies changed.
+
+**CMake:**
+```cmake
+cmake_minimum_required(VERSION 3.20)
+project(App C)
+add_executable(program main.c students.c)
+```
+
+---
+
+## Internationalization
+
+- `char` = 1 byte; Unicode needs 1–4 bytes (UTF-8).
+- `strlen` counts **bytes**, not characters.
+- Use `wchar_t` + `wprintf` for wide characters:
+
+```c
+setlocale(LC_ALL, "");
+wchar_t msg[] = L"Привет";
+wprintf(L"%ls\n", msg);
+```
+
+---
+
+## Key Terms
+
+| Term | Meaning |
+|------|---------|
+| Preprocessor | Text substitution before compilation |
+| `#define` | Text replacement rule |
+| Include guard | `#ifndef`/`#define`/`#endif` preventing double inclusion |
+| `#pragma once` | Single-line include guard |
+| Translation unit | One `.c` + includes |
+| Declaration | Announces symbol exists |
+| Definition | Creates storage or code |
+| ODR | One Definition Rule |
+| Internal linkage | `static` — TU-private |
+| Makefile | Build automation with dependency tracking |
+| CMake | Cross-platform build generator |
+| UTF-8 | Variable-width Unicode encoding |
+
+---
+
+## Discussion Questions
+
+1. What does the preprocessor do, and why does it run before the compiler?
+2. Why do function-like macros need parentheses around each argument?
+3. What is the ODR? What happens if a function is defined in a header included by two `.c` files?
+4. What is the difference between a declaration and a definition?
+5. What does `static` at file scope do?
+6. What problem does `#pragma once` solve?
+7. You edit `students.c` — which files does `make` recompile?
+8. Why does `strlen` count bytes rather than Unicode characters?

@@ -1,0 +1,258 @@
+---
+title: "L18 — Standard Data Structures, Algorithms, and Complexity"
+subtitle: "Module 8 (Capstone) · Big-O, Linked List, Stack, Queue, Sorting, Searching, Hash Tables"
+---
+
+## Complexity — Big-O Notation
+
+Big-O describes how running time grows as n → ∞, ignoring constant factors.
+
+| Class | Name | Example |
+|-------|------|---------|
+| O(1) | Constant | Array index access |
+| O(log n) | Logarithmic | Binary search |
+| O(n) | Linear | Linear search |
+| O(n log n) | Linearithmic | Merge sort |
+| O(n²) | Quadratic | Insertion sort (worst) |
+| O(2^n) | Exponential | Naïve recursive Fibonacci |
+
+For n = 10,000: O(log n) ≈ 14 operations; O(n²) = 100,000,000.
+
+**Best / worst / average cases matter:** Quicksort is O(n log n) on average but O(n²) on sorted input with a bad pivot.
+
+---
+
+## Linked List
+
+```c
+typedef struct Node { int data; struct Node *next; } Node;
+```
+
+**Insert at front — O(1):**
+
+```c
+Node *push_front(Node *head, int val) {
+    Node *n = malloc(sizeof(Node));
+    n->data = val; n->next = head;
+    return n;   // new head
+}
+```
+
+**Traversal:**
+
+```c
+for (Node *cur = head; cur != NULL; cur = cur->next)
+    printf("%d → ", cur->data);
+```
+
+| Operation | Array | Linked List |
+|-----------|-------|------------|
+| Index `a[i]` | O(1) | O(n) |
+| Insert at front | O(n) | O(1) |
+| Insert at end | O(1) amortized | O(n) without tail ptr |
+| Search | O(n)/O(log n) sorted | O(n) |
+
+---
+
+## Stack (LIFO)
+
+Last In, First Out — push and pop from the same end.
+
+```c
+#define MAX_STACK 100
+typedef struct { int data[MAX_STACK]; int top; } Stack;
+
+void stack_init(Stack *s)         { s->top = -1; }
+int  stack_empty(const Stack *s)  { return s->top == -1; }
+
+void push(Stack *s, int val) {
+    if (s->top == MAX_STACK - 1) { fputs("Stack overflow\n", stderr); return; }
+    s->data[++s->top] = val;
+}
+
+int pop(Stack *s) {
+    if (stack_empty(s)) { fputs("Stack underflow\n", stderr); return -1; }
+    return s->data[s->top--];
+}
+```
+
+Push and pop: **O(1)**. Applications: call stack, expression evaluation, undo/redo, DFS.
+
+---
+
+## Queue (FIFO)
+
+First In, First Out — enqueue at back, dequeue from front.
+
+**Circular buffer (both operations O(1)):**
+
+```c
+#define MAX_Q 100
+typedef struct { int data[MAX_Q]; int head, tail, count; } Queue;
+
+void enqueue(Queue *q, int val) {
+    if (q->count == MAX_Q) return;
+    q->data[q->tail] = val;
+    q->tail = (q->tail + 1) % MAX_Q;   // wrap around
+    q->count++;
+}
+
+int dequeue(Queue *q) {
+    if (q->count == 0) return -1;
+    int val = q->data[q->head];
+    q->head = (q->head + 1) % MAX_Q;
+    q->count--;
+    return val;
+}
+```
+
+The modulo trick keeps both operations O(1) — without it, dequeue would shift all elements.
+
+Applications: task scheduling, BFS, producer–consumer.
+
+---
+
+## Sorting Algorithms
+
+### O(n²) — Simple but slow
+
+**Insertion sort** — stable, O(n) on nearly-sorted arrays:
+
+```c
+void insertion_sort(int *arr, int n) {
+    for (int i = 1; i < n; i++) {
+        int key = arr[i], j = i - 1;
+        while (j >= 0 && arr[j] > key) { arr[j+1] = arr[j]; j--; }
+        arr[j+1] = key;
+    }
+}
+```
+
+**Selection sort** — O(n) swaps, not stable:
+
+```c
+void selection_sort(int *arr, int n) {
+    for (int i = 0; i < n - 1; i++) {
+        int m = i;
+        for (int j = i+1; j < n; j++) if (arr[j] < arr[m]) m = j;
+        int tmp = arr[i]; arr[i] = arr[m]; arr[m] = tmp;
+    }
+}
+```
+
+### O(n log n) — Production-grade
+
+**Merge sort** — stable, always O(n log n), O(n) extra space:
+
+```c
+void merge_sort(int *arr, int lo, int hi) {
+    if (lo >= hi) return;
+    int mid = (lo + hi) / 2;
+    merge_sort(arr, lo, mid);
+    merge_sort(arr, mid + 1, hi);
+    merge(arr, lo, mid, hi);   // combines sorted halves
+}
+```
+
+Trace for `[5,3,8,1,4,2]`:
+
+```
+[5,3,8] [1,4,2] → [3,5,8] [1,2,4] → [1,2,3,4,5,8]
+```
+
+**Quicksort** — O(n log n) average, in-place, not stable. Used in `qsort` (introsort variant in GCC's STL).
+
+### Comparison
+
+| Algorithm | Best | Avg | Worst | Stable | Space |
+|-----------|------|-----|-------|--------|-------|
+| Selection | O(n²) | O(n²) | O(n²) | No | O(1) |
+| Insertion | O(n) | O(n²) | O(n²) | Yes | O(1) |
+| Merge | O(n log n) | O(n log n) | O(n log n) | Yes | O(n) |
+| Quick | O(n log n) | O(n log n) | O(n²) | No | O(log n) |
+
+**Stable sort:** equal elements keep their original relative order.
+
+---
+
+## Searching
+
+**Linear search — O(n):** scan each element; works on unsorted arrays.
+
+**Binary search — O(log n):** requires a sorted array.
+
+```c
+int binary_search(const int *arr, int n, int target) {
+    int lo = 0, hi = n - 1;
+    while (lo <= hi) {
+        int mid = lo + (hi - lo) / 2;   // avoids (lo+hi) overflow
+        if      (arr[mid] == target) return mid;
+        else if (arr[mid] <  target) lo = mid + 1;
+        else                         hi = mid - 1;
+    }
+    return -1;
+}
+```
+
+For n = 10,000: at most ~14 comparisons.
+
+**Hash table — O(1) average:**
+
+```c
+int bucket = hash_fn(key) % TABLE_SIZE;
+```
+
+Collision resolution: **chaining** (each bucket is a linked list) or **open addressing** (probe for next empty slot). Load factor > 0.7 → resize.
+
+---
+
+## Key Terms
+
+| Term | Meaning |
+|------|---------|
+| Big-O | Asymptotic upper bound on growth rate |
+| Linked list | Nodes connected by pointers; O(1) insert at front |
+| Stack (LIFO) | Insert and remove from the same end |
+| Queue (FIFO) | Insert at back, remove from front |
+| Circular buffer | Fixed-size queue with O(1) enqueue and dequeue |
+| Stable sort | Equal elements keep their original relative order |
+| Merge sort | Divide–conquer–merge; O(n log n), stable |
+| Quicksort | Partition by pivot; O(n log n) avg, O(n²) worst |
+| Binary search | Halve search space; O(log n), requires sorted array |
+| Hash table | Key → bucket via hash; O(1) average lookup |
+| Load factor | Items / buckets — keep below 0.7 |
+
+---
+
+## Course Retrospective
+
+| Lecture | Core Concept |
+|---------|-------------|
+| L01 | Algorithm definition, C toolchain |
+| L02–L04 | Types, operators, I/O |
+| L05 | Control flow |
+| L06–L07 | Arrays, pointers, strings |
+| L08 | Functions, recursion, call stack |
+| L09 | File I/O |
+| L10 | Heap memory |
+| L11 | Structs, unions |
+| L12 | Threads, synchronization |
+| L13 | AI algorithms in C++ |
+| L14 | GPU/FPGA hardware |
+| L15 | Vibe coding, AI tools, ethics |
+| L16 | Build systems, preprocessor |
+| L17 | Standard library |
+| **L18** | **Data structures + algorithms + complexity** |
+
+---
+
+## Discussion Questions
+
+1. Two nested loops, each iterating n times — what is the Big-O complexity?
+2. Why does binary search require a sorted array? Max comparisons for n = 1,000,000?
+3. A singly linked list has no tail pointer — what is the cost to insert at the end?
+4. Difference between stack and queue? Give a real application of each.
+5. Merge sort is always O(n log n); quicksort can be O(n²). Why do standard libraries prefer quicksort?
+6. Hash table: 100 buckets, 80 items, one bucket already has 10 items. Worst-case lookup for that bucket?
+7. What does "stable sort" mean? Give an example where it matters.
+8. From L01: an algorithm is finite, definite, effective, with inputs and outputs. Verify binary search meets all five criteria.

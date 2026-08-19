@@ -1,0 +1,139 @@
+---
+title: "L15 — Modern Programming Practices: Vibe Coding"
+subtitle: "Module 7 · LLMs as Coding Tools, Effective Prompting, Code Review, Ethics"
+---
+
+## What Is "Vibe Coding"?
+
+**Vibe coding** (Andrej Karpathy, 2025) — giving high-level intent in natural language to an LLM (ChatGPT, GitHub Copilot, Claude, Cursor) and receiving generated code that you review, test, and iterate. The goal is to offload mechanical parts while you focus on design and verification.
+
+---
+
+## How LLMs Generate Code
+
+An LLM is a **text predictor**, not a reasoner:
+
+- Trained on billions of tokens of code — learned statistical patterns.
+- Optimizes for text that *looks* right, not code that *runs* correctly.
+- Has no internal compiler — never executed the code it learned from.
+
+**Key failures:** hallucinated function names, off-by-one errors, missing NULL checks, wrong concurrency, C undefined behaviour.
+
+---
+
+## Effective Prompting
+
+**Bad:** "Write a sorting function"
+
+**Good:** "Write a C function `void sort_students(Student *arr, int n)` that sorts Student structs (`int id`, `char name[50]`, `double grade`) by `grade` descending, using insertion sort. Handle `n <= 1`."
+
+**Principles:**
+1. Include types — ambiguity → wrong types.
+2. State the algorithm.
+3. List edge cases (n=0, NULL, empty string).
+4. Provide context (paste the struct definition).
+5. Iterate — review → identify bug → re-prompt.
+
+---
+
+## Code Review Discipline
+
+**Rule: never paste AI-generated code without reading every line.**
+
+**Review checklist for C/C++:**
+
+```
+□ Does it compile and run?
+□ NULL pointer checks?
+□ Edge cases (n=0, empty)?
+□ Buffer overflows? (strcpy, gets)
+□ Memory freed exactly once?
+□ Mutex paired with unlock? lock_guard used?
+□ Off-by-one in loops?
+□ Undefined behaviour?
+□ Correct function signature?
+```
+
+**Classic AI-generated bug:**
+
+```c
+char* reverse_string(char *s) {
+    int n = strlen(s);
+    char *rev = malloc(n);       // Bug: n+1 needed for '\0'
+    for (int i = 0; i < n; i++)
+        rev[i] = s[n-i];         // Bug: s[n] is '\0'; needs s[n-1-i]
+    return rev;                   // Bug: '\0' not written
+}
+```
+
+---
+
+## Where AI Excels vs Fails
+
+| Task | Reliability |
+|------|-------------|
+| Boilerplate, docstrings | High |
+| Test case generation | Good |
+| Code explanation | Good |
+| Novel algorithms | Unreliable |
+| Security-sensitive code | Dangerous |
+| C/C++ undefined behaviour | Misses it |
+| Subtle concurrency | Dangerous |
+
+**`gets()` — always wrong, sometimes generated:**
+```c
+gets(name);              // NEVER USE — no bounds checking
+fgets(name, 100, stdin); // correct (L07)
+```
+
+---
+
+## Professional and Ethical Implications
+
+- **Copyright:** legal status of LLM-generated code is unsettled — check company policy.
+- **Academic integrity:** disclose LLM use; undisclosed submission may be academic dishonesty.
+- **Responsibility:** "The AI wrote it" is not a defence. You own the code you submit or deploy.
+- **The durable skill:** knowing what good code looks like, reading and debugging unfamiliar code, knowing what to ask.
+
+---
+
+## Key Terms
+
+| Term | Meaning |
+|------|---------|
+| LLM | Large Language Model — statistical text predictor |
+| Vibe coding | Prompting an LLM, then reviewing the output |
+| Prompt engineering | Writing effective LLM instructions |
+| Hallucination | Confident generation of incorrect content |
+| `gets()` | Banned C function — no bounds checking |
+| Code review | Reading generated code line-by-line for bugs |
+| Undefined behaviour | C/C++ operation with no guaranteed result |
+
+---
+
+## Worked Example — Spot the Bug
+
+**LLM output for "find maximum in int array":**
+```c
+int find_max(int *arr, int n) {
+    int max = 0;   // Bug: fails for all-negative arrays
+    for (int i = 0; i < n; i++)
+        if (arr[i] > max) max = arr[i];
+    return max;
+}
+```
+
+**Fix:** `int max = arr[0];`, start loop at `i = 1`, add `if (n <= 0) return INT_MIN;`.
+
+---
+
+## Discussion Questions
+
+1. Why does an LLM produce syntactically correct but logically wrong code?
+2. You prompt ChatGPT for a secure password reader in C. What bugs would you look for?
+3. Name three reliable uses of AI generation, three dangerous ones.
+4. Is `gets()` ever safe? Why do LLMs sometimes generate it?
+5. A student submits LLM code with a buffer overflow they didn't read. Who is responsible?
+6. Compare a human junior developer vs an LLM: what does each get wrong?
+7. You find a race condition in AI-generated C++. How do you re-prompt for a fix?
+8. Why is AI unreliable for security-sensitive C code?

@@ -1,0 +1,220 @@
+---
+title: "L12 — Multithreading in C/C++"
+subtitle: "Module 7 · Threads, Synchronization, Race Conditions"
+---
+
+## Why Multithreading?
+
+Modern CPUs have multiple cores. A single-threaded program uses one — the rest idle. Threads exploit all cores.
+
+- **Concurrency** — tasks overlap in time (may time-share one core).
+- **Parallelism** — tasks run simultaneously on different physical cores.
+- **Thread** — lightweight execution unit sharing process memory.
+
+---
+
+## `std::thread` — Creating and Managing Threads
+
+```cpp
+#include <thread>
+
+void work(int id) { /* ... */ }
+
+int main() {
+    std::thread t1(work, 1);   // starts immediately
+    std::thread t2(work, 2);
+
+    t1.join();   // main waits for t1
+    t2.join();   // main waits for t2
+}
+```
+
+| | `join()` | `detach()` |
+|--|----------|------------|
+| Main waits? | Yes | No |
+| Thread independent? | No | Yes |
+| Safe to use local vars? | Yes | Dangerous |
+| Destructor without call | `std::terminate()` | — |
+
+**⚠️ Always `join()` or `detach()` every `std::thread`.**
+
+**Lambda thread:**
+```cpp
+int x = 10;
+std::thread t([x]() { /* captures x by value */ });
+t.join();
+```
+
+**Pass by reference:**
+```cpp
+void increment(int &n) { n++; }
+int count = 0;
+std::thread t(increment, std::ref(count));
+t.join();
+```
+
+---
+
+## Race Conditions and Data Races
+
+```cpp
+int counter = 0;
+
+void bad() {
+    for (int i = 0; i < 1'000'000; i++)
+        counter++;   // UNSAFE — load, add, store are three steps
+}
+```
+
+Two threads can interleave these steps → both read the same value, both store the same incremented value → one update is lost. This is a **data race** → **undefined behaviour**.
+
+---
+
+## `std::mutex` and `std::lock_guard`
+
+```cpp
+#include <mutex>
+
+int counter = 0;
+std::mutex mtx;
+
+void safe() {
+    for (int i = 0; i < 1'000'000; i++) {
+        std::lock_guard<std::mutex> g(mtx);   // locks here
+        counter++;                              // critical section
+    }                                           // unlocks when g is destroyed
+}
+```
+
+`std::lock_guard` uses RAII — unlocks automatically even if an exception is thrown.
+
+**Deadlock:** Thread A holds M1, waits for M2; Thread B holds M2, waits for M1 → both freeze.
+
+**Fix:** always lock in the same order. Use `std::scoped_lock(m1, m2)` (C++17) for multiple mutexes.
+
+---
+
+## `std::atomic` — Lightweight Synchronization
+
+```cpp
+#include <atomic>
+
+std::atomic<int> counter(0);
+
+void safe() {
+    for (int i = 0; i < 1'000'000; i++)
+        counter++;   // hardware-guaranteed indivisible
+}
+```
+
+Use `std::atomic` for a single shared variable. For compound operations across multiple variables, use a mutex.
+
+---
+
+## Condition Variables — Producer–Consumer
+
+```cpp
+#include <condition_variable>
+#include <queue>
+
+std::queue<int>         buffer;
+std::mutex              mtx;
+std::condition_variable cv;
+const int               MAX = 5;
+
+void producer() {
+    for (int i = 0; i < 10; i++) {
+        std::unique_lock<std::mutex> lk(mtx);
+        cv.wait(lk, []{ return buffer.size() < MAX; });
+        buffer.push(i);
+        cv.notify_one();
+    }
+}
+
+void consumer() {
+    for (int i = 0; i < 10; i++) {
+        std::unique_lock<std::mutex> lk(mtx);
+        cv.wait(lk, []{ return !buffer.empty(); });
+        int v = buffer.front(); buffer.pop();
+        cv.notify_one();
+    }
+}
+```
+
+`cv.wait(lock, predicate)` releases the lock and sleeps. On wakeup, re-checks predicate — protects against **spurious wakeups**.
+
+---
+
+## Thread Pools (Conceptual)
+
+Pre-create N worker threads. Tasks go into a queue; idle threads pick them up. Avoids thread-creation overhead for many short tasks.
+
+---
+
+## Testing Multithreaded Code
+
+- **Stress test** — high iteration counts make races more likely to surface.
+- **ThreadSanitizer** — build with `-fsanitize=thread -g`; detects data races at runtime.
+- **Code review** — every shared variable should be atomic or mutex-protected.
+
+---
+
+## Key Terms
+
+| Term | Meaning |
+|------|---------|
+| Thread | Lightweight execution unit |
+| `join()` | Wait for thread to finish |
+| `detach()` | Let thread run independently |
+| Race condition | Bug dependent on thread timing |
+| Data race | UB: concurrent unsynchronized access, ≥1 write |
+| Mutex | Lock: one thread at a time |
+| `lock_guard` | RAII mutex wrapper |
+| Deadlock | Circular lock dependency |
+| `std::atomic` | Type with indivisible operations |
+| Condition variable | Wait until condition is true |
+| Spurious wakeup | OS wakes thread without `notify_*` |
+| Thread pool | Pre-created workers for task queues |
+| ThreadSanitizer | Runtime data-race detector |
+
+---
+
+## Worked Example — Parallel Array Sum
+
+```cpp
+#include <thread>
+#include <vector>
+#include <iostream>
+
+void partial_sum(const std::vector<int> &v, int lo, int hi, long long &res) {
+    res = 0;
+    for (int i = lo; i < hi; i++) res += v[i];
+}
+
+int main() {
+    std::vector<int> v(1'000'000, 1);
+    long long s1 = 0, s2 = 0;
+    int mid = v.size() / 2;
+
+    std::thread t1(partial_sum, std::cref(v), 0, mid, std::ref(s1));
+    std::thread t2(partial_sum, std::cref(v), mid, (int)v.size(), std::ref(s2));
+
+    t1.join(); t2.join();
+    std::cout << "Sum: " << (s1 + s2) << "\n";   // 1,000,000
+}
+```
+
+`s1` and `s2` are distinct — no sharing, no mutex needed.
+
+---
+
+## Discussion Questions
+
+1. What is the difference between concurrency and parallelism?
+2. Why does `counter++` cause a data race even though it looks like one statement?
+3. What happens if you neither `join()` nor `detach()` a `std::thread`?
+4. When is `std::atomic<int>` preferable to a mutex?
+5. What is a spurious wakeup and how does the predicate in `cv.wait()` handle it?
+6. Describe a deadlock scenario and one rule that prevents it.
+7. Why are multithreaded bugs hard to reproduce?
+8. A parallel algorithm gets ×3.5 speedup on 8 cores. What fraction of the code must be serial?
