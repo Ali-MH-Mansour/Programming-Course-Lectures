@@ -2,8 +2,11 @@ name: Publish Quarto Book
 
 on:
   push:
-    branches: [main]
+    branches: [main, master]
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build-deploy:
