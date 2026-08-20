@@ -21,26 +21,36 @@ By the end of this lecture, you should be able to:
 - Write, compile, and run a minimal C program from the command line
 - Distinguish between compiler errors, runtime errors, and logic errors
 
+This is the first lecture of the course, so it does not assume you know anything about programming yet. Every new word is explained the first time it is used. If a sentence uses a word you do not recognize, look for it in the **Key Terms** table near the end of this lecture — every technical word used here is defined there.
+
 ---
 
 ## 1. What Is a Program?
 
-A **program** is a set of instructions, written by a human in a programming language, that a machine can execute. The machine runs programs in binary — sequences of 1s and 0s. Between the human-readable language and the machine, something translates.
+Think of a **program** as a list of instructions. A person writes the list, in a language a human can read. Then a machine — the computer — follows the list, one instruction at a time, and does exactly what it says.
+
+But there is a problem: the computer does not actually understand English, or any human-readable language. Deep inside, a computer only understands numbers — specifically, it understands sequences of **1**s and **0**s. This is called **binary**. Everything the computer does — showing text on a screen, playing a sound, adding two numbers — happens because some sequence of 1s and 0s is being processed by the hardware.
+
+So there is a gap: humans write in a readable language, but the machine only runs binary. Something has to sit between the two and translate one into the other. That "something" is the main subject of this lecture — we will look at exactly what does the translating, and how.
 
 ---
 
 ### Algorithm
 
-An **algorithm** is a step-by-step procedure for solving a problem. For an algorithm to be valid, every step must be stated precisely enough that a machine — or someone who has never seen the problem before — can follow it without guessing.
+An **algorithm** is simply a set of steps for solving a problem, written clearly enough that anyone (or anything, including a machine) can follow it without having to guess what you meant.
 
-**The four required properties of an algorithm:**
+Think of an algorithm like a recipe, or a set of directions to a friend's house. If a single step is unclear, the person following it might do the wrong thing. Good algorithms leave nothing open to interpretation.
 
-| Property | Meaning |
-|----------|---------|
-| **Definiteness** | Each step is clear and unambiguous |
-| **Finiteness** | The procedure terminates in a finite number of steps |
-| **Input/Output** | It takes some data as input and produces a result as output |
-| **Effectiveness** | Each step is actually executable — no impossible operations |
+For a set of steps to count as a real algorithm, it must have **four** properties. Each one answers a specific question:
+
+| Property | Question it answers | Meaning |
+|----------|---------------------|---------|
+| **Definiteness** | "Is each step exactly clear?" | Each step is precise — there is only one possible way to understand it, no ambiguity |
+| **Finiteness** | "Does it ever end?" | The procedure stops after a limited, countable number of steps — it cannot run forever |
+| **Input/Output** | "Does it use data and produce a result?" | It takes some data as input and produces a result as output |
+| **Effectiveness** | "Can each step actually be done?" | Every step is something that can genuinely be carried out — no step asks for something impossible |
+
+Let's make this concrete with an example.
 
 **Example — ATM directions written as a valid algorithm:**
 
@@ -57,15 +67,27 @@ STEP 6: The ATM is on the right side of building entrance — use it
 STEP 7: STOP
 ```
 
-Notice: "Turn left at the big tree" would fail the **definiteness** property — "big tree" is not unambiguous. "Find the ATM" with no termination condition would fail **finiteness**.
+**Let's walk through why this example is a *valid* algorithm, property by property:**
 
-**Think about:** Is a cooking recipe an algorithm? Which of the four properties might it violate?
+- **Definiteness** — every step names an exact action and, where it matters, an exact amount: "turn left," "30 steps," "50 metres." Nobody following this could reasonably do something different from what is written.
+- **Finiteness** — there are exactly seven numbered steps, and step 7 explicitly says `STOP`. The list cannot loop forever; it has a guaranteed end.
+- **Input/Output** — the `INPUT` line names the data the procedure starts with (the room number), and the `OUTPUT` line names what the procedure produces (a route). Every algorithm needs both ends stated.
+- **Effectiveness** — every single step (exiting a room, walking, taking stairs, turning) is something a real person can actually do right now, with no impossible or magical action hidden anywhere.
+
+**Now compare it to two examples that *fail* the test**, so you can recognize the difference:
+
+- *"Turn left at the big tree"* — this fails **definiteness**. Different people standing in the same corridor might disagree about which tree counts as "big." A valid algorithm would instead say something measurable, like "turn left at the second tree from the entrance."
+- *"Keep looking until you find the ATM"* — this fails **finiteness** if there is no guaranteed way to eventually find it, or no maximum number of tries stated. A valid version would put a limit on it, e.g. "check the next 5 buildings; if not found, stop and ask a guard."
+
+**Think about:** Is a cooking recipe an algorithm? Go through the four properties one at a time and decide whether a typical recipe satisfies each one. (Hint: think carefully about definiteness — does "add salt to taste" pass or fail?)
 
 ---
 
 ### Flowcharts
 
-A **flowchart** is a graphical way to represent an algorithm. Standard symbols:
+Writing an algorithm as numbered text works, but for many people a picture is easier to follow at a glance. A **flowchart** is exactly that: a drawing that represents the same steps as shapes connected by arrows, so you can *see* the path the algorithm takes, including any branching decisions.
+
+Four shapes are enough to draw almost any beginner-level flowchart:
 
 | Symbol | Shape | Meaning |
 |--------|-------|---------|
@@ -86,15 +108,28 @@ A **flowchart** is a graphical way to represent an algorithm. Standard symbols:
    └─ NO  → [Find next ATM] → [Walk to ATM]
 ```
 
+**Let's walk through this flowchart step by step, the same way you would trace it with your finger on paper:**
+
+1. **`[Start]`** — an oval. Every flowchart begins with exactly one Start oval; this is where you start reading.
+2. **`[Walk to ATM]`** — a rectangle, meaning "do this action." You follow the arrow down into it, perform the action, then follow the next arrow out.
+3. **`[Is ATM working?]`** — a diamond. This is the new idea this example adds compared to the plain numbered list above: a **decision point**, where the flowchart can go one of two different ways depending on a condition.
+4. From the diamond, there are **two arrows leaving it**, each labelled with the answer that sends you down that path:
+   - If the answer is **YES**, you follow that arrow to `[Use ATM]`, and then to `[End]` — the procedure finishes successfully.
+   - If the answer is **NO**, you follow that arrow to `[Find next ATM]`, and then back up to `[Walk to ATM]` — notice this arrow points *backward*, forming a **loop**. You will keep repeating "walk → check → not working → find next" until eventually the answer is YES and you reach `[End]`.
+
+This is the key lesson of the example: a flowchart (and an algorithm) is not always a straight line from Start to End. A diamond can send execution down different paths, and an arrow can point backward to repeat earlier steps. We will write real loops like this in code starting from Lecture 5.
+
 ---
 
 ## 2. Programming Languages
 
 ### What the CPU actually executes
 
-The CPU executes **binary machine code** — sequences of 1s and 0s, each encoding a specific operation. Nobody writes machine code directly. We write in a human-readable programming language, and a tool translates it.
+Deep down, the only thing your computer's processor (the **CPU**) can actually carry out is **binary machine code** — long sequences of 1s and 0s, where each specific pattern tells the hardware to do one very small, very specific operation (for example: "add these two numbers," or "copy this value from one place to another"). Nobody sits down and types machine code by hand — it would be far too slow and error-prone. Instead, we write our instructions in a language that is easier for humans to read, and then a piece of software translates that human-readable language into the binary the CPU needs.
 
 ### High-level vs low-level
+
+Programming languages are usually described as sitting somewhere on a scale from **low-level** (close to what the machine understands) to **high-level** (close to how a human thinks and talks).
 
 ```
 Machine code   →   Assembly   →   C / C++   →   Java / Go   →   Python
@@ -105,9 +140,18 @@ Machine code   →   Assembly   →   C / C++   →   Java / Go   →   Python
 ← Least portable                                    Most portable →
 ```
 
-**C/C++ is in the middle:** high enough to write readable code, low enough to control exactly what the machine does.
+**Let's explain this diagram piece by piece, because it packs three separate ideas into one picture:**
+
+- **The top row** is a line of languages, ordered from the most "machine-like" on the left (raw binary) to the most "human-like" on the right (Python). C/C++, the language of this course, sits in the middle — this is deliberate: it is our course's whole reason for choosing C/C++ as a teaching language.
+- **The first arrow-row** ("Hardest to write → Easiest to write") tells you that writing correct machine code by hand is extremely difficult and slow, while writing Python is comparatively quick and forgiving. Every step you move to the right on the diagram, the language gives you more help and hides more low-level detail from you.
+- **The second arrow-row** ("Fastest to execute → Slowest to execute") tells you the opposite trade-off: the languages that are easiest to *write* generally run *slower*, because more translation and safety-checking has to happen while the program is running.
+- **The third arrow-row** ("Least portable → Most portable") tells you how easily code written in that language can be moved and run on a different kind of computer. Raw machine code for one specific CPU design will not run at all on a different CPU design; Python code, in contrast, can usually run unmodified on almost any machine that has Python installed.
+
+**Why C/C++ specifically, for this course:** it is high-level enough that you can write readable, structured programs (loops, functions, variables with names) — but it is also low-level enough that you can still see and control exactly what the machine is doing with memory and performance. Many later courses in this degree, and most operating systems and performance-critical software in industry, are built on exactly this trade-off.
 
 ### Compiled vs interpreted
+
+There are two broad strategies for translating your human-readable code into something the CPU can run: **compiling** it all at once before execution, or **interpreting** it line-by-line while it runs.
 
 | | **Compiled (C/C++)** | **Interpreted (Python)** |
 |---|---|---|
@@ -124,19 +168,31 @@ C program:     ~0.3 seconds
 Python script: ~15 seconds
 ```
 
+**Let's explain why this specific example matters, and what actually causes the 50× difference:**
+
+- Both programs are doing the *exact same job*: create 100 million whole numbers, store them, and add them all together.
+- The **C program** was already translated completely into machine code *before* it started running (this is what "compiled" means). So when you run it, the CPU is executing pure binary instructions the whole time, with nothing left to figure out.
+- The **Python script**, in contrast, is being read and translated **one line at a time, while it runs** (this is what "interpreted" means). Every single one of those 100 million additions has extra translation work happening around it, over and over, which adds up to a huge amount of overhead.
+- The result: roughly **50 times slower** for Python on this specific kind of task. This is not a criticism of Python — Python is an excellent language for many jobs where raw speed matters less than how quickly you can write and change the code. It is simply the direct, measurable cost of the "translate as you go" strategy versus "translate once, up front."
+- This performance gap is a large part of *why this course teaches C/C++*: understanding how compiled languages work close to the hardware is a foundation you will reuse for the rest of your degree, including later modules in this very course (multithreading, GPU programming, and AI algorithms).
+
 ---
 
 ## 3. Brief History of C
 
-**1972, Bell Labs, New Jersey.** Dennis Ritchie designs C to rewrite Unix portably — powerful enough to write an OS, portable across hardware.
+It helps to know where this language actually came from, and why it still matters in 2026 rather than having been replaced long ago.
 
-**1983, AT&T Bell Labs.** Bjarne Stroustrup adds object-oriented features to C → **C++**.
+**1972, Bell Labs, New Jersey.** A programmer named Dennis Ritchie designed C so that the Unix operating system could be rewritten in a language that was portable — meaning the same source code could be recompiled to run on different kinds of computer hardware, instead of being rewritten from scratch for every machine. C needed to be powerful enough to write an entire operating system, yet still be portable across very different hardware.
 
-**Today, 2026.** C remains the language of every major OS kernel, embedded systems, and AI framework backends (TensorFlow, PyTorch).
+**1983, AT&T Bell Labs.** Bjarne Stroustrup took the C language and added a new set of features to it — mainly features for organizing large programs around objects — producing a new language called **C++**. C++ is, broadly speaking, "C plus extra tools," and almost all of what you learn about C in this course also applies directly to C++.
+
+**Today, 2026.** More than fifty years after it was first designed, C is still the language that every major operating system kernel is written in (Linux, Windows, and macOS all have C at their core), it is the standard choice for embedded systems (the tiny computers inside cars, appliances, and medical devices), and it is the language that the internal, performance-critical parts of major AI frameworks (TensorFlow, PyTorch) are written in, even though you might interact with those frameworks through Python on the surface. Learning C is not learning an outdated tool — it is learning the language that sits underneath almost everything else.
 
 ---
 
 ## 4. The C/C++ Toolchain
+
+Now we come back to the translation problem introduced in Section 1: how does human-readable C source code actually become something the CPU can run? The answer is a pipeline of four separate tools, each one taking the previous tool's output as its own input.
 
 ```
 hello.c  (text file you write)
@@ -158,12 +214,31 @@ hello.o  (object file — binary, not yet runnable)
 hello    (executable)
 ```
 
+**Let's walk through this diagram one stage at a time, following the file as it changes shape:**
+
+1. **You start with `hello.c`** — a plain text file, written by you, containing C source code that a human can read.
+2. **The Preprocessor runs first.** Its job is purely textual: it looks for special lines starting with `#`, such as `#include` (which copies in the contents of another file, usually a library header) and `#define` (which does simple find-and-replace of names with text). It produces `hello.i`, which is still plain text — just a longer, fully expanded version of your original file, with all the `#include`s and `#define`s already resolved.
+3. **The Compiler runs next.** This is the stage that actually understands the C language: it checks your code follows correct C grammar (**syntax**), reports any mistakes it finds, and translates your expanded C code into **assembly language** — a very low-level, human-readable-but-barely text format that maps closely to individual CPU instructions. The result is `hello.s`.
+4. **The Assembler runs next.** Assembly is still text, so one more step is needed to turn it into actual binary. The assembler does exactly that translation, producing `hello.o` — an **object file**. This file already contains real machine-code binary, but it is not runnable on its own yet, because it might be missing pieces (for example, the actual code behind a library function like `printf`, which lives elsewhere).
+5. **The Linker runs last.** It takes your object file and combines it with whatever library code your program actually uses (in our example, the code that implements `printf`), producing the final `hello` file — a complete, standalone **executable** that the operating system can run directly.
+
+In everyday student work, you will not normally run these four tools one at a time — a single command runs the whole pipeline for you, as shown next. But it is important to know these four stages exist, because when something goes wrong, the error message will often tell you *which* stage failed, and that tells you what kind of mistake you made.
+
 ### Running from the command line
 
 ```bash
 gcc -Wall -std=c11 -o hello hello.c    # compile
 ./hello                                 # run
 ```
+
+**Let's explain this command piece by piece, since this exact line is the one you will type for the rest of the semester:**
+
+- **`gcc`** — the name of the program we are running: the GNU Compiler Collection. Even though it is called a "compiler," typing `gcc` actually runs the *entire* four-stage pipeline above (preprocessor → compiler → assembler → linker) in one single command, for your convenience.
+- **`-Wall`** — a **flag** (an optional switch you can add to a command) that tells `gcc` to turn on "**a**ll **w**arnings." A warning is different from an error: your code will still compile and run with warnings, but a warning is `gcc` telling you "this line looks suspicious, you probably made a mistake." You should treat warnings as seriously as errors — always fix them.
+- **`-std=c11`** — another flag, telling `gcc` which exact version of the C language standard to use when checking your code (in this case, the C11 standard, published in 2011). There are several versions of the C language; being explicit about which one you mean avoids surprises.
+- **`-o hello`** — the `-o` flag means "**o**utput file," followed by the name you want for the resulting executable. Here we are naming it `hello`. If you leave this flag out entirely, `gcc` will still produce an executable, but it will use a default name (`a.out`) instead of a name you chose.
+- **`hello.c`** — the actual input: the source file you wrote, given last on the line.
+- **`./hello`** — a second, separate command, run after compilation succeeds. This is how you actually *run* the executable you just built. The `./` in front means "look for this program in the current folder" — without it, your operating system would search only its usual system locations and would not find your freshly built program.
 
 | Flag | Meaning |
 |------|---------|
@@ -175,6 +250,8 @@ gcc -Wall -std=c11 -o hello hello.c    # compile
 
 ## 5. Hello World: Anatomy
 
+The traditional first program in almost every programming language and every programming course is one that simply prints a short greeting to the screen. It looks tiny, but every single character in it has a specific job, and understanding all of them here will make every later program easier to read.
+
 ```c
 #include <stdio.h>
 
@@ -184,12 +261,18 @@ int main(void) {
 }
 ```
 
-- `#include <stdio.h>` — copies the standard I/O header (declares `printf`)
-- `int main(void)` — entry point; `int` = exit code returned to OS
-- `printf(...)` — prints to standard output; `\n` = newline
-- `return 0;` — exit code 0 = success
+**Let's go through this program line by line, explaining exactly what each part does and why it is needed:**
+
+- **`#include <stdio.h>`** — this is the Preprocessor directive from Section 4. `stdio.h` stands for "**st**andard **i**nput/**o**utput," and this line copies in the declarations needed to use input/output functions such as `printf`. Without this line, the compiler would not know what `printf` even is, and compilation would fail.
+- **`int main(void)`** — this defines a **function** named `main`. Every C program must have exactly one function named `main` — this is the **entry point**: the very first thing that runs when your program starts. The `int` before it means this function will give back a whole number (an integer) when it finishes; the `(void)` means this particular function does not take any input values when it is called.
+- **`{` and `}`** — the curly braces mark the **beginning** and **end** of the function's body — everything the function actually does is written between them.
+- **`printf("Hello, world!\n");`** — this line calls the `printf` function (declared for us back in `stdio.h`), asking it to print the text between the quotation marks to the screen (this is called **standard output**). The `\n` at the end is a special two-character sequence meaning "start a new line" — without it, anything printed right after this would appear on the same line.
+- **`return 0;`** — this ends the `main` function and hands back the value `0` to the operating system. By long-standing convention, an **exit code** of `0` means "the program finished successfully, with no errors"; any non-zero value signals that something went wrong. You do not need to worry about non-zero exit codes yet, but you will see this convention used constantly in later lectures.
+- **The semicolon `;`** after both `printf(...)` and `return 0` marks the end of each individual instruction (called a **statement**). Forgetting a semicolon is one of the most common beginner mistakes, and you will see exactly what error it produces in Worked Example 2 below.
 
 **Common escape sequences:**
+
+An **escape sequence** is a two-character combination, always starting with a backslash `\`, used to represent a character that you cannot simply type directly inside quotation marks.
 
 | Sequence | Meaning |
 |----------|---------|
@@ -199,13 +282,21 @@ int main(void) {
 | `\"` | Literal double-quote |
 | `\0` | Null character |
 
+**A quick example of why these are needed:** if you wanted to print an actual double-quote character, you could not simply type `"` inside a string that is itself delimited by double-quotes — the compiler would think your string had ended early. Writing `\"` instead tells the compiler "print an actual quote character here, do not treat it as the end of the string." The same logic applies to printing a literal backslash: you write `\\` to mean "one real backslash character."
+
 ---
 
 ## 6. The Edit–Compile–Run–Debug Cycle
 
+Writing a program is almost never a single, one-shot action. In practice, you repeat a short cycle of four activities, over and over, until the program does what you intended:
+
 ```
 [Edit] → [Compile] → [Run] → [Debug] → [Edit] → ...
 ```
+
+You **edit** the source file, **compile** it (Section 4), **run** it, and — if something is wrong — you **debug** it, meaning you figure out what went wrong and go back to editing. This loop is completely normal; expect to go around it many times, even for small programs, and even as an experienced programmer.
+
+Things can go wrong at different points in this cycle, and it matters which one, because each kind of problem is diagnosed differently:
 
 **Three kinds of error:**
 
@@ -215,16 +306,22 @@ int main(void) {
 | **Runtime error / crash** | While running | Dividing by zero |
 | **Logic error** | Program runs but output is wrong | Off-by-one in a loop |
 
+**Let's look at a small, concrete example of each type, so the difference is not just abstract:**
+
+- **Compiler error** — you write `printf("Hi!\n")` and forget the semicolon at the end. The program never even gets built; `gcc` stops and shows you an error message immediately, pointing at roughly where the problem is (see Worked Example 2 below for exactly this case).
+- **Runtime error / crash** — the program compiles perfectly fine, and starts running, but then attempts something the machine cannot actually do — for example, dividing a number by zero. The program builds successfully but then stops abruptly (crashes) partway through execution.
+- **Logic error** — this is the trickiest kind, because the program compiles fine *and* runs to completion *and* produces an answer — the answer is simply wrong. For example, a loop meant to count from 1 to 10 that is accidentally written to stop one step too early or too late (an "off-by-one" mistake) will run without any error message at all, but will quietly give you the wrong result. Finding logic errors is a skill you will build all semester; they cannot be caught by the compiler because, as far as the compiler is concerned, nothing is grammatically wrong.
+
 ---
 
 ## Summary
 
-1. **Algorithm** — finite, definite, effective; four required properties.
-2. **High-level vs low-level languages** — C/C++ is close to hardware: fast, powerful, industry-relevant.
-3. **Compiled vs interpreted** — C/C++ compiled once; ~50× faster for compute-intensive work.
-4. **The toolchain** — source → preprocessor → compiler → assembler → linker → executable.
-5. **Hello world** — `#include`, `main`, `printf`, `\n`, `return 0`; every character has a purpose.
-6. **Edit–Compile–Run–Debug** — your working method for the rest of the semester.
+1. **Algorithm** — finite, definite, effective; four required properties. A flowchart is just a picture of the same steps, and it can branch and loop using diamonds and backward arrows.
+2. **High-level vs low-level languages** — C/C++ sits deliberately in the middle: readable enough to write real programs, close enough to the hardware to understand exactly what is happening.
+3. **Compiled vs interpreted** — C/C++ is compiled once, ahead of time, which is why it typically runs far faster (roughly 50× in our example) than an interpreted language like Python running the same task.
+4. **The toolchain** — your source file passes through four separate tools in sequence: preprocessor → compiler → assembler → linker → executable. One `gcc` command runs all four for you.
+5. **Hello world** — `#include`, `main`, `printf`, `\n`, `return 0` — every single character in this tiny program has a specific, necessary purpose.
+6. **Edit–Compile–Run–Debug** — this is your normal working rhythm for the rest of the semester, and knowing whether a problem is a compiler error, a runtime error, or a logic error tells you where to look for the fix.
 
 ---
 
@@ -261,6 +358,17 @@ gcc -Wall -std=c11 -o hello hello.c
 
 Expected output: `Hello, world!`
 
+**Detailed explanation of what happens when you run these two lines:**
+
+1. You type the first line and press Enter. `gcc` reads `hello.c`, and silently runs it through all four toolchain stages from Section 4: preprocessor, compiler, assembler, linker.
+2. Because the code has no mistakes, `gcc` prints **nothing at all** back to you — this is normal and expected. In command-line tools, "no news is good news": silence means success. A new file named `hello` now exists in your current folder; this is the finished executable.
+3. You type the second line, `./hello`, and press Enter. This does not compile anything — it simply *runs* the executable that already exists from step 2.
+4. Inside `main`, the single `printf` statement executes, sending the text `Hello, world!` followed by a newline to your screen.
+5. Right after that, `return 0;` runs, ending the program successfully.
+6. You see exactly one line printed: `Hello, world!` — and then control returns to your command line, ready for the next command.
+
+**A common point of confusion this example clears up:** running `gcc ...` and running `./hello` are two *completely separate* steps. Compiling does not run your program, and you cannot run a program you have not yet compiled. Students who forget to run `./hello` after compiling successfully sometimes think "nothing happened" — in fact, the compile step worked, it simply does not print anything by itself.
+
 ### Example 2 — Reading a compiler error
 
 ```c
@@ -276,7 +384,16 @@ int main(void) {
 hello.c:5:5: error: expected ';' before 'return'
 ```
 
-The error is reported at line 5, but the mistake is at the end of line 4. The compiler reports where it *noticed* the problem.
+**Detailed explanation, line by line, of both the mistake and the error message:**
+
+- **The mistake:** look closely at line 4 — `printf("Hello, world!\n")` — and compare it to the correct version in Section 5. The line is missing its closing semicolon `;`. This is one of the single most common beginner mistakes in C, because in many other languages (and in plain English), a line simply ending is enough — in C, the compiler needs the semicolon to know for certain where one statement ends and the next begins.
+- **Reading the error message `hello.c:5:5: error: expected ';' before 'return'`:**
+  - **`hello.c`** — the file where the problem was found.
+  - **`5:5`** — the **line and column** number where the compiler *noticed* something was wrong: line 5, character position 5.
+  - **`error:`** — this tells you it is a hard **error**, not just a warning; the compiler refuses to produce an executable until this is fixed.
+  - **`expected ';' before 'return'`** — the compiler's explanation: it was reading along, expecting to find a semicolon, and instead ran straight into the word `return` with no semicolon in between.
+- **The important trap this example is built to teach you:** the semicolon is *missing* from the end of line 4, but the compiler reports the error on **line 5**. This is not a mistake in the compiler — it makes complete sense once you understand *why* it happens: the compiler cannot know a statement is missing its semicolon until it has already read past the point where the semicolon should have been and hit the *next* thing (here, `return` on line 5). Only at that point does it realize something is missing, so that is where it reports the problem.
+- **The lesson to take away:** whenever you get a compiler error, do not only look at the exact line number given — also check the line **immediately above it**. A large fraction of real beginner errors (missing semicolons, missing closing braces `}`, missing closing parentheses) are actually located one line earlier than where the compiler reports them.
 
 ---
 
