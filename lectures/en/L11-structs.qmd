@@ -1,0 +1,263 @@
+---
+title: "L11 — Structs and Unions"
+date: "2026-08-19"
+lang: en
+---
+
+# Structs and Unions
+
+**Module 6 · Lecture 11**
+
+---
+
+## 1. Why Group Related Data?
+
+Parallel arrays (`names[]`, `ids[]`, `grades[]`) force index synchronization by hand. A `struct` groups related fields into one unit — when you sort, copy, or pass it, all fields move together.
+
+---
+
+## 2. `struct` — Definition and Usage
+
+```c
+typedef struct {
+    int    id;
+    char   name[50];
+    double grade;
+} Student;
+```
+
+**Initialize and access:**
+
+```c
+Student s = { 1001, "Ali", 87.5 };
+printf("%s: %.1f\n", s.name, s.grade);
+s.grade = 92.0;
+```
+
+**Note:** the compiler may add invisible **padding** bytes for memory alignment. `sizeof(Student)` may exceed the sum of its members' sizes.
+
+---
+
+## 3. Pointers to Structs — the `->` Operator
+
+```c
+Student  s   = { 1001, "Ali", 87.5 };
+Student *ptr = &s;
+
+(*ptr).grade = 90.0;   /* dereference then dot */
+ptr->grade   = 90.0;   /* arrow — preferred */
+```
+
+| Notation | Meaning |
+|----------|---------|
+| `s.grade` | direct member access |
+| `ptr->grade` | dereference pointer, then access member |
+| `(*ptr).grade` | same as above |
+
+Always initialize a pointer before using it.
+
+---
+
+## 4. `typedef` — Cleaner Type Names
+
+```c
+typedef struct { int id; char name[50]; double grade; } Student;
+
+Student s;           /* instead of: struct Student s; */
+```
+
+C++ does not require the `struct` keyword, but `typedef` is common for portability.
+
+---
+
+## 5. Nested Structures
+
+```c
+typedef struct { int day, month, year; } Date;
+
+typedef struct {
+    int    id;
+    char   name[50];
+    Date   dob;        /* nested */
+    double grade;
+} Student;
+
+s.dob.year  = 2003;
+p->dob.month = 3;
+```
+
+---
+
+## 6. Arrays of Structs
+
+```c
+Student class_list[30];
+class_list[0] = (Student){ 1001, "Ali", 87.5 };
+
+/* find top scorer */
+int top = 0;
+for (int i = 1; i < 30; i++)
+    if (class_list[i].grade > class_list[top].grade)
+        top = i;
+```
+
+**Struct assignment copies all fields** — swapping two struct elements works correctly.
+
+---
+
+## 7. Structs as Function Parameters
+
+| Method | Syntax | Cost | Modifies original? |
+|--------|--------|------|-------------------|
+| By value | `void f(Student s)` | copies all bytes | No |
+| By pointer | `void f(Student *s)` | 8 bytes | Yes |
+| By const pointer | `void f(const Student *s)` | 8 bytes | No |
+
+```c
+void print_student(const Student *s) {
+    printf("[%d] %s — %.1f\n", s->id, s->name, s->grade);
+}
+void set_grade(Student *s, double g) { s->grade = g; }
+```
+
+---
+
+## 8. `union` — Shared Memory
+
+```c
+union Data { int i; float f; char c; };
+
+union Data d;
+d.i = 42;       /* write int */
+d.f = 3.14f;    /* d.i is now meaningless — same bytes */
+```
+
+`sizeof(union Data)` == size of its *largest* member.
+
+**Tagged union — a value of any one type:**
+
+```c
+typedef enum { INT_VAL, FLOAT_VAL } ValType;
+typedef struct {
+    ValType type;
+    union { int i; float f; } val;
+} Variant;
+```
+
+Always check the tag before reading a union member.
+
+---
+
+## 9. Dynamic Arrays of Structs
+
+```c
+Student *arr = malloc(n * sizeof(Student));
+if (!arr) { perror("malloc"); exit(1); }
+
+for (int i = 0; i < n; i++) {
+    arr[i].id = 1000 + i + 1;
+    scanf("%49s %lf", arr[i].name, &arr[i].grade);
+}
+
+arr[2].grade     = 95.0;   /* index notation */
+(arr + 2)->grade = 95.0;   /* pointer notation — identical */
+
+free(arr);
+arr = NULL;
+```
+
+**Ownership rule:** whoever allocates is responsible for `free`-ing, unless documented otherwise.
+
+---
+
+## Worked Examples
+
+### Example 1 — Pointer access
+
+```c
+#include <stdio.h>
+typedef struct { int id; char name[50]; double grade; } Student;
+
+void print_student(const Student *s) {
+    printf("[%4d] %-20s %.1f\n", s->id, s->name, s->grade);
+}
+
+int main(void) {
+    Student s = { 1001, "Ali Ahmed", 87.5 };
+    Student *p = &s;
+    p->grade = 92.0;
+    print_student(p);
+    return 0;
+}
+```
+
+### Example 2 — Top scorer from array
+
+```c
+#include <stdio.h>
+typedef struct { int id; char name[50]; double grade; } Student;
+
+int main(void) {
+    Student list[5] = {
+        {1001,"Ali",87.5},{1002,"Sara",92.0},{1003,"Omar",78.5},
+        {1004,"Fatima",95.5},{1005,"Yusuf",83.0}
+    };
+    int top = 0;
+    for (int i = 1; i < 5; i++)
+        if (list[i].grade > list[top].grade) top = i;
+    printf("Top: [%d] %s — %.1f\n", list[top].id, list[top].name, list[top].grade);
+    return 0;
+}
+```
+
+### Example 3 — Dynamic array
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct { int id; char name[50]; double grade; } Student;
+
+int main(void) {
+    int n; scanf("%d", &n);
+    Student *arr = malloc(n * sizeof(Student));
+    if (!arr) return 1;
+    for (int i = 0; i < n; i++) {
+        arr[i].id = 1000 + i + 1;
+        scanf("%49s %lf", arr[i].name, &arr[i].grade);
+    }
+    for (int i = 0; i < n; i++)
+        printf("[%d] %s %.1f\n", arr[i].id, arr[i].name, arr[i].grade);
+    free(arr); arr = NULL;
+    return 0;
+}
+```
+
+---
+
+## Key Terms
+
+| Term | Meaning |
+|------|---------|
+| `struct` | groups named fields into one type |
+| member | a named field inside a struct or union |
+| `.` (dot) | member access on a struct value |
+| `->` (arrow) | `(*ptr).member` — follow pointer, then access |
+| `typedef` | creates a type alias |
+| nested struct | a struct member that is itself a struct |
+| `union` | all members share memory; size = largest |
+| tagged union | union + enum identifying the active member |
+| padding | invisible bytes added for alignment |
+| ownership | who must call `free` |
+
+---
+
+## Discussion Questions
+
+1. What is the difference between a `struct` and an array?
+2. Why does `ptr->member` exist when `(*ptr).member` is equivalent?
+3. Does modifying `s.grade` inside `void f(Student s)` affect the caller?
+4. Why is `sizeof(union)` the largest member, while `sizeof` of a struct ≈ the sum?
+5. What happens if you write `d.i` then read `d.f` from a union?
+6. How does sorting struct values compare to sorting struct pointers in cost?
+7. Why `sizeof(Student)` and not `sizeof(Student *)` in `malloc`?
+8. Who calls `free` when a function allocates and returns a struct pointer?
