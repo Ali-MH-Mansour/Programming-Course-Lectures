@@ -83,7 +83,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bb62276ab45c84d9efd712f51ff97b5a.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-010053c2e0ab75334a11f7d41684beb1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-28e476bb09ea0e3a52382d7a6c08cfc3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -438,46 +438,57 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Write, compile, and run a minimal C program from the command line</li>
 <li>Distinguish between compiler errors, runtime errors, and logic errors</li>
 </ul>
+<p>This is the first lecture of the course, so it does not assume you know anything about programming yet. Every new word is explained the first time it is used. If a sentence uses a word you do not recognize, look for it in the <strong>Key Terms</strong> table near the end of this lecture — every technical word used here is defined there.</p>
 <hr>
 </section>
 <section id="what-is-a-program" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="what-is-a-program"><span class="header-section-number">2.2</span> 1. What Is a Program?</h2>
-<p>A <strong>program</strong> is a set of instructions, written by a human in a programming language, that a machine can execute. The machine runs programs in binary — sequences of 1s and 0s. Between the human-readable language and the machine, something translates.</p>
+<p>Think of a <strong>program</strong> as a list of instructions. A person writes the list, in a language a human can read. Then a machine — the computer — follows the list, one instruction at a time, and does exactly what it says.</p>
+<p>But there is a problem: the computer does not actually understand English, or any human-readable language. Deep inside, a computer only understands numbers — specifically, it understands sequences of <strong>1</strong>s and <strong>0</strong>s. This is called <strong>binary</strong>. Everything the computer does — showing text on a screen, playing a sound, adding two numbers — happens because some sequence of 1s and 0s is being processed by the hardware.</p>
+<p>So there is a gap: humans write in a readable language, but the machine only runs binary. Something has to sit between the two and translate one into the other. That “something” is the main subject of this lecture — we will look at exactly what does the translating, and how.</p>
 <hr>
 <section id="algorithm" class="level3" data-number="2.2.1">
 <h3 data-number="2.2.1" class="anchored" data-anchor-id="algorithm"><span class="header-section-number">2.2.1</span> Algorithm</h3>
-<p>An <strong>algorithm</strong> is a step-by-step procedure for solving a problem. For an algorithm to be valid, every step must be stated precisely enough that a machine — or someone who has never seen the problem before — can follow it without guessing.</p>
-<p><strong>The four required properties of an algorithm:</strong></p>
+<p>An <strong>algorithm</strong> is simply a set of steps for solving a problem, written clearly enough that anyone (or anything, including a machine) can follow it without having to guess what you meant.</p>
+<p>Think of an algorithm like a recipe, or a set of directions to a friend’s house. If a single step is unclear, the person following it might do the wrong thing. Good algorithms leave nothing open to interpretation.</p>
+<p>For a set of steps to count as a real algorithm, it must have <strong>four</strong> properties. Each one answers a specific question:</p>
 <table class="caption-top table">
 <colgroup>
+<col style="width: 25%">
 <col style="width: 52%">
-<col style="width: 47%">
+<col style="width: 22%">
 </colgroup>
 <thead>
 <tr class="header">
 <th>Property</th>
+<th>Question it answers</th>
 <th>Meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><strong>Definiteness</strong></td>
-<td>Each step is clear and unambiguous</td>
+<td>“Is each step exactly clear?”</td>
+<td>Each step is precise — there is only one possible way to understand it, no ambiguity</td>
 </tr>
 <tr class="even">
 <td><strong>Finiteness</strong></td>
-<td>The procedure terminates in a finite number of steps</td>
+<td>“Does it ever end?”</td>
+<td>The procedure stops after a limited, countable number of steps — it cannot run forever</td>
 </tr>
 <tr class="odd">
 <td><strong>Input/Output</strong></td>
+<td>“Does it use data and produce a result?”</td>
 <td>It takes some data as input and produces a result as output</td>
 </tr>
 <tr class="even">
 <td><strong>Effectiveness</strong></td>
-<td>Each step is actually executable — no impossible operations</td>
+<td>“Can each step actually be done?”</td>
+<td>Every step is something that can genuinely be carried out — no step asks for something impossible</td>
 </tr>
 </tbody>
 </table>
+<p>Let’s make this concrete with an example.</p>
 <p><strong>Example — ATM directions written as a valid algorithm:</strong></p>
 <pre><code>INPUT: starting room number
 OUTPUT: route to the nearest ATM
@@ -489,13 +500,25 @@ STEP 4: Exit building through main door
 STEP 5: Turn right; walk 50 metres on the pavement
 STEP 6: The ATM is on the right side of building entrance — use it
 STEP 7: STOP</code></pre>
-<p>Notice: “Turn left at the big tree” would fail the <strong>definiteness</strong> property — “big tree” is not unambiguous. “Find the ATM” with no termination condition would fail <strong>finiteness</strong>.</p>
-<p><strong>Think about:</strong> Is a cooking recipe an algorithm? Which of the four properties might it violate?</p>
+<p><strong>Let’s walk through why this example is a <em>valid</em> algorithm, property by property:</strong></p>
+<ul>
+<li><strong>Definiteness</strong> — every step names an exact action and, where it matters, an exact amount: “turn left,” “30 steps,” “50 metres.” Nobody following this could reasonably do something different from what is written.</li>
+<li><strong>Finiteness</strong> — there are exactly seven numbered steps, and step 7 explicitly says <code>STOP</code>. The list cannot loop forever; it has a guaranteed end.</li>
+<li><strong>Input/Output</strong> — the <code>INPUT</code> line names the data the procedure starts with (the room number), and the <code>OUTPUT</code> line names what the procedure produces (a route). Every algorithm needs both ends stated.</li>
+<li><strong>Effectiveness</strong> — every single step (exiting a room, walking, taking stairs, turning) is something a real person can actually do right now, with no impossible or magical action hidden anywhere.</li>
+</ul>
+<p><strong>Now compare it to two examples that <em>fail</em> the test</strong>, so you can recognize the difference:</p>
+<ul>
+<li><em>“Turn left at the big tree”</em> — this fails <strong>definiteness</strong>. Different people standing in the same corridor might disagree about which tree counts as “big.” A valid algorithm would instead say something measurable, like “turn left at the second tree from the entrance.”</li>
+<li><em>“Keep looking until you find the ATM”</em> — this fails <strong>finiteness</strong> if there is no guaranteed way to eventually find it, or no maximum number of tries stated. A valid version would put a limit on it, e.g.&nbsp;“check the next 5 buildings; if not found, stop and ask a guard.”</li>
+</ul>
+<p><strong>Think about:</strong> Is a cooking recipe an algorithm? Go through the four properties one at a time and decide whether a typical recipe satisfies each one. (Hint: think carefully about definiteness — does “add salt to taste” pass or fail?)</p>
 <hr>
 </section>
 <section id="flowcharts" class="level3" data-number="2.2.2">
 <h3 data-number="2.2.2" class="anchored" data-anchor-id="flowcharts"><span class="header-section-number">2.2.2</span> Flowcharts</h3>
-<p>A <strong>flowchart</strong> is a graphical way to represent an algorithm. Standard symbols:</p>
+<p>Writing an algorithm as numbered text works, but for many people a picture is easier to follow at a glance. A <strong>flowchart</strong> is exactly that: a drawing that represents the same steps as shapes connected by arrows, so you can <em>see</em> the path the algorithm takes, including any branching decisions.</p>
+<p>Four shapes are enough to draw almost any beginner-level flowchart:</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -535,6 +558,18 @@ STEP 7: STOP</code></pre>
 [Is ATM working?]
    ├─ YES → [Use ATM] → [End]
    └─ NO  → [Find next ATM] → [Walk to ATM]</code></pre>
+<p><strong>Let’s walk through this flowchart step by step, the same way you would trace it with your finger on paper:</strong></p>
+<ol type="1">
+<li><strong><code>[Start]</code></strong> — an oval. Every flowchart begins with exactly one Start oval; this is where you start reading.</li>
+<li><strong><code>[Walk to ATM]</code></strong> — a rectangle, meaning “do this action.” You follow the arrow down into it, perform the action, then follow the next arrow out.</li>
+<li><strong><code>[Is ATM working?]</code></strong> — a diamond. This is the new idea this example adds compared to the plain numbered list above: a <strong>decision point</strong>, where the flowchart can go one of two different ways depending on a condition.</li>
+<li>From the diamond, there are <strong>two arrows leaving it</strong>, each labelled with the answer that sends you down that path:
+<ul>
+<li>If the answer is <strong>YES</strong>, you follow that arrow to <code>[Use ATM]</code>, and then to <code>[End]</code> — the procedure finishes successfully.</li>
+<li>If the answer is <strong>NO</strong>, you follow that arrow to <code>[Find next ATM]</code>, and then back up to <code>[Walk to ATM]</code> — notice this arrow points <em>backward</em>, forming a <strong>loop</strong>. You will keep repeating “walk → check → not working → find next” until eventually the answer is YES and you reach <code>[End]</code>.</li>
+</ul></li>
+</ol>
+<p>This is the key lesson of the example: a flowchart (and an algorithm) is not always a straight line from Start to End. A diamond can send execution down different paths, and an arrow can point backward to repeat earlier steps. We will write real loops like this in code starting from Lecture 5.</p>
 <hr>
 </section>
 </section>
@@ -542,20 +577,29 @@ STEP 7: STOP</code></pre>
 <h2 data-number="2.3" class="anchored" data-anchor-id="programming-languages"><span class="header-section-number">2.3</span> 2. Programming Languages</h2>
 <section id="what-the-cpu-actually-executes" class="level3" data-number="2.3.1">
 <h3 data-number="2.3.1" class="anchored" data-anchor-id="what-the-cpu-actually-executes"><span class="header-section-number">2.3.1</span> What the CPU actually executes</h3>
-<p>The CPU executes <strong>binary machine code</strong> — sequences of 1s and 0s, each encoding a specific operation. Nobody writes machine code directly. We write in a human-readable programming language, and a tool translates it.</p>
+<p>Deep down, the only thing your computer’s processor (the <strong>CPU</strong>) can actually carry out is <strong>binary machine code</strong> — long sequences of 1s and 0s, where each specific pattern tells the hardware to do one very small, very specific operation (for example: “add these two numbers,” or “copy this value from one place to another”). Nobody sits down and types machine code by hand — it would be far too slow and error-prone. Instead, we write our instructions in a language that is easier for humans to read, and then a piece of software translates that human-readable language into the binary the CPU needs.</p>
 </section>
 <section id="high-level-vs-low-level" class="level3" data-number="2.3.2">
 <h3 data-number="2.3.2" class="anchored" data-anchor-id="high-level-vs-low-level"><span class="header-section-number">2.3.2</span> High-level vs low-level</h3>
+<p>Programming languages are usually described as sitting somewhere on a scale from <strong>low-level</strong> (close to what the machine understands) to <strong>high-level</strong> (close to how a human thinks and talks).</p>
 <pre><code>Machine code   →   Assembly   →   C / C++   →   Java / Go   →   Python
   (binary)                       (this course)
 
 ← Hardest to write           Middle ground          Easiest to write →
 ← Fastest to execute                                Slowest to execute →
 ← Least portable                                    Most portable →</code></pre>
-<p><strong>C/C++ is in the middle:</strong> high enough to write readable code, low enough to control exactly what the machine does.</p>
+<p><strong>Let’s explain this diagram piece by piece, because it packs three separate ideas into one picture:</strong></p>
+<ul>
+<li><strong>The top row</strong> is a line of languages, ordered from the most “machine-like” on the left (raw binary) to the most “human-like” on the right (Python). C/C++, the language of this course, sits in the middle — this is deliberate: it is our course’s whole reason for choosing C/C++ as a teaching language.</li>
+<li><strong>The first arrow-row</strong> (“Hardest to write → Easiest to write”) tells you that writing correct machine code by hand is extremely difficult and slow, while writing Python is comparatively quick and forgiving. Every step you move to the right on the diagram, the language gives you more help and hides more low-level detail from you.</li>
+<li><strong>The second arrow-row</strong> (“Fastest to execute → Slowest to execute”) tells you the opposite trade-off: the languages that are easiest to <em>write</em> generally run <em>slower</em>, because more translation and safety-checking has to happen while the program is running.</li>
+<li><strong>The third arrow-row</strong> (“Least portable → Most portable”) tells you how easily code written in that language can be moved and run on a different kind of computer. Raw machine code for one specific CPU design will not run at all on a different CPU design; Python code, in contrast, can usually run unmodified on almost any machine that has Python installed.</li>
+</ul>
+<p><strong>Why C/C++ specifically, for this course:</strong> it is high-level enough that you can write readable, structured programs (loops, functions, variables with names) — but it is also low-level enough that you can still see and control exactly what the machine is doing with memory and performance. Many later courses in this degree, and most operating systems and performance-critical software in industry, are built on exactly this trade-off.</p>
 </section>
 <section id="compiled-vs-interpreted" class="level3" data-number="2.3.3">
 <h3 data-number="2.3.3" class="anchored" data-anchor-id="compiled-vs-interpreted"><span class="header-section-number">2.3.3</span> Compiled vs interpreted</h3>
+<p>There are two broad strategies for translating your human-readable code into something the CPU can run: <strong>compiling</strong> it all at once before execution, or <strong>interpreting</strong> it line-by-line while it runs.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -592,18 +636,28 @@ STEP 7: STOP</code></pre>
 
 C program:     ~0.3 seconds
 Python script: ~15 seconds</code></pre>
+<p><strong>Let’s explain why this specific example matters, and what actually causes the 50× difference:</strong></p>
+<ul>
+<li>Both programs are doing the <em>exact same job</em>: create 100 million whole numbers, store them, and add them all together.</li>
+<li>The <strong>C program</strong> was already translated completely into machine code <em>before</em> it started running (this is what “compiled” means). So when you run it, the CPU is executing pure binary instructions the whole time, with nothing left to figure out.</li>
+<li>The <strong>Python script</strong>, in contrast, is being read and translated <strong>one line at a time, while it runs</strong> (this is what “interpreted” means). Every single one of those 100 million additions has extra translation work happening around it, over and over, which adds up to a huge amount of overhead.</li>
+<li>The result: roughly <strong>50 times slower</strong> for Python on this specific kind of task. This is not a criticism of Python — Python is an excellent language for many jobs where raw speed matters less than how quickly you can write and change the code. It is simply the direct, measurable cost of the “translate as you go” strategy versus “translate once, up front.”</li>
+<li>This performance gap is a large part of <em>why this course teaches C/C++</em>: understanding how compiled languages work close to the hardware is a foundation you will reuse for the rest of your degree, including later modules in this very course (multithreading, GPU programming, and AI algorithms).</li>
+</ul>
 <hr>
 </section>
 </section>
 <section id="brief-history-of-c" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="brief-history-of-c"><span class="header-section-number">2.4</span> 3. Brief History of C</h2>
-<p><strong>1972, Bell Labs, New Jersey.</strong> Dennis Ritchie designs C to rewrite Unix portably — powerful enough to write an OS, portable across hardware.</p>
-<p><strong>1983, AT&amp;T Bell Labs.</strong> Bjarne Stroustrup adds object-oriented features to C → <strong>C++</strong>.</p>
-<p><strong>Today, 2026.</strong> C remains the language of every major OS kernel, embedded systems, and AI framework backends (TensorFlow, PyTorch).</p>
+<p>It helps to know where this language actually came from, and why it still matters in 2026 rather than having been replaced long ago.</p>
+<p><strong>1972, Bell Labs, New Jersey.</strong> A programmer named Dennis Ritchie designed C so that the Unix operating system could be rewritten in a language that was portable — meaning the same source code could be recompiled to run on different kinds of computer hardware, instead of being rewritten from scratch for every machine. C needed to be powerful enough to write an entire operating system, yet still be portable across very different hardware.</p>
+<p><strong>1983, AT&amp;T Bell Labs.</strong> Bjarne Stroustrup took the C language and added a new set of features to it — mainly features for organizing large programs around objects — producing a new language called <strong>C++</strong>. C++ is, broadly speaking, “C plus extra tools,” and almost all of what you learn about C in this course also applies directly to C++.</p>
+<p><strong>Today, 2026.</strong> More than fifty years after it was first designed, C is still the language that every major operating system kernel is written in (Linux, Windows, and macOS all have C at their core), it is the standard choice for embedded systems (the tiny computers inside cars, appliances, and medical devices), and it is the language that the internal, performance-critical parts of major AI frameworks (TensorFlow, PyTorch) are written in, even though you might interact with those frameworks through Python on the surface. Learning C is not learning an outdated tool — it is learning the language that sits underneath almost everything else.</p>
 <hr>
 </section>
 <section id="the-cc-toolchain" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="the-cc-toolchain"><span class="header-section-number">2.5</span> 4. The C/C++ Toolchain</h2>
+<p>Now we come back to the translation problem introduced in Section 1: how does human-readable C source code actually become something the CPU can run? The answer is a pipeline of four separate tools, each one taking the previous tool’s output as its own input.</p>
 <pre><code>hello.c  (text file you write)
     ↓
   [Preprocessor]  — #include, #define
@@ -621,10 +675,28 @@ hello.o  (object file — binary, not yet runnable)
   [Linker]  — combine with libraries
     ↓
 hello    (executable)</code></pre>
+<p><strong>Let’s walk through this diagram one stage at a time, following the file as it changes shape:</strong></p>
+<ol type="1">
+<li><strong>You start with <code>hello.c</code></strong> — a plain text file, written by you, containing C source code that a human can read.</li>
+<li><strong>The Preprocessor runs first.</strong> Its job is purely textual: it looks for special lines starting with <code>#</code>, such as <code>#include</code> (which copies in the contents of another file, usually a library header) and <code>#define</code> (which does simple find-and-replace of names with text). It produces <code>hello.i</code>, which is still plain text — just a longer, fully expanded version of your original file, with all the <code>#include</code>s and <code>#define</code>s already resolved.</li>
+<li><strong>The Compiler runs next.</strong> This is the stage that actually understands the C language: it checks your code follows correct C grammar (<strong>syntax</strong>), reports any mistakes it finds, and translates your expanded C code into <strong>assembly language</strong> — a very low-level, human-readable-but-barely text format that maps closely to individual CPU instructions. The result is <code>hello.s</code>.</li>
+<li><strong>The Assembler runs next.</strong> Assembly is still text, so one more step is needed to turn it into actual binary. The assembler does exactly that translation, producing <code>hello.o</code> — an <strong>object file</strong>. This file already contains real machine-code binary, but it is not runnable on its own yet, because it might be missing pieces (for example, the actual code behind a library function like <code>printf</code>, which lives elsewhere).</li>
+<li><strong>The Linker runs last.</strong> It takes your object file and combines it with whatever library code your program actually uses (in our example, the code that implements <code>printf</code>), producing the final <code>hello</code> file — a complete, standalone <strong>executable</strong> that the operating system can run directly.</li>
+</ol>
+<p>In everyday student work, you will not normally run these four tools one at a time — a single command runs the whole pipeline for you, as shown next. But it is important to know these four stages exist, because when something goes wrong, the error message will often tell you <em>which</em> stage failed, and that tells you what kind of mistake you made.</p>
 <section id="running-from-the-command-line" class="level3" data-number="2.5.1">
 <h3 data-number="2.5.1" class="anchored" data-anchor-id="running-from-the-command-line"><span class="header-section-number">2.5.1</span> Running from the command line</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gcc</span> <span class="at">-Wall</span> <span class="at">-std</span><span class="op">=</span>c11 <span class="at">-o</span> hello hello.c    <span class="co"># compile</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./hello</span>                                 <span class="co"># run</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Let’s explain this command piece by piece, since this exact line is the one you will type for the rest of the semester:</strong></p>
+<ul>
+<li><strong><code>gcc</code></strong> — the name of the program we are running: the GNU Compiler Collection. Even though it is called a “compiler,” typing <code>gcc</code> actually runs the <em>entire</em> four-stage pipeline above (preprocessor → compiler → assembler → linker) in one single command, for your convenience.</li>
+<li><strong><code>-Wall</code></strong> — a <strong>flag</strong> (an optional switch you can add to a command) that tells <code>gcc</code> to turn on “<strong>a</strong>ll <strong>w</strong>arnings.” A warning is different from an error: your code will still compile and run with warnings, but a warning is <code>gcc</code> telling you “this line looks suspicious, you probably made a mistake.” You should treat warnings as seriously as errors — always fix them.</li>
+<li><strong><code>-std=c11</code></strong> — another flag, telling <code>gcc</code> which exact version of the C language standard to use when checking your code (in this case, the C11 standard, published in 2011). There are several versions of the C language; being explicit about which one you mean avoids surprises.</li>
+<li><strong><code>-o hello</code></strong> — the <code>-o</code> flag means “<strong>o</strong>utput file,” followed by the name you want for the resulting executable. Here we are naming it <code>hello</code>. If you leave this flag out entirely, <code>gcc</code> will still produce an executable, but it will use a default name (<code>a.out</code>) instead of a name you chose.</li>
+<li><strong><code>hello.c</code></strong> — the actual input: the source file you wrote, given last on the line.</li>
+<li><strong><code>./hello</code></strong> — a second, separate command, run after compilation succeeds. This is how you actually <em>run</em> the executable you just built. The <code>./</code> in front means “look for this program in the current folder” — without it, your operating system would search only its usual system locations and would not find your freshly built program.</li>
+</ul>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -652,19 +724,24 @@ hello    (executable)</code></pre>
 </section>
 <section id="hello-world-anatomy" class="level2" data-number="2.6">
 <h2 data-number="2.6" class="anchored" data-anchor-id="hello-world-anatomy"><span class="header-section-number">2.6</span> 5. Hello World: Anatomy</h2>
+<p>The traditional first program in almost every programming language and every programming course is one that simply prints a short greeting to the screen. It looks tiny, but every single character in it has a specific job, and understanding all of them here will make every later program easier to read.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span> <span class="op">{</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"Hello, world!</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Let’s go through this program line by line, explaining exactly what each part does and why it is needed:</strong></p>
 <ul>
-<li><code>#include &lt;stdio.h&gt;</code> — copies the standard I/O header (declares <code>printf</code>)</li>
-<li><code>int main(void)</code> — entry point; <code>int</code> = exit code returned to OS</li>
-<li><code>printf(...)</code> — prints to standard output; <code>\n</code> = newline</li>
-<li><code>return 0;</code> — exit code 0 = success</li>
+<li><strong><code>#include &lt;stdio.h&gt;</code></strong> — this is the Preprocessor directive from Section 4. <code>stdio.h</code> stands for “<strong>st</strong>andard <strong>i</strong>nput/<strong>o</strong>utput,” and this line copies in the declarations needed to use input/output functions such as <code>printf</code>. Without this line, the compiler would not know what <code>printf</code> even is, and compilation would fail.</li>
+<li><strong><code>int main(void)</code></strong> — this defines a <strong>function</strong> named <code>main</code>. Every C program must have exactly one function named <code>main</code> — this is the <strong>entry point</strong>: the very first thing that runs when your program starts. The <code>int</code> before it means this function will give back a whole number (an integer) when it finishes; the <code>(void)</code> means this particular function does not take any input values when it is called.</li>
+<li><strong><code>{</code> and <code>}</code></strong> — the curly braces mark the <strong>beginning</strong> and <strong>end</strong> of the function’s body — everything the function actually does is written between them.</li>
+<li><strong><code>printf("Hello, world!\n");</code></strong> — this line calls the <code>printf</code> function (declared for us back in <code>stdio.h</code>), asking it to print the text between the quotation marks to the screen (this is called <strong>standard output</strong>). The <code>\n</code> at the end is a special two-character sequence meaning “start a new line” — without it, anything printed right after this would appear on the same line.</li>
+<li><strong><code>return 0;</code></strong> — this ends the <code>main</code> function and hands back the value <code>0</code> to the operating system. By long-standing convention, an <strong>exit code</strong> of <code>0</code> means “the program finished successfully, with no errors”; any non-zero value signals that something went wrong. You do not need to worry about non-zero exit codes yet, but you will see this convention used constantly in later lectures.</li>
+<li><strong>The semicolon <code>;</code></strong> after both <code>printf(...)</code> and <code>return 0</code> marks the end of each individual instruction (called a <strong>statement</strong>). Forgetting a semicolon is one of the most common beginner mistakes, and you will see exactly what error it produces in Worked Example 2 below.</li>
 </ul>
 <p><strong>Common escape sequences:</strong></p>
+<p>An <strong>escape sequence</strong> is a two-character combination, always starting with a backslash <code>\</code>, used to represent a character that you cannot simply type directly inside quotation marks.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -695,11 +772,15 @@ hello    (executable)</code></pre>
 </tr>
 </tbody>
 </table>
+<p><strong>A quick example of why these are needed:</strong> if you wanted to print an actual double-quote character, you could not simply type <code>"</code> inside a string that is itself delimited by double-quotes — the compiler would think your string had ended early. Writing <code>\"</code> instead tells the compiler “print an actual quote character here, do not treat it as the end of the string.” The same logic applies to printing a literal backslash: you write <code>\\</code> to mean “one real backslash character.”</p>
 <hr>
 </section>
 <section id="the-editcompilerundebug-cycle" class="level2" data-number="2.7">
 <h2 data-number="2.7" class="anchored" data-anchor-id="the-editcompilerundebug-cycle"><span class="header-section-number">2.7</span> 6. The Edit–Compile–Run–Debug Cycle</h2>
+<p>Writing a program is almost never a single, one-shot action. In practice, you repeat a short cycle of four activities, over and over, until the program does what you intended:</p>
 <pre><code>[Edit] → [Compile] → [Run] → [Debug] → [Edit] → ...</code></pre>
+<p>You <strong>edit</strong> the source file, <strong>compile</strong> it (Section 4), <strong>run</strong> it, and — if something is wrong — you <strong>debug</strong> it, meaning you figure out what went wrong and go back to editing. This loop is completely normal; expect to go around it many times, even for small programs, and even as an experienced programmer.</p>
+<p>Things can go wrong at different points in this cycle, and it matters which one, because each kind of problem is diagnosed differently:</p>
 <p><strong>Three kinds of error:</strong></p>
 <table class="caption-top table">
 <colgroup>
@@ -732,17 +813,23 @@ hello    (executable)</code></pre>
 </tr>
 </tbody>
 </table>
+<p><strong>Let’s look at a small, concrete example of each type, so the difference is not just abstract:</strong></p>
+<ul>
+<li><strong>Compiler error</strong> — you write <code>printf("Hi!\n")</code> and forget the semicolon at the end. The program never even gets built; <code>gcc</code> stops and shows you an error message immediately, pointing at roughly where the problem is (see Worked Example 2 below for exactly this case).</li>
+<li><strong>Runtime error / crash</strong> — the program compiles perfectly fine, and starts running, but then attempts something the machine cannot actually do — for example, dividing a number by zero. The program builds successfully but then stops abruptly (crashes) partway through execution.</li>
+<li><strong>Logic error</strong> — this is the trickiest kind, because the program compiles fine <em>and</em> runs to completion <em>and</em> produces an answer — the answer is simply wrong. For example, a loop meant to count from 1 to 10 that is accidentally written to stop one step too early or too late (an “off-by-one” mistake) will run without any error message at all, but will quietly give you the wrong result. Finding logic errors is a skill you will build all semester; they cannot be caught by the compiler because, as far as the compiler is concerned, nothing is grammatically wrong.</li>
+</ul>
 <hr>
 </section>
 <section id="summary" class="level2" data-number="2.8">
 <h2 data-number="2.8" class="anchored" data-anchor-id="summary"><span class="header-section-number">2.8</span> Summary</h2>
 <ol type="1">
-<li><strong>Algorithm</strong> — finite, definite, effective; four required properties.</li>
-<li><strong>High-level vs low-level languages</strong> — C/C++ is close to hardware: fast, powerful, industry-relevant.</li>
-<li><strong>Compiled vs interpreted</strong> — C/C++ compiled once; ~50× faster for compute-intensive work.</li>
-<li><strong>The toolchain</strong> — source → preprocessor → compiler → assembler → linker → executable.</li>
-<li><strong>Hello world</strong> — <code>#include</code>, <code>main</code>, <code>printf</code>, <code>\n</code>, <code>return 0</code>; every character has a purpose.</li>
-<li><strong>Edit–Compile–Run–Debug</strong> — your working method for the rest of the semester.</li>
+<li><strong>Algorithm</strong> — finite, definite, effective; four required properties. A flowchart is just a picture of the same steps, and it can branch and loop using diamonds and backward arrows.</li>
+<li><strong>High-level vs low-level languages</strong> — C/C++ sits deliberately in the middle: readable enough to write real programs, close enough to the hardware to understand exactly what is happening.</li>
+<li><strong>Compiled vs interpreted</strong> — C/C++ is compiled once, ahead of time, which is why it typically runs far faster (roughly 50× in our example) than an interpreted language like Python running the same task.</li>
+<li><strong>The toolchain</strong> — your source file passes through four separate tools in sequence: preprocessor → compiler → assembler → linker → executable. One <code>gcc</code> command runs all four for you.</li>
+<li><strong>Hello world</strong> — <code>#include</code>, <code>main</code>, <code>printf</code>, <code>\n</code>, <code>return 0</code> — every single character in this tiny program has a specific, necessary purpose.</li>
+<li><strong>Edit–Compile–Run–Debug</strong> — this is your normal working rhythm for the rest of the semester, and knowing whether a problem is a compiler error, a runtime error, or a logic error tells you where to look for the fix.</li>
 </ol>
 <hr>
 </section>
@@ -831,6 +918,16 @@ hello    (executable)</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gcc</span> <span class="at">-Wall</span> <span class="at">-std</span><span class="op">=</span>c11 <span class="at">-o</span> hello hello.c</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./hello</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Expected output: <code>Hello, world!</code></p>
+<p><strong>Detailed explanation of what happens when you run these two lines:</strong></p>
+<ol type="1">
+<li>You type the first line and press Enter. <code>gcc</code> reads <code>hello.c</code>, and silently runs it through all four toolchain stages from Section 4: preprocessor, compiler, assembler, linker.</li>
+<li>Because the code has no mistakes, <code>gcc</code> prints <strong>nothing at all</strong> back to you — this is normal and expected. In command-line tools, “no news is good news”: silence means success. A new file named <code>hello</code> now exists in your current folder; this is the finished executable.</li>
+<li>You type the second line, <code>./hello</code>, and press Enter. This does not compile anything — it simply <em>runs</em> the executable that already exists from step 2.</li>
+<li>Inside <code>main</code>, the single <code>printf</code> statement executes, sending the text <code>Hello, world!</code> followed by a newline to your screen.</li>
+<li>Right after that, <code>return 0;</code> runs, ending the program successfully.</li>
+<li>You see exactly one line printed: <code>Hello, world!</code> — and then control returns to your command line, ready for the next command.</li>
+</ol>
+<p><strong>A common point of confusion this example clears up:</strong> running <code>gcc ...</code> and running <code>./hello</code> are two <em>completely separate</em> steps. Compiling does not run your program, and you cannot run a program you have not yet compiled. Students who forget to run <code>./hello</code> after compiling successfully sometimes think “nothing happened” — in fact, the compile step worked, it simply does not print anything by itself.</p>
 </section>
 <section id="example-2-reading-a-compiler-error" class="level3" data-number="2.10.2">
 <h3 data-number="2.10.2" class="anchored" data-anchor-id="example-2-reading-a-compiler-error"><span class="header-section-number">2.10.2</span> Example 2 — Reading a compiler error</h3>
@@ -841,7 +938,19 @@ hello    (executable)</code></pre>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>hello.c:5:5: error: expected ';' before 'return'</code></pre>
-<p>The error is reported at line 5, but the mistake is at the end of line 4. The compiler reports where it <em>noticed</em> the problem.</p>
+<p><strong>Detailed explanation, line by line, of both the mistake and the error message:</strong></p>
+<ul>
+<li><strong>The mistake:</strong> look closely at line 4 — <code>printf("Hello, world!\n")</code> — and compare it to the correct version in Section 5. The line is missing its closing semicolon <code>;</code>. This is one of the single most common beginner mistakes in C, because in many other languages (and in plain English), a line simply ending is enough — in C, the compiler needs the semicolon to know for certain where one statement ends and the next begins.</li>
+<li><strong>Reading the error message <code>hello.c:5:5: error: expected ';' before 'return'</code>:</strong>
+<ul>
+<li><strong><code>hello.c</code></strong> — the file where the problem was found.</li>
+<li><strong><code>5:5</code></strong> — the <strong>line and column</strong> number where the compiler <em>noticed</em> something was wrong: line 5, character position 5.</li>
+<li><strong><code>error:</code></strong> — this tells you it is a hard <strong>error</strong>, not just a warning; the compiler refuses to produce an executable until this is fixed.</li>
+<li><strong><code>expected ';' before 'return'</code></strong> — the compiler’s explanation: it was reading along, expecting to find a semicolon, and instead ran straight into the word <code>return</code> with no semicolon in between.</li>
+</ul></li>
+<li><strong>The important trap this example is built to teach you:</strong> the semicolon is <em>missing</em> from the end of line 4, but the compiler reports the error on <strong>line 5</strong>. This is not a mistake in the compiler — it makes complete sense once you understand <em>why</em> it happens: the compiler cannot know a statement is missing its semicolon until it has already read past the point where the semicolon should have been and hit the <em>next</em> thing (here, <code>return</code> on line 5). Only at that point does it realize something is missing, so that is where it reports the problem.</li>
+<li><strong>The lesson to take away:</strong> whenever you get a compiler error, do not only look at the exact line number given — also check the line <strong>immediately above it</strong>. A large fraction of real beginner errors (missing semicolons, missing closing braces <code>}</code>, missing closing parentheses) are actually located one line earlier than where the compiler reports them.</li>
+</ul>
 <hr>
 </section>
 </section>
