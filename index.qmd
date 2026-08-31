@@ -33,3 +33,7 @@ Navigate using the table of contents on the left (or the menu on mobile).
 | 6 | User-Defined Data Types | L10–L11 |
 | 7 | Multithreaded Programming + AI | L12–L15 |
 | 8 | Libraries, Standard Structures, Algorithms | L16–L18 |
+
+---
+
+© 2026 Ali-MH-Mansour. All Rights Reserved. See [LICENSE](LICENSE) for terms.

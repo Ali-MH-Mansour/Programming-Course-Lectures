@@ -64,6 +64,7 @@ format:
     code-block-border-left: true
     highlight-style: github
     lang: en
+    page-footer: "© 2026 Ali-MH-Mansour. All Rights Reserved."
 
 execute:
   freeze: auto
