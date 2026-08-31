@@ -24,7 +24,7 @@
     "href": "index.html#course-structure",
     "title": "Programming — Year 1",
     "section": "1.2 Course Structure",
-    "text": "1.2 Course Structure\n\n\n\nModule\nTopic\nLectures\n\n\n\n\n1\nBasics of C/C++, I/O, Linear Algorithms\nL01–L04\n\n\n2\nBranching and Loops\nL05\n\n\n3\nArrays, Pointers, Strings\nL06–L07\n\n\n4\nSubroutines\nL08\n\n\n5\nFile Handling\nL09\n\n\n6\nUser-Defined Data Types\nL10–L11\n\n\n7\nMultithreaded Programming + AI\nL12–L15\n\n\n8\nLibraries, Standard Structures, Algorithms\nL16–L18",
+    "text": "1.2 Course Structure\n\n\n\nModule\nTopic\nLectures\n\n\n\n\n1\nBasics of C/C++, I/O, Linear Algorithms\nL01–L04\n\n\n2\nBranching and Loops\nL05\n\n\n3\nArrays, Pointers, Strings\nL06–L07\n\n\n4\nSubroutines\nL08\n\n\n5\nFile Handling\nL09\n\n\n6\nUser-Defined Data Types\nL10–L11\n\n\n7\nMultithreaded Programming + AI\nL12–L15\n\n\n8\nLibraries, Standard Structures, Algorithms\nL16–L18\n\n\n\n\n© 2026 Ali-MH-Mansour. All Rights Reserved. See LICENSE for terms.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Programming — Year 1</span>"
     ]
