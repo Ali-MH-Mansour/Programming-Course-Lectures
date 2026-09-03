@@ -5,7 +5,7 @@ project:
 book:
   title: "Programming — Year 1"
   subtitle: "C/C++ Lecture Series · Южный Федеральный Университет, 2026"
-  author: "Ali-MH-Mansour"
+  author: "Dr. Ali Mahmoud Mansour, PhD in AI and ML"
   date: "2026"
   repo-url: "https://github.com/Ali-MH-Mansour/Programming-Course-Lectures"
   repo-actions: [edit]
@@ -64,7 +64,7 @@ format:
     code-block-border-left: true
     highlight-style: github
     lang: en
-    page-footer: "© 2026 Ali-MH-Mansour. All Rights Reserved."
+    page-footer: "© 2026 Dr. Ali Mahmoud Mansour, PhD in AI and ML. All Rights Reserved."
 
 execute:
   freeze: auto
