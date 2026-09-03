@@ -13,6 +13,10 @@ book:
   chapters:
     - index.qmd
 
+    - part: "Module 0 — Course Organization"
+      chapters:
+        - lectures/en/L00-course-organization.qmd
+
     - part: "Module 1 — Basics of C/C++, I/O, Linear Algorithms"
       chapters:
         - lectures/en/L01-course-orientation.qmd

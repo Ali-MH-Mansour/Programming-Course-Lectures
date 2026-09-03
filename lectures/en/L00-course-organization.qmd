@@ -1,0 +1,123 @@
+---
+title: "L00 — Course Organization"
+subtitle: "How This Course Works: Rules, Grading, and Expectations"
+date: "2026-09-03"
+lang: en
+---
+
+> **Module:** 0 — Course Organization
+> **Programming (Программирование) · Year 1 · Southern Federal University · 2026-2027**
+> Lead lecturer: Ali Mahmoud Mansour (mansur@sfedu.ru). Course home: LMS ИКТИБ, course "Программирование (2026-2027)".
+
+---
+
+## 1. What you will get from this course
+
+- A foundation for learning **any** other programming language.
+- Correct use of the data types and algorithmic constructs found in most languages (taught through C/C++).
+- Code-reading and debugging skills; coding-style discipline; awareness of portability and cross-platform issues.
+- Multithreading for performance; creating and linking libraries.
+- C knowledge at the level of international certification exams (cppinstitute.org): **CLE — 100% coverage; CLA — 80–90%**.
+- Hands-on familiarity with: Code::Blocks, VSCodium, CMake, Doxygen, Codeforces, Diagrams.net, Far manager, Moodle.
+
+---
+
+## 2. Why C (and not Python/Java/C++ first)?
+
+C is simple enough to master in one semester, teaches you how the machine actually works, is the base for both higher-level (C++, Java) and lower-level (assembler) study, and still runs the world:
+
+**Linux, Git, CPython, PostgreSQL, SQLite, Redis, the Windows kernel, and the macOS kernel are all written in C.**
+
+It gives the programmer great freedom — and punishes mistakes severely. That is the point.
+
+---
+
+## 3. How the course runs (each topic ≈ a 2-week cycle)
+
+| Component | What happens |
+|---|---|
+| **Lectures** | Attendance is recorded. Slides are posted **after** each lecture. Video recordings are auxiliary and partly outdated — they do not replace live lectures. Keep a summary notebook: your own words, 1–2 pages per lecture, do not copy the slides. |
+| **Practice sessions** | Part 1: a topic quiz every 2 weeks (nothing allowed except the LMS test). Part 2: live-coding walkthrough of 3–5 typical problems. Part 3 (optional): start your homework with the instructor's help. |
+| **Homework** | Re-solve the class problems yourself + 3–10 problems from online judges (register at codeforces.com, acmp.ru, informatics.msk.ru, leetcode.com, …) + pass the admission quiz before the graded test. **Homework is NOT graded — but very similar problems appear in the graded tests.** |
+| **Labs (graded tests)** | See the rules below — read them twice. |
+| **Self-study** | At least **4–6 hours per week**. Re-solve everything, even when it no longer earns points. |
+
+---
+
+## 4. Graded test (lab) rules — read these carefully
+
+> ⚠️ A student who learns these rules **after** the first test may already have lost real points. Read them now.
+
+- Limited time (one class period), 3–6 problems of varying difficulty. **Being late does not extend your time.**
+- **No phones. At all.**
+- **Screen recording for the entire session is mandatory** (OBS Studio or similar). No recording = **0 points**. The file is handed to the instructor on request. **Test your setup at home before the first lab.**
+- Allowed resources only: the course slide decks, cprogramming.com, an ASCII table, and the judge platform (Codeforces / Yandex.Contest).
+- Plagiarism and AI-use checks run after every test.
+- The judge allows **unlimited submissions** per problem and counts **partial solutions**; points transfer to the gradebook only above a threshold (e.g. 60 or 75 judge-points, topic-dependent):
+  - 60–74 judge points → **0.5** gradebook points
+  - 75–99 judge points → **0.75** gradebook points
+  - 100 judge points → **1.0** gradebook points
+- Your own laptop is allowed **only if**: screen faces the instructor, light theme, taskbar always visible, screen recorder installed.
+- Coding-style requirements are mandatory unless the problem statement says otherwise.
+
+---
+
+## 5. Grading map (100 points total)
+
+| Item | Points | Pass threshold |
+|---|---|---|
+| Entrance testing | 4 | 1 |
+| Test 1 (modules 1–2) | 12 | 8 |
+| Test 2 (modules 3–4) | 12 | 8 |
+| Test 3 (modules 5–6) | 12 | 8 |
+| Test 4 (module 7) | 12 | 8 |
+| Test 5 (module 8) | 8 | 5 |
+| **Semester total** | **60** | **38** |
+| **Exam** | **40** | — |
+| Bonus (competitions, activity — agreed with the instructor in advance) | up to 10 | — |
+
+**The exam** (~4 hours, written, no oral part):
+
+- 24-question test on all topics — 12 pts, ~40–60 min
+- 2–3 programming problems with automatic judging — 20 pts, ~90–120 min
+- One theory question answered in detail — 8 pts, ~30 min
+
+**Retakes during the semester:** one extra attempt per missed or failed test. Two retake periods are planned — **November** (entrance + Tests 1–2) and **January** (Tests 3–5).
+
+> ⚠️ If you already have below-threshold points and choose to retake, your **old points are zeroed regardless of the retake's outcome**. Retaking is a real decision, not a free upgrade.
+
+---
+
+## 6. AI policy
+
+| Activity | AI allowed? |
+|---|---|
+| Self-study (understanding lecture topics, code examples with explanations) | ✅ Yes |
+| Homework — **code review of code you wrote yourself** (style, structure, correctness) | ✅ Yes |
+| Graded tests and the exam | ❌ **Strictly forbidden** |
+
+**You are fully responsible for anything an AI suggested and you accepted** — including its bugs.
+
+---
+
+## 7. Entrance testing — first weeks of term
+
+- **Informatics entrance test**: written, on paper — **Wednesday, September 9**. Check LMS for room assignments.
+- **Programming entrance test**: on PCs, during lab slots — **September 7–12**.
+- Watch the Codeforces mini-tutorial video first (link in the LMS). Register your Codeforces account **this week**, before the test.
+
+---
+
+## 8. Extra opportunities
+
+- **Optional companion course "Programming practicum"**: walkthroughs of homework and tests + online mock tests before each real one (pass/fail; Fair-Play rules, plagiarism/AI checks apply). Recommended for anyone who struggled with the entrance test.
+- **Bonus points** for competitive programming (RuCode, ICPC stages, SFedU freshman tournament "CodeCombat"), for completing the Moodle course "Основы разработки профессиональных приложений на C/C++", or for helping prepare lab problem sets (advanced students, by competition — agreed in advance).
+- **Consultations**: at the instructor's posted office hours. Best format: e-mail your questions in advance, then come. Not for point-grubbing.
+
+---
+
+## 9. Track yourself
+
+Every 2 weeks, compute your percentage of the maximum points available so far. If the number is lower than you expected: add study hours, come to consultations, read more, and solve — solve — solve.
+
+**Self-study norm: 4–6 hours per week.**
