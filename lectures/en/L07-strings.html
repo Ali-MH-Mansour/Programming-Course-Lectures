@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2026-08-19">
 
-<title>8&nbsp; Lecture 7 — Strings in C/C++ – Programming — Year 1</title>
+<title>9&nbsp; Lecture 7 — Strings in C/C++ – Programming — Year 1</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -83,7 +83,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bb62276ab45c84d9efd712f51ff97b5a.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-6b275e3d0269591ba8de0c4be7720c47.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-28e476bb09ea0e3a52382d7a6c08cfc3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -124,7 +124,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lectures/en/L06-arrays-pointers.html">Module 3 — Arrays, Pointers, Strings</a></li><li class="breadcrumb-item"><a href="../../lectures/en/L07-strings.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Lecture 7 — Strings in C/C++</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lectures/en/L06-arrays-pointers.html">Module 3 — Arrays, Pointers, Strings</a></li><li class="breadcrumb-item"><a href="../../lectures/en/L07-strings.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Lecture 7 — Strings in C/C++</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -161,7 +161,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Module 1 — Basics of C/C++, I/O, Linear Algorithms</span></a>
+ <span class="menu-text">Module 0 — Course Organization</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -169,26 +169,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L01-course-orientation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Lecture 1 — Course Orientation</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L02-data-types.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Lecture 2 — Data Types, Declarations, Operators, and Operations</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L03-arithmetic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Lecture 3 — Arithmetic and Computational Operations in C</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L04-io.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Lecture 4 — Formatted Input and Output</span></span></a>
+  <a href="../../lectures/en/L00-course-organization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">L00 — Course Organization</span></span></a>
   </div>
 </li>
       </ul>
@@ -196,7 +178,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Module 2 — Branching and Loops</span></a>
+ <span class="menu-text">Module 1 — Basics of C/C++, I/O, Linear Algorithms</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -204,8 +186,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L05-conditionals-loops.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lecture 5 — Conditional Operators and Loops</span></span></a>
+  <a href="../../lectures/en/L01-course-orientation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Lecture 1 — Course Orientation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/en/L02-data-types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Lecture 2 — Data Types, Declarations, Operators, and Operations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/en/L03-arithmetic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Lecture 3 — Arithmetic and Computational Operations in C</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/en/L04-io.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lecture 4 — Formatted Input and Output</span></span></a>
   </div>
 </li>
       </ul>
@@ -213,7 +213,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Module 3 — Arrays, Pointers, Strings</span></a>
+ <span class="menu-text">Module 2 — Branching and Loops</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -221,14 +221,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L06-arrays-pointers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lecture 6 — Arrays and Pointers in C</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L07-strings.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Lecture 7 — Strings in C/C++</span></span></a>
+  <a href="../../lectures/en/L05-conditionals-loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lecture 5 — Conditional Operators and Loops</span></span></a>
   </div>
 </li>
       </ul>
@@ -236,7 +230,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Module 4 — Subroutines</span></a>
+ <span class="menu-text">Module 3 — Arrays, Pointers, Strings</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -244,8 +238,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L08-functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">L08: Functions and Recursion</span></span></a>
+  <a href="../../lectures/en/L06-arrays-pointers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Lecture 6 — Arrays and Pointers in C</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/en/L07-strings.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Lecture 7 — Strings in C/C++</span></span></a>
   </div>
 </li>
       </ul>
@@ -253,7 +253,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Module 5 — File Handling</span></a>
+ <span class="menu-text">Module 4 — Subroutines</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -261,8 +261,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L09-files.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Lecture 9: File Handling — Text and Binary Files</span></span></a>
+  <a href="../../lectures/en/L08-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">L08: Functions and Recursion</span></span></a>
   </div>
 </li>
       </ul>
@@ -270,7 +270,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text">Module 6 — User-Defined Data Types</span></a>
+ <span class="menu-text">Module 5 — File Handling</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -278,14 +278,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L10-dynamic-memory.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">L10 — Dynamic Memory Allocation</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L11-structs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">L11 — Structs and Unions</span></span></a>
+  <a href="../../lectures/en/L09-files.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Lecture 9: File Handling — Text and Binary Files</span></span></a>
   </div>
 </li>
       </ul>
@@ -293,7 +287,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
- <span class="menu-text">Module 7 — Modern C++: Concurrency, AI, and Vibe Coding</span></a>
+ <span class="menu-text">Module 6 — User-Defined Data Types</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -301,26 +295,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L12-multithreading.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">L12 — Multithreading in C/C++</span></span></a>
+  <a href="../../lectures/en/L10-dynamic-memory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">L10 — Dynamic Memory Allocation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L13-ai-algorithms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">L13 — AI Algorithms on Resource-Constrained Platforms</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L14-heterogeneous-hardware.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">L14 — AI on Heterogeneous Hardware</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L15-vibe-coding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">L15 — Modern Programming Practices: Vibe Coding</span></span></a>
+  <a href="../../lectures/en/L11-structs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">L11 — Structs and Unions</span></span></a>
   </div>
 </li>
       </ul>
@@ -328,7 +310,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
- <span class="menu-text">Module 8 — Libraries, Standard Structures, Algorithms</span></a>
+ <span class="menu-text">Module 7 — Modern C++: Concurrency, AI, and Vibe Coding</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -336,20 +318,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../lectures/en/L12-multithreading.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">L12 — Multithreading in C/C++</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/en/L13-ai-algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">L13 — AI Algorithms on Resource-Constrained Platforms</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/en/L14-heterogeneous-hardware.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">L14 — AI on Heterogeneous Hardware</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/en/L15-vibe-coding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">L15 — Modern Programming Practices: Vibe Coding</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">Module 8 — Libraries, Standard Structures, Algorithms</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../lectures/en/L16-preprocessor-build.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">L16 — Preprocessor, Multi-Module Programs, Build Systems</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">L16 — Preprocessor, Multi-Module Programs, Build Systems</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../lectures/en/L17-standard-libraries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">L17 — Standard Libraries and Type Conversions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">L17 — Standard Libraries and Type Conversions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../lectures/en/L18-algorithms-complexity.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">L18 — Standard Data Structures, Algorithms, and Complexity</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">L18 — Standard Data Structures, Algorithms, and Complexity</span></span></a>
   </div>
 </li>
       </ul>
@@ -364,43 +381,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#what-you-will-learn" id="toc-what-you-will-learn" class="nav-link active" data-scroll-target="#what-you-will-learn"><span class="header-section-number">8.1</span> What you will learn</a></li>
-  <li><a href="#what-is-a-string" id="toc-what-is-a-string" class="nav-link" data-scroll-target="#what-is-a-string"><span class="header-section-number">8.2</span> 1. What Is a String?</a></li>
-  <li><a href="#declaring-and-initializing-strings" id="toc-declaring-and-initializing-strings" class="nav-link" data-scroll-target="#declaring-and-initializing-strings"><span class="header-section-number">8.3</span> 2. Declaring and Initializing Strings</a></li>
-  <li><a href="#reading-strings-from-the-user" id="toc-reading-strings-from-the-user" class="nav-link" data-scroll-target="#reading-strings-from-the-user"><span class="header-section-number">8.4</span> 3. Reading Strings from the User</a>
+  <li><a href="#what-you-will-learn" id="toc-what-you-will-learn" class="nav-link active" data-scroll-target="#what-you-will-learn"><span class="header-section-number">9.1</span> What you will learn</a></li>
+  <li><a href="#what-is-a-string" id="toc-what-is-a-string" class="nav-link" data-scroll-target="#what-is-a-string"><span class="header-section-number">9.2</span> 1. What Is a String?</a></li>
+  <li><a href="#declaring-and-initializing-strings" id="toc-declaring-and-initializing-strings" class="nav-link" data-scroll-target="#declaring-and-initializing-strings"><span class="header-section-number">9.3</span> 2. Declaring and Initializing Strings</a></li>
+  <li><a href="#reading-strings-from-the-user" id="toc-reading-strings-from-the-user" class="nav-link" data-scroll-target="#reading-strings-from-the-user"><span class="header-section-number">9.4</span> 3. Reading Strings from the User</a>
   <ul class="collapse">
-  <li><a href="#scanfs-name-one-word" id="toc-scanfs-name-one-word" class="nav-link" data-scroll-target="#scanfs-name-one-word"><span class="header-section-number">8.4.1</span> <code>scanf("%s", name)</code> — one word</a></li>
-  <li><a href="#fgets-full-line-safe" id="toc-fgets-full-line-safe" class="nav-link" data-scroll-target="#fgets-full-line-safe"><span class="header-section-number">8.4.2</span> <code>fgets</code> — full line, safe</a></li>
+  <li><a href="#scanfs-name-one-word" id="toc-scanfs-name-one-word" class="nav-link" data-scroll-target="#scanfs-name-one-word"><span class="header-section-number">9.4.1</span> <code>scanf("%s", name)</code> — one word</a></li>
+  <li><a href="#fgets-full-line-safe" id="toc-fgets-full-line-safe" class="nav-link" data-scroll-target="#fgets-full-line-safe"><span class="header-section-number">9.4.2</span> <code>fgets</code> — full line, safe</a></li>
   </ul></li>
-  <li><a href="#standard-string-functions-string.h" id="toc-standard-string-functions-string.h" class="nav-link" data-scroll-target="#standard-string-functions-string.h"><span class="header-section-number">8.5</span> 4. Standard String Functions (<code>&lt;string.h&gt;</code>)</a>
+  <li><a href="#standard-string-functions-string.h" id="toc-standard-string-functions-string.h" class="nav-link" data-scroll-target="#standard-string-functions-string.h"><span class="header-section-number">9.5</span> 4. Standard String Functions (<code>&lt;string.h&gt;</code>)</a>
   <ul class="collapse">
-  <li><a href="#strlen-string-length" id="toc-strlen-string-length" class="nav-link" data-scroll-target="#strlen-string-length"><span class="header-section-number">8.5.1</span> <code>strlen</code> — string length</a></li>
-  <li><a href="#strcpy-string-copy" id="toc-strcpy-string-copy" class="nav-link" data-scroll-target="#strcpy-string-copy"><span class="header-section-number">8.5.2</span> <code>strcpy</code> — string copy</a></li>
-  <li><a href="#strcat-string-concatenation" id="toc-strcat-string-concatenation" class="nav-link" data-scroll-target="#strcat-string-concatenation"><span class="header-section-number">8.5.3</span> <code>strcat</code> — string concatenation</a></li>
-  <li><a href="#strcmp-string-comparison" id="toc-strcmp-string-comparison" class="nav-link" data-scroll-target="#strcmp-string-comparison"><span class="header-section-number">8.5.4</span> <code>strcmp</code> — string comparison</a></li>
-  <li><a href="#other-useful-functions" id="toc-other-useful-functions" class="nav-link" data-scroll-target="#other-useful-functions"><span class="header-section-number">8.5.5</span> Other useful functions</a></li>
+  <li><a href="#strlen-string-length" id="toc-strlen-string-length" class="nav-link" data-scroll-target="#strlen-string-length"><span class="header-section-number">9.5.1</span> <code>strlen</code> — string length</a></li>
+  <li><a href="#strcpy-string-copy" id="toc-strcpy-string-copy" class="nav-link" data-scroll-target="#strcpy-string-copy"><span class="header-section-number">9.5.2</span> <code>strcpy</code> — string copy</a></li>
+  <li><a href="#strcat-string-concatenation" id="toc-strcat-string-concatenation" class="nav-link" data-scroll-target="#strcat-string-concatenation"><span class="header-section-number">9.5.3</span> <code>strcat</code> — string concatenation</a></li>
+  <li><a href="#strcmp-string-comparison" id="toc-strcmp-string-comparison" class="nav-link" data-scroll-target="#strcmp-string-comparison"><span class="header-section-number">9.5.4</span> <code>strcmp</code> — string comparison</a></li>
+  <li><a href="#other-useful-functions" id="toc-other-useful-functions" class="nav-link" data-scroll-target="#other-useful-functions"><span class="header-section-number">9.5.5</span> Other useful functions</a></li>
   </ul></li>
-  <li><a href="#buffer-overflow-and-safe-practices" id="toc-buffer-overflow-and-safe-practices" class="nav-link" data-scroll-target="#buffer-overflow-and-safe-practices"><span class="header-section-number">8.6</span> 5. Buffer Overflow and Safe Practices</a></li>
-  <li><a href="#stdstring-in-c" id="toc-stdstring-in-c" class="nav-link" data-scroll-target="#stdstring-in-c"><span class="header-section-number">8.7</span> 6. <code>std::string</code> in C++</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">8.8</span> Summary</a></li>
-  <li><a href="#key-terms" id="toc-key-terms" class="nav-link" data-scroll-target="#key-terms"><span class="header-section-number">8.9</span> Key Terms</a></li>
-  <li><a href="#worked-examples" id="toc-worked-examples" class="nav-link" data-scroll-target="#worked-examples"><span class="header-section-number">8.10</span> Worked Examples</a>
+  <li><a href="#buffer-overflow-and-safe-practices" id="toc-buffer-overflow-and-safe-practices" class="nav-link" data-scroll-target="#buffer-overflow-and-safe-practices"><span class="header-section-number">9.6</span> 5. Buffer Overflow and Safe Practices</a></li>
+  <li><a href="#stdstring-in-c" id="toc-stdstring-in-c" class="nav-link" data-scroll-target="#stdstring-in-c"><span class="header-section-number">9.7</span> 6. <code>std::string</code> in C++</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">9.8</span> Summary</a></li>
+  <li><a href="#key-terms" id="toc-key-terms" class="nav-link" data-scroll-target="#key-terms"><span class="header-section-number">9.9</span> Key Terms</a></li>
+  <li><a href="#worked-examples" id="toc-worked-examples" class="nav-link" data-scroll-target="#worked-examples"><span class="header-section-number">9.10</span> Worked Examples</a>
   <ul class="collapse">
-  <li><a href="#example-1-string-reversal-in-place" id="toc-example-1-string-reversal-in-place" class="nav-link" data-scroll-target="#example-1-string-reversal-in-place"><span class="header-section-number">8.10.1</span> Example 1 — String Reversal In Place</a></li>
-  <li><a href="#example-2-counting-vowels" id="toc-example-2-counting-vowels" class="nav-link" data-scroll-target="#example-2-counting-vowels"><span class="header-section-number">8.10.2</span> Example 2 — Counting Vowels</a></li>
-  <li><a href="#example-3-safe-input-validation" id="toc-example-3-safe-input-validation" class="nav-link" data-scroll-target="#example-3-safe-input-validation"><span class="header-section-number">8.10.3</span> Example 3 — Safe Input + Validation</a></li>
+  <li><a href="#example-1-string-reversal-in-place" id="toc-example-1-string-reversal-in-place" class="nav-link" data-scroll-target="#example-1-string-reversal-in-place"><span class="header-section-number">9.10.1</span> Example 1 — String Reversal In Place</a></li>
+  <li><a href="#example-2-counting-vowels" id="toc-example-2-counting-vowels" class="nav-link" data-scroll-target="#example-2-counting-vowels"><span class="header-section-number">9.10.2</span> Example 2 — Counting Vowels</a></li>
+  <li><a href="#example-3-safe-input-validation" id="toc-example-3-safe-input-validation" class="nav-link" data-scroll-target="#example-3-safe-input-validation"><span class="header-section-number">9.10.3</span> Example 3 — Safe Input + Validation</a></li>
   </ul></li>
-  <li><a href="#discussion-questions" id="toc-discussion-questions" class="nav-link" data-scroll-target="#discussion-questions"><span class="header-section-number">8.11</span> Discussion Questions</a></li>
-  <li><a href="#preparation-for-l08" id="toc-preparation-for-l08" class="nav-link" data-scroll-target="#preparation-for-l08"><span class="header-section-number">8.12</span> Preparation for L08</a></li>
+  <li><a href="#discussion-questions" id="toc-discussion-questions" class="nav-link" data-scroll-target="#discussion-questions"><span class="header-section-number">9.11</span> Discussion Questions</a></li>
+  <li><a href="#preparation-for-l08" id="toc-preparation-for-l08" class="nav-link" data-scroll-target="#preparation-for-l08"><span class="header-section-number">9.12</span> Preparation for L08</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Ali-MH-Mansour/Programming-Course-Lectures/edit/main/lectures/en/L07-strings.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lectures/en/L06-arrays-pointers.html">Module 3 — Arrays, Pointers, Strings</a></li><li class="breadcrumb-item"><a href="../../lectures/en/L07-strings.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Lecture 7 — Strings in C/C++</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lectures/en/L06-arrays-pointers.html">Module 3 — Arrays, Pointers, Strings</a></li><li class="breadcrumb-item"><a href="../../lectures/en/L07-strings.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Lecture 7 — Strings in C/C++</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Lecture 7 — Strings in C/C++</span></h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Lecture 7 — Strings in C/C++</span></h1>
 </div>
 
 
@@ -427,8 +444,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Module 3:</strong> Arrays, Pointers, Strings · <strong>Prerequisites:</strong> arrays and pointers (L06)</p>
 </blockquote>
 <hr>
-<section id="what-you-will-learn" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="what-you-will-learn"><span class="header-section-number">8.1</span> What you will learn</h2>
+<section id="what-you-will-learn" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="what-you-will-learn"><span class="header-section-number">9.1</span> What you will learn</h2>
 <p>By the end of this lecture, you should be able to:</p>
 <ul>
 <li>Explain how a C string is stored as a <code>char</code> array with a null terminator</li>
@@ -441,8 +458,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>The key idea:</strong> A C string is just a <code>char</code> array where the last element is always <code>'\0'</code>. Every string function reads until it finds that terminator — forgetting it or writing past it corrupts memory.</p>
 <hr>
 </section>
-<section id="what-is-a-string" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="what-is-a-string"><span class="header-section-number">8.2</span> 1. What Is a String?</h2>
+<section id="what-is-a-string" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="what-is-a-string"><span class="header-section-number">9.2</span> 1. What Is a String?</h2>
 <p>In C, a <strong>string</strong> is a sequence of characters stored in a <code>char</code> array, terminated by the <strong>null character</strong> <code>'\0'</code> (ASCII value 0).</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> greeting<span class="op">[]</span> <span class="op">=</span> <span class="st">"Hello"</span><span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Memory layout:</p>
@@ -455,8 +472,8 @@ Value:   'H'   'e'   'l'   'l'   'o'  '\0'
 </ul>
 <hr>
 </section>
-<section id="declaring-and-initializing-strings" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="declaring-and-initializing-strings"><span class="header-section-number">8.3</span> 2. Declaring and Initializing Strings</h2>
+<section id="declaring-and-initializing-strings" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="declaring-and-initializing-strings"><span class="header-section-number">9.3</span> 2. Declaring and Initializing Strings</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> s1<span class="op">[]</span> <span class="op">=</span> <span class="st">"Hello"</span><span class="op">;</span>          <span class="co">// (a) array — modifiable; size = 6</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> s2<span class="op">[</span><span class="dv">10</span><span class="op">]</span> <span class="op">=</span> <span class="st">"Hello"</span><span class="op">;</span>        <span class="co">// (b) array — modifiable; 10 bytes, 4 unused</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> <span class="op">*</span>s3 <span class="op">=</span> <span class="st">"Hello"</span><span class="op">;</span>           <span class="co">// (c) pointer to read-only literal — DO NOT MODIFY</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -469,15 +486,15 @@ Value:   'H'   'e'   'l'   'l'   'o'  '\0'
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>name<span class="op">[</span><span class="dv">4</span><span class="op">]</span> <span class="op">=</span> <span class="ch">'</span><span class="sc">\0</span><span class="ch">'</span><span class="op">;</span>   <span class="co">// REQUIRED</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <hr>
 </section>
-<section id="reading-strings-from-the-user" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="reading-strings-from-the-user"><span class="header-section-number">8.4</span> 3. Reading Strings from the User</h2>
-<section id="scanfs-name-one-word" class="level3" data-number="8.4.1">
-<h3 data-number="8.4.1" class="anchored" data-anchor-id="scanfs-name-one-word"><span class="header-section-number">8.4.1</span> <code>scanf("%s", name)</code> — one word</h3>
+<section id="reading-strings-from-the-user" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="reading-strings-from-the-user"><span class="header-section-number">9.4</span> 3. Reading Strings from the User</h2>
+<section id="scanfs-name-one-word" class="level3" data-number="9.4.1">
+<h3 data-number="9.4.1" class="anchored" data-anchor-id="scanfs-name-one-word"><span class="header-section-number">9.4.1</span> <code>scanf("%s", name)</code> — one word</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> name<span class="op">[</span><span class="dv">50</span><span class="op">];</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>scanf<span class="op">(</span><span class="st">"</span><span class="sc">%49s</span><span class="st">"</span><span class="op">,</span> name<span class="op">);</span>   <span class="co">// width limit: at most 49 chars (array is 50)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="fgets-full-line-safe" class="level3" data-number="8.4.2">
-<h3 data-number="8.4.2" class="anchored" data-anchor-id="fgets-full-line-safe"><span class="header-section-number">8.4.2</span> <code>fgets</code> — full line, safe</h3>
+<section id="fgets-full-line-safe" class="level3" data-number="9.4.2">
+<h3 data-number="9.4.2" class="anchored" data-anchor-id="fgets-full-line-safe"><span class="header-section-number">9.4.2</span> <code>fgets</code> — full line, safe</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> name<span class="op">[</span><span class="dv">50</span><span class="op">];</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>fgets<span class="op">(</span>name<span class="op">,</span> <span class="kw">sizeof</span><span class="op">(</span>name<span class="op">),</span> stdin<span class="op">);</span>   <span class="co">// length-limited</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>name<span class="op">[</span>strcspn<span class="op">(</span>name<span class="op">,</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span><span class="op">)]</span> <span class="op">=</span> <span class="ch">'</span><span class="sc">\0</span><span class="ch">'</span><span class="op">;</span>   <span class="co">// strip the newline</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -513,28 +530,28 @@ Value:   'H'   'e'   'l'   'l'   'o'  '\0'
 <hr>
 </section>
 </section>
-<section id="standard-string-functions-string.h" class="level2" data-number="8.5">
-<h2 data-number="8.5" class="anchored" data-anchor-id="standard-string-functions-string.h"><span class="header-section-number">8.5</span> 4. Standard String Functions (<code>&lt;string.h&gt;</code>)</h2>
-<section id="strlen-string-length" class="level3" data-number="8.5.1">
-<h3 data-number="8.5.1" class="anchored" data-anchor-id="strlen-string-length"><span class="header-section-number">8.5.1</span> <code>strlen</code> — string length</h3>
+<section id="standard-string-functions-string.h" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="standard-string-functions-string.h"><span class="header-section-number">9.5</span> 4. Standard String Functions (<code>&lt;string.h&gt;</code>)</h2>
+<section id="strlen-string-length" class="level3" data-number="9.5.1">
+<h3 data-number="9.5.1" class="anchored" data-anchor-id="strlen-string-length"><span class="header-section-number">9.5.1</span> <code>strlen</code> — string length</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>strlen<span class="op">(</span><span class="st">"Hello"</span><span class="op">)</span>    <span class="co">// 5 (excludes '\0')</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>strlen<span class="op">(</span><span class="st">""</span><span class="op">)</span>         <span class="co">// 0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="strcpy-string-copy" class="level3" data-number="8.5.2">
-<h3 data-number="8.5.2" class="anchored" data-anchor-id="strcpy-string-copy"><span class="header-section-number">8.5.2</span> <code>strcpy</code> — string copy</h3>
+<section id="strcpy-string-copy" class="level3" data-number="9.5.2">
+<h3 data-number="9.5.2" class="anchored" data-anchor-id="strcpy-string-copy"><span class="header-section-number">9.5.2</span> <code>strcpy</code> — string copy</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> dest<span class="op">[</span><span class="dv">10</span><span class="op">];</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>strcpy<span class="op">(</span>dest<span class="op">,</span> src<span class="op">);</span>                  <span class="co">// unsafe: no length check</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>strncpy<span class="op">(</span>dest<span class="op">,</span> src<span class="op">,</span> <span class="kw">sizeof</span><span class="op">(</span>dest<span class="op">)-</span><span class="dv">1</span><span class="op">);</span> <span class="co">// safe; add '\0' manually</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>dest<span class="op">[</span><span class="kw">sizeof</span><span class="op">(</span>dest<span class="op">)-</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> <span class="ch">'</span><span class="sc">\0</span><span class="ch">'</span><span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="strcat-string-concatenation" class="level3" data-number="8.5.3">
-<h3 data-number="8.5.3" class="anchored" data-anchor-id="strcat-string-concatenation"><span class="header-section-number">8.5.3</span> <code>strcat</code> — string concatenation</h3>
+<section id="strcat-string-concatenation" class="level3" data-number="9.5.3">
+<h3 data-number="9.5.3" class="anchored" data-anchor-id="strcat-string-concatenation"><span class="header-section-number">9.5.3</span> <code>strcat</code> — string concatenation</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> result<span class="op">[</span><span class="dv">20</span><span class="op">]</span> <span class="op">=</span> <span class="st">"Hello"</span><span class="op">;</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>strcat<span class="op">(</span>result<span class="op">,</span> <span class="st">", world!"</span><span class="op">);</span>         <span class="co">// unsafe: no length check</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>strncat<span class="op">(</span>dest<span class="op">,</span> src<span class="op">,</span> <span class="kw">sizeof</span><span class="op">(</span>dest<span class="op">)</span> <span class="op">-</span> strlen<span class="op">(</span>dest<span class="op">)</span> <span class="op">-</span> <span class="dv">1</span><span class="op">);</span>  <span class="co">// safe</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="strcmp-string-comparison" class="level3" data-number="8.5.4">
-<h3 data-number="8.5.4" class="anchored" data-anchor-id="strcmp-string-comparison"><span class="header-section-number">8.5.4</span> <code>strcmp</code> — string comparison</h3>
+<section id="strcmp-string-comparison" class="level3" data-number="9.5.4">
+<h3 data-number="9.5.4" class="anchored" data-anchor-id="strcmp-string-comparison"><span class="header-section-number">9.5.4</span> <code>strcmp</code> — string comparison</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>strcmp<span class="op">(</span>password<span class="op">,</span> <span class="st">"secret"</span><span class="op">)</span> <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span> <span class="co">/* equal */</span> <span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <table class="caption-top table">
 <thead>
@@ -565,15 +582,15 @@ Value:   'H'   'e'   'l'   'l'   'o'  '\0'
 <p>⚠️ <code>s1 == s2</code> compares <strong>addresses</strong>, not content — always wrong for strings.</p>
 </blockquote>
 </section>
-<section id="other-useful-functions" class="level3" data-number="8.5.5">
-<h3 data-number="8.5.5" class="anchored" data-anchor-id="other-useful-functions"><span class="header-section-number">8.5.5</span> Other useful functions</h3>
+<section id="other-useful-functions" class="level3" data-number="9.5.5">
+<h3 data-number="9.5.5" class="anchored" data-anchor-id="other-useful-functions"><span class="header-section-number">9.5.5</span> Other useful functions</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>strchr<span class="op">(</span>s<span class="op">,</span> <span class="ch">'e'</span><span class="op">)</span>         <span class="co">// pointer to first 'e', or NULL</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>strstr<span class="op">(</span>s<span class="op">,</span> <span class="st">"ell"</span><span class="op">)</span>       <span class="co">// pointer to first "ell", or NULL</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <hr>
 </section>
 </section>
-<section id="buffer-overflow-and-safe-practices" class="level2" data-number="8.6">
-<h2 data-number="8.6" class="anchored" data-anchor-id="buffer-overflow-and-safe-practices"><span class="header-section-number">8.6</span> 5. Buffer Overflow and Safe Practices</h2>
+<section id="buffer-overflow-and-safe-practices" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="buffer-overflow-and-safe-practices"><span class="header-section-number">9.6</span> 5. Buffer Overflow and Safe Practices</h2>
 <p>A <strong>buffer overflow</strong> occurs when you write more bytes into an array than it can hold. Adjacent memory is overwritten — crashes and security vulnerabilities result.</p>
 <p><strong>Safe string programming checklist:</strong></p>
 <ol type="1">
@@ -587,8 +604,8 @@ Value:   'H'   'e'   'l'   'l'   'o'  '\0'
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>snprintf<span class="op">(</span>buf<span class="op">,</span> <span class="kw">sizeof</span><span class="op">(</span>buf<span class="op">),</span> <span class="st">"Name: </span><span class="sc">%s</span><span class="st">, Age: </span><span class="sc">%d</span><span class="st">"</span><span class="op">,</span> name<span class="op">,</span> age<span class="op">);</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <hr>
 </section>
-<section id="stdstring-in-c" class="level2" data-number="8.7">
-<h2 data-number="8.7" class="anchored" data-anchor-id="stdstring-in-c"><span class="header-section-number">8.7</span> 6. <code>std::string</code> in C++</h2>
+<section id="stdstring-in-c" class="level2" data-number="9.7">
+<h2 data-number="9.7" class="anchored" data-anchor-id="stdstring-in-c"><span class="header-section-number">9.7</span> 6. <code>std::string</code> in C++</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;string&gt;</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -606,8 +623,8 @@ Value:   'H'   'e'   'l'   'l'   'o'  '\0'
 <p>No null terminator to manage. No buffer overflow. Use <code>std::string</code> in new C++ code.</p>
 <hr>
 </section>
-<section id="summary" class="level2" data-number="8.8">
-<h2 data-number="8.8" class="anchored" data-anchor-id="summary"><span class="header-section-number">8.8</span> Summary</h2>
+<section id="summary" class="level2" data-number="9.8">
+<h2 data-number="9.8" class="anchored" data-anchor-id="summary"><span class="header-section-number">9.8</span> Summary</h2>
 <ol type="1">
 <li><strong>C string</strong> — <code>char</code> array ending in <code>'\0'</code>; <code>sizeof</code> counts terminator, <code>strlen</code> does not.</li>
 <li><strong>Initialization</strong> — <code>char s[]</code> for modifiable; <code>char *s = "..."</code> points to read-only memory.</li>
@@ -620,8 +637,8 @@ Value:   'H'   'e'   'l'   'l'   'o'  '\0'
 </ol>
 <hr>
 </section>
-<section id="key-terms" class="level2" data-number="8.9">
-<h2 data-number="8.9" class="anchored" data-anchor-id="key-terms"><span class="header-section-number">8.9</span> Key Terms</h2>
+<section id="key-terms" class="level2" data-number="9.9">
+<h2 data-number="9.9" class="anchored" data-anchor-id="key-terms"><span class="header-section-number">9.9</span> Key Terms</h2>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -682,10 +699,10 @@ Value:   'H'   'e'   'l'   'l'   'o'  '\0'
 </table>
 <hr>
 </section>
-<section id="worked-examples" class="level2" data-number="8.10">
-<h2 data-number="8.10" class="anchored" data-anchor-id="worked-examples"><span class="header-section-number">8.10</span> Worked Examples</h2>
-<section id="example-1-string-reversal-in-place" class="level3" data-number="8.10.1">
-<h3 data-number="8.10.1" class="anchored" data-anchor-id="example-1-string-reversal-in-place"><span class="header-section-number">8.10.1</span> Example 1 — String Reversal In Place</h3>
+<section id="worked-examples" class="level2" data-number="9.10">
+<h2 data-number="9.10" class="anchored" data-anchor-id="worked-examples"><span class="header-section-number">9.10</span> Worked Examples</h2>
+<section id="example-1-string-reversal-in-place" class="level3" data-number="9.10.1">
+<h3 data-number="9.10.1" class="anchored" data-anchor-id="example-1-string-reversal-in-place"><span class="header-section-number">9.10.1</span> Example 1 — String Reversal In Place</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;string.h&gt;</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -707,8 +724,8 @@ Value:   'H'   'e'   'l'   'l'   'o'  '\0'
 <span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
 <span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="example-2-counting-vowels" class="level3" data-number="8.10.2">
-<h3 data-number="8.10.2" class="anchored" data-anchor-id="example-2-counting-vowels"><span class="header-section-number">8.10.2</span> Example 2 — Counting Vowels</h3>
+<section id="example-2-counting-vowels" class="level3" data-number="9.10.2">
+<h3 data-number="9.10.2" class="anchored" data-anchor-id="example-2-counting-vowels"><span class="header-section-number">9.10.2</span> Example 2 — Counting Vowels</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> count_vowels<span class="op">(</span><span class="dt">const</span> <span class="dt">char</span> <span class="op">*</span>s<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> count <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">const</span> <span class="dt">char</span> <span class="op">*</span>vowels <span class="op">=</span> <span class="st">"aeiouAEIOU"</span><span class="op">;</span></span>
@@ -718,8 +735,8 @@ Value:   'H'   'e'   'l'   'l'   'o'  '\0'
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> count<span class="op">;</span></span>
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="example-3-safe-input-validation" class="level3" data-number="8.10.3">
-<h3 data-number="8.10.3" class="anchored" data-anchor-id="example-3-safe-input-validation"><span class="header-section-number">8.10.3</span> Example 3 — Safe Input + Validation</h3>
+<section id="example-3-safe-input-validation" class="level3" data-number="9.10.3">
+<h3 data-number="9.10.3" class="anchored" data-anchor-id="example-3-safe-input-validation"><span class="header-section-number">9.10.3</span> Example 3 — Safe Input + Validation</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> name<span class="op">[</span><span class="dv">50</span><span class="op">];</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>printf<span class="op">(</span><span class="st">"Enter your name: "</span><span class="op">);</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>fgets<span class="op">(</span>name<span class="op">,</span> <span class="kw">sizeof</span><span class="op">(</span>name<span class="op">),</span> stdin<span class="op">);</span></span>
@@ -733,8 +750,8 @@ Value:   'H'   'e'   'l'   'l'   'o'  '\0'
 <hr>
 </section>
 </section>
-<section id="discussion-questions" class="level2" data-number="8.11">
-<h2 data-number="8.11" class="anchored" data-anchor-id="discussion-questions"><span class="header-section-number">8.11</span> Discussion Questions</h2>
+<section id="discussion-questions" class="level2" data-number="9.11">
+<h2 data-number="9.11" class="anchored" data-anchor-id="discussion-questions"><span class="header-section-number">9.11</span> Discussion Questions</h2>
 <ol type="1">
 <li>Why does C use a null terminator instead of storing the string length separately?</li>
 <li>What happens if you forget the null terminator?</li>
@@ -747,8 +764,8 @@ Value:   'H'   'e'   'l'   'l'   'o'  '\0'
 </ol>
 <hr>
 </section>
-<section id="preparation-for-l08" class="level2" data-number="8.12">
-<h2 data-number="8.12" class="anchored" data-anchor-id="preparation-for-l08"><span class="header-section-number">8.12</span> Preparation for L08</h2>
+<section id="preparation-for-l08" class="level2" data-number="9.12">
+<h2 data-number="9.12" class="anchored" data-anchor-id="preparation-for-l08"><span class="header-section-number">9.12</span> Preparation for L08</h2>
 <p>Next lecture: <strong>Functions and recursion</strong> — defining and calling functions, scope, the call stack, return values, and recursive algorithms.</p>
 <p>Before L08: 1. Write a program that reads two strings and prints which comes first alphabetically. 2. Write <code>int is_palindrome(const char *s)</code> that returns 1 if the string reads the same forwards and backwards.</p>
 
@@ -1159,12 +1176,12 @@ Value:   'H'   'e'   'l'   'l'   'o'  '\0'
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../../lectures/en/L06-arrays-pointers.html" class="pagination-link" aria-label="Lecture 6 — Arrays and Pointers in C">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lecture 6 — Arrays and Pointers in C</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Lecture 6 — Arrays and Pointers in C</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../../lectures/en/L08-functions.html" class="pagination-link" aria-label="L08: Functions and Recursion">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">L08: Functions and Recursion</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">L08: Functions and Recursion</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

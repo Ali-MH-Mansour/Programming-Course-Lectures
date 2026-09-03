@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2026-08-19">
 
-<title>11&nbsp; L10 — Dynamic Memory Allocation – Programming — Year 1</title>
+<title>12&nbsp; L10 — Dynamic Memory Allocation – Programming — Year 1</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -83,7 +83,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bb62276ab45c84d9efd712f51ff97b5a.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-6b275e3d0269591ba8de0c4be7720c47.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-28e476bb09ea0e3a52382d7a6c08cfc3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -124,7 +124,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lectures/en/L10-dynamic-memory.html">Module 6 — User-Defined Data Types</a></li><li class="breadcrumb-item"><a href="../../lectures/en/L10-dynamic-memory.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">L10 — Dynamic Memory Allocation</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lectures/en/L10-dynamic-memory.html">Module 6 — User-Defined Data Types</a></li><li class="breadcrumb-item"><a href="../../lectures/en/L10-dynamic-memory.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">L10 — Dynamic Memory Allocation</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -161,7 +161,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Module 1 — Basics of C/C++, I/O, Linear Algorithms</span></a>
+ <span class="menu-text">Module 0 — Course Organization</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -169,26 +169,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L01-course-orientation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Lecture 1 — Course Orientation</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L02-data-types.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Lecture 2 — Data Types, Declarations, Operators, and Operations</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L03-arithmetic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Lecture 3 — Arithmetic and Computational Operations in C</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L04-io.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Lecture 4 — Formatted Input and Output</span></span></a>
+  <a href="../../lectures/en/L00-course-organization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">L00 — Course Organization</span></span></a>
   </div>
 </li>
       </ul>
@@ -196,7 +178,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Module 2 — Branching and Loops</span></a>
+ <span class="menu-text">Module 1 — Basics of C/C++, I/O, Linear Algorithms</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -204,8 +186,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L05-conditionals-loops.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lecture 5 — Conditional Operators and Loops</span></span></a>
+  <a href="../../lectures/en/L01-course-orientation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Lecture 1 — Course Orientation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/en/L02-data-types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Lecture 2 — Data Types, Declarations, Operators, and Operations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/en/L03-arithmetic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Lecture 3 — Arithmetic and Computational Operations in C</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/en/L04-io.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lecture 4 — Formatted Input and Output</span></span></a>
   </div>
 </li>
       </ul>
@@ -213,7 +213,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Module 3 — Arrays, Pointers, Strings</span></a>
+ <span class="menu-text">Module 2 — Branching and Loops</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -221,14 +221,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L06-arrays-pointers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lecture 6 — Arrays and Pointers in C</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L07-strings.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Lecture 7 — Strings in C/C++</span></span></a>
+  <a href="../../lectures/en/L05-conditionals-loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lecture 5 — Conditional Operators and Loops</span></span></a>
   </div>
 </li>
       </ul>
@@ -236,7 +230,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Module 4 — Subroutines</span></a>
+ <span class="menu-text">Module 3 — Arrays, Pointers, Strings</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -244,8 +238,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L08-functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">L08: Functions and Recursion</span></span></a>
+  <a href="../../lectures/en/L06-arrays-pointers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Lecture 6 — Arrays and Pointers in C</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/en/L07-strings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Lecture 7 — Strings in C/C++</span></span></a>
   </div>
 </li>
       </ul>
@@ -253,7 +253,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Module 5 — File Handling</span></a>
+ <span class="menu-text">Module 4 — Subroutines</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -261,8 +261,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L09-files.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Lecture 9: File Handling — Text and Binary Files</span></span></a>
+  <a href="../../lectures/en/L08-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">L08: Functions and Recursion</span></span></a>
   </div>
 </li>
       </ul>
@@ -270,7 +270,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text">Module 6 — User-Defined Data Types</span></a>
+ <span class="menu-text">Module 5 — File Handling</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -278,14 +278,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L10-dynamic-memory.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">L10 — Dynamic Memory Allocation</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L11-structs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">L11 — Structs and Unions</span></span></a>
+  <a href="../../lectures/en/L09-files.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Lecture 9: File Handling — Text and Binary Files</span></span></a>
   </div>
 </li>
       </ul>
@@ -293,7 +287,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
- <span class="menu-text">Module 7 — Modern C++: Concurrency, AI, and Vibe Coding</span></a>
+ <span class="menu-text">Module 6 — User-Defined Data Types</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -301,26 +295,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L12-multithreading.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">L12 — Multithreading in C/C++</span></span></a>
+  <a href="../../lectures/en/L10-dynamic-memory.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">L10 — Dynamic Memory Allocation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L13-ai-algorithms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">L13 — AI Algorithms on Resource-Constrained Platforms</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L14-heterogeneous-hardware.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">L14 — AI on Heterogeneous Hardware</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L15-vibe-coding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">L15 — Modern Programming Practices: Vibe Coding</span></span></a>
+  <a href="../../lectures/en/L11-structs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">L11 — Structs and Unions</span></span></a>
   </div>
 </li>
       </ul>
@@ -328,7 +310,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
- <span class="menu-text">Module 8 — Libraries, Standard Structures, Algorithms</span></a>
+ <span class="menu-text">Module 7 — Modern C++: Concurrency, AI, and Vibe Coding</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -336,20 +318,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../lectures/en/L12-multithreading.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">L12 — Multithreading in C/C++</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/en/L13-ai-algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">L13 — AI Algorithms on Resource-Constrained Platforms</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/en/L14-heterogeneous-hardware.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">L14 — AI on Heterogeneous Hardware</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/en/L15-vibe-coding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">L15 — Modern Programming Practices: Vibe Coding</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">Module 8 — Libraries, Standard Structures, Algorithms</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../lectures/en/L16-preprocessor-build.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">L16 — Preprocessor, Multi-Module Programs, Build Systems</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">L16 — Preprocessor, Multi-Module Programs, Build Systems</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../lectures/en/L17-standard-libraries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">L17 — Standard Libraries and Type Conversions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">L17 — Standard Libraries and Type Conversions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../lectures/en/L18-algorithms-complexity.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">L18 — Standard Data Structures, Algorithms, and Complexity</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">L18 — Standard Data Structures, Algorithms, and Complexity</span></span></a>
   </div>
 </li>
       </ul>
@@ -364,23 +381,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#dynamic-memory-allocation" id="toc-dynamic-memory-allocation" class="nav-link active" data-scroll-target="#dynamic-memory-allocation"><span class="header-section-number">12</span> Dynamic Memory Allocation</a>
+  <li><a href="#dynamic-memory-allocation" id="toc-dynamic-memory-allocation" class="nav-link active" data-scroll-target="#dynamic-memory-allocation"><span class="header-section-number">13</span> Dynamic Memory Allocation</a>
   <ul class="collapse">
-  <li><a href="#why-dynamic-memory" id="toc-why-dynamic-memory" class="nav-link" data-scroll-target="#why-dynamic-memory"><span class="header-section-number">12.1</span> 1. Why Dynamic Memory?</a></li>
-  <li><a href="#malloc-and-calloc" id="toc-malloc-and-calloc" class="nav-link" data-scroll-target="#malloc-and-calloc"><span class="header-section-number">12.2</span> 2. <code>malloc</code> and <code>calloc</code></a></li>
-  <li><a href="#the-null-guard-mandatory" id="toc-the-null-guard-mandatory" class="nav-link" data-scroll-target="#the-null-guard-mandatory"><span class="header-section-number">12.3</span> 3. The NULL Guard (mandatory)</a></li>
-  <li><a href="#realloc-resizing" id="toc-realloc-resizing" class="nav-link" data-scroll-target="#realloc-resizing"><span class="header-section-number">12.4</span> 4. <code>realloc</code> — Resizing</a></li>
-  <li><a href="#free-returning-memory" id="toc-free-returning-memory" class="nav-link" data-scroll-target="#free-returning-memory"><span class="header-section-number">12.5</span> 5. <code>free</code> — Returning Memory</a></li>
-  <li><a href="#common-memory-bugs" id="toc-common-memory-bugs" class="nav-link" data-scroll-target="#common-memory-bugs"><span class="header-section-number">12.6</span> 6. Common Memory Bugs</a></li>
-  <li><a href="#c-new-delete-and-smart-pointers" id="toc-c-new-delete-and-smart-pointers" class="nav-link" data-scroll-target="#c-new-delete-and-smart-pointers"><span class="header-section-number">12.7</span> 7. C++ <code>new</code> / <code>delete</code> and Smart Pointers</a></li>
-  <li><a href="#worked-examples" id="toc-worked-examples" class="nav-link" data-scroll-target="#worked-examples"><span class="header-section-number">12.8</span> 8. Worked Examples</a>
+  <li><a href="#why-dynamic-memory" id="toc-why-dynamic-memory" class="nav-link" data-scroll-target="#why-dynamic-memory"><span class="header-section-number">13.1</span> 1. Why Dynamic Memory?</a></li>
+  <li><a href="#malloc-and-calloc" id="toc-malloc-and-calloc" class="nav-link" data-scroll-target="#malloc-and-calloc"><span class="header-section-number">13.2</span> 2. <code>malloc</code> and <code>calloc</code></a></li>
+  <li><a href="#the-null-guard-mandatory" id="toc-the-null-guard-mandatory" class="nav-link" data-scroll-target="#the-null-guard-mandatory"><span class="header-section-number">13.3</span> 3. The NULL Guard (mandatory)</a></li>
+  <li><a href="#realloc-resizing" id="toc-realloc-resizing" class="nav-link" data-scroll-target="#realloc-resizing"><span class="header-section-number">13.4</span> 4. <code>realloc</code> — Resizing</a></li>
+  <li><a href="#free-returning-memory" id="toc-free-returning-memory" class="nav-link" data-scroll-target="#free-returning-memory"><span class="header-section-number">13.5</span> 5. <code>free</code> — Returning Memory</a></li>
+  <li><a href="#common-memory-bugs" id="toc-common-memory-bugs" class="nav-link" data-scroll-target="#common-memory-bugs"><span class="header-section-number">13.6</span> 6. Common Memory Bugs</a></li>
+  <li><a href="#c-new-delete-and-smart-pointers" id="toc-c-new-delete-and-smart-pointers" class="nav-link" data-scroll-target="#c-new-delete-and-smart-pointers"><span class="header-section-number">13.7</span> 7. C++ <code>new</code> / <code>delete</code> and Smart Pointers</a></li>
+  <li><a href="#worked-examples" id="toc-worked-examples" class="nav-link" data-scroll-target="#worked-examples"><span class="header-section-number">13.8</span> 8. Worked Examples</a>
   <ul class="collapse">
-  <li><a href="#example-1-dynamic-grade-array" id="toc-example-1-dynamic-grade-array" class="nav-link" data-scroll-target="#example-1-dynamic-grade-array"><span class="header-section-number">12.8.1</span> Example 1 — Dynamic Grade Array</a></li>
-  <li><a href="#example-2-growing-buffer-with-realloc" id="toc-example-2-growing-buffer-with-realloc" class="nav-link" data-scroll-target="#example-2-growing-buffer-with-realloc"><span class="header-section-number">12.8.2</span> Example 2 — Growing Buffer with <code>realloc</code></a></li>
-  <li><a href="#example-3-struct-array-on-the-heap" id="toc-example-3-struct-array-on-the-heap" class="nav-link" data-scroll-target="#example-3-struct-array-on-the-heap"><span class="header-section-number">12.8.3</span> Example 3 — Struct Array on the Heap</a></li>
+  <li><a href="#example-1-dynamic-grade-array" id="toc-example-1-dynamic-grade-array" class="nav-link" data-scroll-target="#example-1-dynamic-grade-array"><span class="header-section-number">13.8.1</span> Example 1 — Dynamic Grade Array</a></li>
+  <li><a href="#example-2-growing-buffer-with-realloc" id="toc-example-2-growing-buffer-with-realloc" class="nav-link" data-scroll-target="#example-2-growing-buffer-with-realloc"><span class="header-section-number">13.8.2</span> Example 2 — Growing Buffer with <code>realloc</code></a></li>
+  <li><a href="#example-3-struct-array-on-the-heap" id="toc-example-3-struct-array-on-the-heap" class="nav-link" data-scroll-target="#example-3-struct-array-on-the-heap"><span class="header-section-number">13.8.3</span> Example 3 — Struct Array on the Heap</a></li>
   </ul></li>
-  <li><a href="#key-terms" id="toc-key-terms" class="nav-link" data-scroll-target="#key-terms"><span class="header-section-number">12.9</span> 9. Key Terms</a></li>
-  <li><a href="#discussion-questions" id="toc-discussion-questions" class="nav-link" data-scroll-target="#discussion-questions"><span class="header-section-number">12.10</span> 10. Discussion Questions</a></li>
+  <li><a href="#key-terms" id="toc-key-terms" class="nav-link" data-scroll-target="#key-terms"><span class="header-section-number">13.9</span> 9. Key Terms</a></li>
+  <li><a href="#discussion-questions" id="toc-discussion-questions" class="nav-link" data-scroll-target="#discussion-questions"><span class="header-section-number">13.10</span> 10. Discussion Questions</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Ali-MH-Mansour/Programming-Course-Lectures/edit/main/lectures/en/L10-dynamic-memory.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
@@ -388,9 +405,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lectures/en/L10-dynamic-memory.html">Module 6 — User-Defined Data Types</a></li><li class="breadcrumb-item"><a href="../../lectures/en/L10-dynamic-memory.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">L10 — Dynamic Memory Allocation</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lectures/en/L10-dynamic-memory.html">Module 6 — User-Defined Data Types</a></li><li class="breadcrumb-item"><a href="../../lectures/en/L10-dynamic-memory.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">L10 — Dynamic Memory Allocation</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">L10 — Dynamic Memory Allocation</span></h1>
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">L10 — Dynamic Memory Allocation</span></h1>
 </div>
 
 
@@ -413,12 +430,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="dynamic-memory-allocation" class="level1" data-number="12">
-<h1 data-number="12"><span class="header-section-number">12</span> Dynamic Memory Allocation</h1>
+<section id="dynamic-memory-allocation" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> Dynamic Memory Allocation</h1>
 <p><strong>Module 6 · Lecture 10</strong></p>
 <hr>
-<section id="why-dynamic-memory" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="why-dynamic-memory"><span class="header-section-number">12.1</span> 1. Why Dynamic Memory?</h2>
+<section id="why-dynamic-memory" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="why-dynamic-memory"><span class="header-section-number">13.1</span> 1. Why Dynamic Memory?</h2>
 <p>Stack-allocated arrays (<code>int arr[100]</code>) require the size to be known at <strong>compile time</strong>. When the size is only known at <strong>runtime</strong>, you must allocate from the <strong>heap</strong>.</p>
 <table class="caption-top table">
 <thead>
@@ -453,8 +470,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 <hr>
 </section>
-<section id="malloc-and-calloc" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="malloc-and-calloc"><span class="header-section-number">12.2</span> 2. <code>malloc</code> and <code>calloc</code></h2>
+<section id="malloc-and-calloc" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="malloc-and-calloc"><span class="header-section-number">13.2</span> 2. <code>malloc</code> and <code>calloc</code></h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> <span class="op">*</span>malloc<span class="op">(</span><span class="dt">size_t</span> size<span class="op">);</span>                 <span class="co">/* uninitialized */</span></span>
@@ -468,8 +485,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Always use <code>sizeof(type)</code> — never hardcode byte sizes.</p>
 <hr>
 </section>
-<section id="the-null-guard-mandatory" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="the-null-guard-mandatory"><span class="header-section-number">12.3</span> 3. The NULL Guard (mandatory)</h2>
+<section id="the-null-guard-mandatory" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="the-null-guard-mandatory"><span class="header-section-number">13.3</span> 3. The NULL Guard (mandatory)</h2>
 <p><code>malloc</code> and <code>calloc</code> return <code>NULL</code> on failure. Always check:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> <span class="op">*</span>arr <span class="op">=</span> malloc<span class="op">(</span>n <span class="op">*</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">int</span><span class="op">));</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>arr <span class="op">==</span> NULL<span class="op">)</span> <span class="op">{</span></span>
@@ -479,8 +496,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Never skip this check — dereferencing <code>NULL</code> causes a crash or silent heap corruption.</p>
 <hr>
 </section>
-<section id="realloc-resizing" class="level2" data-number="12.4">
-<h2 data-number="12.4" class="anchored" data-anchor-id="realloc-resizing"><span class="header-section-number">12.4</span> 4. <code>realloc</code> — Resizing</h2>
+<section id="realloc-resizing" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="realloc-resizing"><span class="header-section-number">13.4</span> 4. <code>realloc</code> — Resizing</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> <span class="op">*</span>realloc<span class="op">(</span><span class="dt">void</span> <span class="op">*</span>ptr<span class="op">,</span> <span class="dt">size_t</span> new_size<span class="op">);</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Safe pattern:</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> <span class="op">*</span>tmp <span class="op">=</span> realloc<span class="op">(</span>arr<span class="op">,</span> capacity <span class="op">*</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">int</span><span class="op">));</span></span>
@@ -493,8 +510,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> realloc<span class="op">(</span>arr<span class="op">,</span> <span class="op">...);</span>    <span class="co">/* if it fails: arr = NULL, old block leaked */</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <hr>
 </section>
-<section id="free-returning-memory" class="level2" data-number="12.5">
-<h2 data-number="12.5" class="anchored" data-anchor-id="free-returning-memory"><span class="header-section-number">12.5</span> 5. <code>free</code> — Returning Memory</h2>
+<section id="free-returning-memory" class="level2" data-number="13.5">
+<h2 data-number="13.5" class="anchored" data-anchor-id="free-returning-memory"><span class="header-section-number">13.5</span> 5. <code>free</code> — Returning Memory</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> free<span class="op">(</span><span class="dt">void</span> <span class="op">*</span>ptr<span class="op">);</span>   <span class="co">/* free(NULL) is safe — no-op */</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>After every <code>free</code>, set the pointer to <code>NULL</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>free<span class="op">(</span>arr<span class="op">);</span></span>
@@ -502,8 +519,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Three rules:</strong> 1. Every <code>malloc</code>/<code>calloc</code> has exactly one <code>free</code>. 2. Only <code>free</code> heap pointers. 3. Set to <code>NULL</code> after freeing.</p>
 <hr>
 </section>
-<section id="common-memory-bugs" class="level2" data-number="12.6">
-<h2 data-number="12.6" class="anchored" data-anchor-id="common-memory-bugs"><span class="header-section-number">12.6</span> 6. Common Memory Bugs</h2>
+<section id="common-memory-bugs" class="level2" data-number="13.6">
+<h2 data-number="13.6" class="anchored" data-anchor-id="common-memory-bugs"><span class="header-section-number">13.6</span> 6. Common Memory Bugs</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 14%">
@@ -543,8 +560,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">valgrind</span> <span class="at">--leak-check</span><span class="op">=</span>full ./myprogram   <span class="co"># detects leaks and invalid accesses</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <hr>
 </section>
-<section id="c-new-delete-and-smart-pointers" class="level2" data-number="12.7">
-<h2 data-number="12.7" class="anchored" data-anchor-id="c-new-delete-and-smart-pointers"><span class="header-section-number">12.7</span> 7. C++ <code>new</code> / <code>delete</code> and Smart Pointers</h2>
+<section id="c-new-delete-and-smart-pointers" class="level2" data-number="13.7">
+<h2 data-number="13.7" class="anchored" data-anchor-id="c-new-delete-and-smart-pointers"><span class="header-section-number">13.7</span> 7. C++ <code>new</code> / <code>delete</code> and Smart Pointers</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> <span class="op">*</span>p   <span class="op">=</span> <span class="kw">new</span> <span class="dt">int</span><span class="op">;</span>         <span class="co">/* one int */</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> <span class="op">*</span>arr <span class="op">=</span> <span class="kw">new</span> <span class="dt">int</span><span class="op">[</span>n<span class="op">];</span>      <span class="co">/* array */</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -558,10 +575,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>RAII: the destructor frees the resource — cannot leak even if an exception is thrown.</p>
 <hr>
 </section>
-<section id="worked-examples" class="level2" data-number="12.8">
-<h2 data-number="12.8" class="anchored" data-anchor-id="worked-examples"><span class="header-section-number">12.8</span> 8. Worked Examples</h2>
-<section id="example-1-dynamic-grade-array" class="level3" data-number="12.8.1">
-<h3 data-number="12.8.1" class="anchored" data-anchor-id="example-1-dynamic-grade-array"><span class="header-section-number">12.8.1</span> Example 1 — Dynamic Grade Array</h3>
+<section id="worked-examples" class="level2" data-number="13.8">
+<h2 data-number="13.8" class="anchored" data-anchor-id="worked-examples"><span class="header-section-number">13.8</span> 8. Worked Examples</h2>
+<section id="example-1-dynamic-grade-array" class="level3" data-number="13.8.1">
+<h3 data-number="13.8.1" class="anchored" data-anchor-id="example-1-dynamic-grade-array"><span class="header-section-number">13.8.1</span> Example 1 — Dynamic Grade Array</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -588,8 +605,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
 <span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="example-2-growing-buffer-with-realloc" class="level3" data-number="12.8.2">
-<h3 data-number="12.8.2" class="anchored" data-anchor-id="example-2-growing-buffer-with-realloc"><span class="header-section-number">12.8.2</span> Example 2 — Growing Buffer with <code>realloc</code></h3>
+<section id="example-2-growing-buffer-with-realloc" class="level3" data-number="13.8.2">
+<h3 data-number="13.8.2" class="anchored" data-anchor-id="example-2-growing-buffer-with-realloc"><span class="header-section-number">13.8.2</span> Example 2 — Growing Buffer with <code>realloc</code></h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -621,8 +638,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
 <span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="example-3-struct-array-on-the-heap" class="level3" data-number="12.8.3">
-<h3 data-number="12.8.3" class="anchored" data-anchor-id="example-3-struct-array-on-the-heap"><span class="header-section-number">12.8.3</span> Example 3 — Struct Array on the Heap</h3>
+<section id="example-3-struct-array-on-the-heap" class="level3" data-number="13.8.3">
+<h3 data-number="13.8.3" class="anchored" data-anchor-id="example-3-struct-array-on-the-heap"><span class="header-section-number">13.8.3</span> Example 3 — Struct Array on the Heap</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;string.h&gt;</span></span>
@@ -651,8 +668,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 </section>
 </section>
-<section id="key-terms" class="level2" data-number="12.9">
-<h2 data-number="12.9" class="anchored" data-anchor-id="key-terms"><span class="header-section-number">12.9</span> 9. Key Terms</h2>
+<section id="key-terms" class="level2" data-number="13.9">
+<h2 data-number="13.9" class="anchored" data-anchor-id="key-terms"><span class="header-section-number">13.9</span> 9. Key Terms</h2>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -713,8 +730,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 <hr>
 </section>
-<section id="discussion-questions" class="level2" data-number="12.10">
-<h2 data-number="12.10" class="anchored" data-anchor-id="discussion-questions"><span class="header-section-number">12.10</span> 10. Discussion Questions</h2>
+<section id="discussion-questions" class="level2" data-number="13.10">
+<h2 data-number="13.10" class="anchored" data-anchor-id="discussion-questions"><span class="header-section-number">13.10</span> 10. Discussion Questions</h2>
 <ol type="1">
 <li>Why does <code>calloc</code> zero-initialize while <code>malloc</code> does not? Name one situation where this matters.</li>
 <li>List three cases where you must use dynamic allocation.</li>
@@ -1136,12 +1153,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../../lectures/en/L09-files.html" class="pagination-link" aria-label="Lecture 9: File Handling — Text and Binary Files">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Lecture 9: File Handling — Text and Binary Files</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Lecture 9: File Handling — Text and Binary Files</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../../lectures/en/L11-structs.html" class="pagination-link" aria-label="L11 — Structs and Unions">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">L11 — Structs and Unions</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">L11 — Structs and Unions</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

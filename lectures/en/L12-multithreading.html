@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>13&nbsp; L12 — Multithreading in C/C++ – Programming — Year 1</title>
+<title>14&nbsp; L12 — Multithreading in C/C++ – Programming — Year 1</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bb62276ab45c84d9efd712f51ff97b5a.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-6b275e3d0269591ba8de0c4be7720c47.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-28e476bb09ea0e3a52382d7a6c08cfc3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -123,7 +123,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lectures/en/L12-multithreading.html">Module 7 — Modern C++: Concurrency, AI, and Vibe Coding</a></li><li class="breadcrumb-item"><a href="../../lectures/en/L12-multithreading.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">L12 — Multithreading in C/C++</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lectures/en/L12-multithreading.html">Module 7 — Modern C++: Concurrency, AI, and Vibe Coding</a></li><li class="breadcrumb-item"><a href="../../lectures/en/L12-multithreading.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">L12 — Multithreading in C/C++</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -160,7 +160,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Module 1 — Basics of C/C++, I/O, Linear Algorithms</span></a>
+ <span class="menu-text">Module 0 — Course Organization</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -168,26 +168,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L01-course-orientation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Lecture 1 — Course Orientation</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L02-data-types.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Lecture 2 — Data Types, Declarations, Operators, and Operations</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L03-arithmetic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Lecture 3 — Arithmetic and Computational Operations in C</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L04-io.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Lecture 4 — Formatted Input and Output</span></span></a>
+  <a href="../../lectures/en/L00-course-organization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">L00 — Course Organization</span></span></a>
   </div>
 </li>
       </ul>
@@ -195,7 +177,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Module 2 — Branching and Loops</span></a>
+ <span class="menu-text">Module 1 — Basics of C/C++, I/O, Linear Algorithms</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -203,8 +185,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L05-conditionals-loops.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lecture 5 — Conditional Operators and Loops</span></span></a>
+  <a href="../../lectures/en/L01-course-orientation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Lecture 1 — Course Orientation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/en/L02-data-types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Lecture 2 — Data Types, Declarations, Operators, and Operations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/en/L03-arithmetic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Lecture 3 — Arithmetic and Computational Operations in C</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/en/L04-io.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lecture 4 — Formatted Input and Output</span></span></a>
   </div>
 </li>
       </ul>
@@ -212,7 +212,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Module 3 — Arrays, Pointers, Strings</span></a>
+ <span class="menu-text">Module 2 — Branching and Loops</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -220,14 +220,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L06-arrays-pointers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lecture 6 — Arrays and Pointers in C</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L07-strings.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Lecture 7 — Strings in C/C++</span></span></a>
+  <a href="../../lectures/en/L05-conditionals-loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lecture 5 — Conditional Operators and Loops</span></span></a>
   </div>
 </li>
       </ul>
@@ -235,7 +229,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Module 4 — Subroutines</span></a>
+ <span class="menu-text">Module 3 — Arrays, Pointers, Strings</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -243,8 +237,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L08-functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">L08: Functions and Recursion</span></span></a>
+  <a href="../../lectures/en/L06-arrays-pointers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Lecture 6 — Arrays and Pointers in C</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/en/L07-strings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Lecture 7 — Strings in C/C++</span></span></a>
   </div>
 </li>
       </ul>
@@ -252,7 +252,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Module 5 — File Handling</span></a>
+ <span class="menu-text">Module 4 — Subroutines</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -260,8 +260,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L09-files.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Lecture 9: File Handling — Text and Binary Files</span></span></a>
+  <a href="../../lectures/en/L08-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">L08: Functions and Recursion</span></span></a>
   </div>
 </li>
       </ul>
@@ -269,7 +269,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text">Module 6 — User-Defined Data Types</span></a>
+ <span class="menu-text">Module 5 — File Handling</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -277,14 +277,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L10-dynamic-memory.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">L10 — Dynamic Memory Allocation</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L11-structs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">L11 — Structs and Unions</span></span></a>
+  <a href="../../lectures/en/L09-files.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Lecture 9: File Handling — Text and Binary Files</span></span></a>
   </div>
 </li>
       </ul>
@@ -292,7 +286,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
- <span class="menu-text">Module 7 — Modern C++: Concurrency, AI, and Vibe Coding</span></a>
+ <span class="menu-text">Module 6 — User-Defined Data Types</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -300,26 +294,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L12-multithreading.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">L12 — Multithreading in C/C++</span></span></a>
+  <a href="../../lectures/en/L10-dynamic-memory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">L10 — Dynamic Memory Allocation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L13-ai-algorithms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">L13 — AI Algorithms on Resource-Constrained Platforms</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L14-heterogeneous-hardware.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">L14 — AI on Heterogeneous Hardware</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L15-vibe-coding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">L15 — Modern Programming Practices: Vibe Coding</span></span></a>
+  <a href="../../lectures/en/L11-structs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">L11 — Structs and Unions</span></span></a>
   </div>
 </li>
       </ul>
@@ -327,7 +309,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
- <span class="menu-text">Module 8 — Libraries, Standard Structures, Algorithms</span></a>
+ <span class="menu-text">Module 7 — Modern C++: Concurrency, AI, and Vibe Coding</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -335,20 +317,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../lectures/en/L12-multithreading.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">L12 — Multithreading in C/C++</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/en/L13-ai-algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">L13 — AI Algorithms on Resource-Constrained Platforms</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/en/L14-heterogeneous-hardware.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">L14 — AI on Heterogeneous Hardware</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/en/L15-vibe-coding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">L15 — Modern Programming Practices: Vibe Coding</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">Module 8 — Libraries, Standard Structures, Algorithms</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../lectures/en/L16-preprocessor-build.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">L16 — Preprocessor, Multi-Module Programs, Build Systems</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">L16 — Preprocessor, Multi-Module Programs, Build Systems</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../lectures/en/L17-standard-libraries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">L17 — Standard Libraries and Type Conversions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">L17 — Standard Libraries and Type Conversions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../lectures/en/L18-algorithms-complexity.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">L18 — Standard Data Structures, Algorithms, and Complexity</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">L18 — Standard Data Structures, Algorithms, and Complexity</span></span></a>
   </div>
 </li>
       </ul>
@@ -363,26 +380,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#why-multithreading" id="toc-why-multithreading" class="nav-link active" data-scroll-target="#why-multithreading"><span class="header-section-number">13.1</span> Why Multithreading?</a></li>
-  <li><a href="#stdthread-creating-and-managing-threads" id="toc-stdthread-creating-and-managing-threads" class="nav-link" data-scroll-target="#stdthread-creating-and-managing-threads"><span class="header-section-number">13.2</span> <code>std::thread</code> — Creating and Managing Threads</a></li>
-  <li><a href="#race-conditions-and-data-races" id="toc-race-conditions-and-data-races" class="nav-link" data-scroll-target="#race-conditions-and-data-races"><span class="header-section-number">13.3</span> Race Conditions and Data Races</a></li>
-  <li><a href="#stdmutex-and-stdlock_guard" id="toc-stdmutex-and-stdlock_guard" class="nav-link" data-scroll-target="#stdmutex-and-stdlock_guard"><span class="header-section-number">13.4</span> <code>std::mutex</code> and <code>std::lock_guard</code></a></li>
-  <li><a href="#stdatomic-lightweight-synchronization" id="toc-stdatomic-lightweight-synchronization" class="nav-link" data-scroll-target="#stdatomic-lightweight-synchronization"><span class="header-section-number">13.5</span> <code>std::atomic</code> — Lightweight Synchronization</a></li>
-  <li><a href="#condition-variables-producerconsumer" id="toc-condition-variables-producerconsumer" class="nav-link" data-scroll-target="#condition-variables-producerconsumer"><span class="header-section-number">13.6</span> Condition Variables — Producer–Consumer</a></li>
-  <li><a href="#thread-pools-conceptual" id="toc-thread-pools-conceptual" class="nav-link" data-scroll-target="#thread-pools-conceptual"><span class="header-section-number">13.7</span> Thread Pools (Conceptual)</a></li>
-  <li><a href="#testing-multithreaded-code" id="toc-testing-multithreaded-code" class="nav-link" data-scroll-target="#testing-multithreaded-code"><span class="header-section-number">13.8</span> Testing Multithreaded Code</a></li>
-  <li><a href="#key-terms" id="toc-key-terms" class="nav-link" data-scroll-target="#key-terms"><span class="header-section-number">13.9</span> Key Terms</a></li>
-  <li><a href="#worked-example-parallel-array-sum" id="toc-worked-example-parallel-array-sum" class="nav-link" data-scroll-target="#worked-example-parallel-array-sum"><span class="header-section-number">13.10</span> Worked Example — Parallel Array Sum</a></li>
-  <li><a href="#discussion-questions" id="toc-discussion-questions" class="nav-link" data-scroll-target="#discussion-questions"><span class="header-section-number">13.11</span> Discussion Questions</a></li>
+  <li><a href="#why-multithreading" id="toc-why-multithreading" class="nav-link active" data-scroll-target="#why-multithreading"><span class="header-section-number">14.1</span> Why Multithreading?</a></li>
+  <li><a href="#stdthread-creating-and-managing-threads" id="toc-stdthread-creating-and-managing-threads" class="nav-link" data-scroll-target="#stdthread-creating-and-managing-threads"><span class="header-section-number">14.2</span> <code>std::thread</code> — Creating and Managing Threads</a></li>
+  <li><a href="#race-conditions-and-data-races" id="toc-race-conditions-and-data-races" class="nav-link" data-scroll-target="#race-conditions-and-data-races"><span class="header-section-number">14.3</span> Race Conditions and Data Races</a></li>
+  <li><a href="#stdmutex-and-stdlock_guard" id="toc-stdmutex-and-stdlock_guard" class="nav-link" data-scroll-target="#stdmutex-and-stdlock_guard"><span class="header-section-number">14.4</span> <code>std::mutex</code> and <code>std::lock_guard</code></a></li>
+  <li><a href="#stdatomic-lightweight-synchronization" id="toc-stdatomic-lightweight-synchronization" class="nav-link" data-scroll-target="#stdatomic-lightweight-synchronization"><span class="header-section-number">14.5</span> <code>std::atomic</code> — Lightweight Synchronization</a></li>
+  <li><a href="#condition-variables-producerconsumer" id="toc-condition-variables-producerconsumer" class="nav-link" data-scroll-target="#condition-variables-producerconsumer"><span class="header-section-number">14.6</span> Condition Variables — Producer–Consumer</a></li>
+  <li><a href="#thread-pools-conceptual" id="toc-thread-pools-conceptual" class="nav-link" data-scroll-target="#thread-pools-conceptual"><span class="header-section-number">14.7</span> Thread Pools (Conceptual)</a></li>
+  <li><a href="#testing-multithreaded-code" id="toc-testing-multithreaded-code" class="nav-link" data-scroll-target="#testing-multithreaded-code"><span class="header-section-number">14.8</span> Testing Multithreaded Code</a></li>
+  <li><a href="#key-terms" id="toc-key-terms" class="nav-link" data-scroll-target="#key-terms"><span class="header-section-number">14.9</span> Key Terms</a></li>
+  <li><a href="#worked-example-parallel-array-sum" id="toc-worked-example-parallel-array-sum" class="nav-link" data-scroll-target="#worked-example-parallel-array-sum"><span class="header-section-number">14.10</span> Worked Example — Parallel Array Sum</a></li>
+  <li><a href="#discussion-questions" id="toc-discussion-questions" class="nav-link" data-scroll-target="#discussion-questions"><span class="header-section-number">14.11</span> Discussion Questions</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Ali-MH-Mansour/Programming-Course-Lectures/edit/main/lectures/en/L12-multithreading.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lectures/en/L12-multithreading.html">Module 7 — Modern C++: Concurrency, AI, and Vibe Coding</a></li><li class="breadcrumb-item"><a href="../../lectures/en/L12-multithreading.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">L12 — Multithreading in C/C++</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lectures/en/L12-multithreading.html">Module 7 — Modern C++: Concurrency, AI, and Vibe Coding</a></li><li class="breadcrumb-item"><a href="../../lectures/en/L12-multithreading.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">L12 — Multithreading in C/C++</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">L12 — Multithreading in C/C++</span></h1>
+<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">L12 — Multithreading in C/C++</span></h1>
 <p class="subtitle lead">Module 7 · Threads, Synchronization, Race Conditions</p>
 </div>
 
@@ -400,8 +417,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="why-multithreading" class="level2" data-number="13.1">
-<h2 data-number="13.1" class="anchored" data-anchor-id="why-multithreading"><span class="header-section-number">13.1</span> Why Multithreading?</h2>
+<section id="why-multithreading" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="why-multithreading"><span class="header-section-number">14.1</span> Why Multithreading?</h2>
 <p>Modern CPUs have multiple cores. A single-threaded program uses one — the rest idle. Threads exploit all cores.</p>
 <ul>
 <li><strong>Concurrency</strong> — tasks overlap in time (may time-share one core).</li>
@@ -410,8 +427,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <hr>
 </section>
-<section id="stdthread-creating-and-managing-threads" class="level2" data-number="13.2">
-<h2 data-number="13.2" class="anchored" data-anchor-id="stdthread-creating-and-managing-threads"><span class="header-section-number">13.2</span> <code>std::thread</code> — Creating and Managing Threads</h2>
+<section id="stdthread-creating-and-managing-threads" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="stdthread-creating-and-managing-threads"><span class="header-section-number">14.2</span> <code>std::thread</code> — Creating and Managing Threads</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;thread&gt;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> work<span class="op">(</span><span class="dt">int</span> id<span class="op">)</span> <span class="op">{</span> <span class="co">/* ... */</span> <span class="op">}</span></span>
@@ -466,8 +483,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>t<span class="op">.</span>join<span class="op">();</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <hr>
 </section>
-<section id="race-conditions-and-data-races" class="level2" data-number="13.3">
-<h2 data-number="13.3" class="anchored" data-anchor-id="race-conditions-and-data-races"><span class="header-section-number">13.3</span> Race Conditions and Data Races</h2>
+<section id="race-conditions-and-data-races" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="race-conditions-and-data-races"><span class="header-section-number">14.3</span> Race Conditions and Data Races</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> counter <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> bad<span class="op">()</span> <span class="op">{</span></span>
@@ -477,8 +494,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Two threads can interleave these steps → both read the same value, both store the same incremented value → one update is lost. This is a <strong>data race</strong> → <strong>undefined behaviour</strong>.</p>
 <hr>
 </section>
-<section id="stdmutex-and-stdlock_guard" class="level2" data-number="13.4">
-<h2 data-number="13.4" class="anchored" data-anchor-id="stdmutex-and-stdlock_guard"><span class="header-section-number">13.4</span> <code>std::mutex</code> and <code>std::lock_guard</code></h2>
+<section id="stdmutex-and-stdlock_guard" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="stdmutex-and-stdlock_guard"><span class="header-section-number">14.4</span> <code>std::mutex</code> and <code>std::lock_guard</code></h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;mutex&gt;</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> counter <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
@@ -495,8 +512,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Fix:</strong> always lock in the same order. Use <code>std::scoped_lock(m1, m2)</code> (C++17) for multiple mutexes.</p>
 <hr>
 </section>
-<section id="stdatomic-lightweight-synchronization" class="level2" data-number="13.5">
-<h2 data-number="13.5" class="anchored" data-anchor-id="stdatomic-lightweight-synchronization"><span class="header-section-number">13.5</span> <code>std::atomic</code> — Lightweight Synchronization</h2>
+<section id="stdatomic-lightweight-synchronization" class="level2" data-number="14.5">
+<h2 data-number="14.5" class="anchored" data-anchor-id="stdatomic-lightweight-synchronization"><span class="header-section-number">14.5</span> <code>std::atomic</code> — Lightweight Synchronization</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;atomic&gt;</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>atomic<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> counter<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
@@ -508,8 +525,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Use <code>std::atomic</code> for a single shared variable. For compound operations across multiple variables, use a mutex.</p>
 <hr>
 </section>
-<section id="condition-variables-producerconsumer" class="level2" data-number="13.6">
-<h2 data-number="13.6" class="anchored" data-anchor-id="condition-variables-producerconsumer"><span class="header-section-number">13.6</span> Condition Variables — Producer–Consumer</h2>
+<section id="condition-variables-producerconsumer" class="level2" data-number="14.6">
+<h2 data-number="14.6" class="anchored" data-anchor-id="condition-variables-producerconsumer"><span class="header-section-number">14.6</span> Condition Variables — Producer–Consumer</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;condition_variable&gt;</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;queue&gt;</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -538,13 +555,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><code>cv.wait(lock, predicate)</code> releases the lock and sleeps. On wakeup, re-checks predicate — protects against <strong>spurious wakeups</strong>.</p>
 <hr>
 </section>
-<section id="thread-pools-conceptual" class="level2" data-number="13.7">
-<h2 data-number="13.7" class="anchored" data-anchor-id="thread-pools-conceptual"><span class="header-section-number">13.7</span> Thread Pools (Conceptual)</h2>
+<section id="thread-pools-conceptual" class="level2" data-number="14.7">
+<h2 data-number="14.7" class="anchored" data-anchor-id="thread-pools-conceptual"><span class="header-section-number">14.7</span> Thread Pools (Conceptual)</h2>
 <p>Pre-create N worker threads. Tasks go into a queue; idle threads pick them up. Avoids thread-creation overhead for many short tasks.</p>
 <hr>
 </section>
-<section id="testing-multithreaded-code" class="level2" data-number="13.8">
-<h2 data-number="13.8" class="anchored" data-anchor-id="testing-multithreaded-code"><span class="header-section-number">13.8</span> Testing Multithreaded Code</h2>
+<section id="testing-multithreaded-code" class="level2" data-number="14.8">
+<h2 data-number="14.8" class="anchored" data-anchor-id="testing-multithreaded-code"><span class="header-section-number">14.8</span> Testing Multithreaded Code</h2>
 <ul>
 <li><strong>Stress test</strong> — high iteration counts make races more likely to surface.</li>
 <li><strong>ThreadSanitizer</strong> — build with <code>-fsanitize=thread -g</code>; detects data races at runtime.</li>
@@ -552,8 +569,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <hr>
 </section>
-<section id="key-terms" class="level2" data-number="13.9">
-<h2 data-number="13.9" class="anchored" data-anchor-id="key-terms"><span class="header-section-number">13.9</span> Key Terms</h2>
+<section id="key-terms" class="level2" data-number="14.9">
+<h2 data-number="14.9" class="anchored" data-anchor-id="key-terms"><span class="header-section-number">14.9</span> Key Terms</h2>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -618,8 +635,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 <hr>
 </section>
-<section id="worked-example-parallel-array-sum" class="level2" data-number="13.10">
-<h2 data-number="13.10" class="anchored" data-anchor-id="worked-example-parallel-array-sum"><span class="header-section-number">13.10</span> Worked Example — Parallel Array Sum</h2>
+<section id="worked-example-parallel-array-sum" class="level2" data-number="14.10">
+<h2 data-number="14.10" class="anchored" data-anchor-id="worked-example-parallel-array-sum"><span class="header-section-number">14.10</span> Worked Example — Parallel Array Sum</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;thread&gt;</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;vector&gt;</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
@@ -643,8 +660,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><code>s1</code> and <code>s2</code> are distinct — no sharing, no mutex needed.</p>
 <hr>
 </section>
-<section id="discussion-questions" class="level2" data-number="13.11">
-<h2 data-number="13.11" class="anchored" data-anchor-id="discussion-questions"><span class="header-section-number">13.11</span> Discussion Questions</h2>
+<section id="discussion-questions" class="level2" data-number="14.11">
+<h2 data-number="14.11" class="anchored" data-anchor-id="discussion-questions"><span class="header-section-number">14.11</span> Discussion Questions</h2>
 <ol type="1">
 <li>What is the difference between concurrency and parallelism?</li>
 <li>Why does <code>counter++</code> cause a data race even though it looks like one statement?</li>
@@ -1063,12 +1080,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../../lectures/en/L11-structs.html" class="pagination-link" aria-label="L11 — Structs and Unions">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">L11 — Structs and Unions</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">L11 — Structs and Unions</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../../lectures/en/L13-ai-algorithms.html" class="pagination-link" aria-label="L13 — AI Algorithms on Resource-Constrained Platforms">
-        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">L13 — AI Algorithms on Resource-Constrained Platforms</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">L13 — AI Algorithms on Resource-Constrained Platforms</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

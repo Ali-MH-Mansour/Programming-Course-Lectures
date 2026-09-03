@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>17&nbsp; L16 — Preprocessor, Multi-Module Programs, Build Systems – Programming — Year 1</title>
+<title>18&nbsp; L16 — Preprocessor, Multi-Module Programs, Build Systems – Programming — Year 1</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bb62276ab45c84d9efd712f51ff97b5a.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-6b275e3d0269591ba8de0c4be7720c47.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-28e476bb09ea0e3a52382d7a6c08cfc3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -123,7 +123,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lectures/en/L16-preprocessor-build.html">Module 8 — Libraries, Standard Structures, Algorithms</a></li><li class="breadcrumb-item"><a href="../../lectures/en/L16-preprocessor-build.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">L16 — Preprocessor, Multi-Module Programs, Build Systems</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lectures/en/L16-preprocessor-build.html">Module 8 — Libraries, Standard Structures, Algorithms</a></li><li class="breadcrumb-item"><a href="../../lectures/en/L16-preprocessor-build.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">L16 — Preprocessor, Multi-Module Programs, Build Systems</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -160,7 +160,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Module 1 — Basics of C/C++, I/O, Linear Algorithms</span></a>
+ <span class="menu-text">Module 0 — Course Organization</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -168,26 +168,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L01-course-orientation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Lecture 1 — Course Orientation</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L02-data-types.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Lecture 2 — Data Types, Declarations, Operators, and Operations</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L03-arithmetic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Lecture 3 — Arithmetic and Computational Operations in C</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L04-io.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Lecture 4 — Formatted Input and Output</span></span></a>
+  <a href="../../lectures/en/L00-course-organization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">L00 — Course Organization</span></span></a>
   </div>
 </li>
       </ul>
@@ -195,7 +177,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Module 2 — Branching and Loops</span></a>
+ <span class="menu-text">Module 1 — Basics of C/C++, I/O, Linear Algorithms</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -203,8 +185,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L05-conditionals-loops.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lecture 5 — Conditional Operators and Loops</span></span></a>
+  <a href="../../lectures/en/L01-course-orientation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Lecture 1 — Course Orientation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/en/L02-data-types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Lecture 2 — Data Types, Declarations, Operators, and Operations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/en/L03-arithmetic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Lecture 3 — Arithmetic and Computational Operations in C</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/en/L04-io.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lecture 4 — Formatted Input and Output</span></span></a>
   </div>
 </li>
       </ul>
@@ -212,7 +212,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Module 3 — Arrays, Pointers, Strings</span></a>
+ <span class="menu-text">Module 2 — Branching and Loops</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -220,14 +220,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L06-arrays-pointers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lecture 6 — Arrays and Pointers in C</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L07-strings.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Lecture 7 — Strings in C/C++</span></span></a>
+  <a href="../../lectures/en/L05-conditionals-loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lecture 5 — Conditional Operators and Loops</span></span></a>
   </div>
 </li>
       </ul>
@@ -235,7 +229,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Module 4 — Subroutines</span></a>
+ <span class="menu-text">Module 3 — Arrays, Pointers, Strings</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -243,8 +237,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L08-functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">L08: Functions and Recursion</span></span></a>
+  <a href="../../lectures/en/L06-arrays-pointers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Lecture 6 — Arrays and Pointers in C</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/en/L07-strings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Lecture 7 — Strings in C/C++</span></span></a>
   </div>
 </li>
       </ul>
@@ -252,7 +252,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Module 5 — File Handling</span></a>
+ <span class="menu-text">Module 4 — Subroutines</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -260,8 +260,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L09-files.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Lecture 9: File Handling — Text and Binary Files</span></span></a>
+  <a href="../../lectures/en/L08-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">L08: Functions and Recursion</span></span></a>
   </div>
 </li>
       </ul>
@@ -269,7 +269,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text">Module 6 — User-Defined Data Types</span></a>
+ <span class="menu-text">Module 5 — File Handling</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -277,14 +277,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L10-dynamic-memory.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">L10 — Dynamic Memory Allocation</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L11-structs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">L11 — Structs and Unions</span></span></a>
+  <a href="../../lectures/en/L09-files.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Lecture 9: File Handling — Text and Binary Files</span></span></a>
   </div>
 </li>
       </ul>
@@ -292,7 +286,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
- <span class="menu-text">Module 7 — Modern C++: Concurrency, AI, and Vibe Coding</span></a>
+ <span class="menu-text">Module 6 — User-Defined Data Types</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -300,26 +294,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L12-multithreading.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">L12 — Multithreading in C/C++</span></span></a>
+  <a href="../../lectures/en/L10-dynamic-memory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">L10 — Dynamic Memory Allocation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L13-ai-algorithms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">L13 — AI Algorithms on Resource-Constrained Platforms</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L14-heterogeneous-hardware.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">L14 — AI on Heterogeneous Hardware</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../lectures/en/L15-vibe-coding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">L15 — Modern Programming Practices: Vibe Coding</span></span></a>
+  <a href="../../lectures/en/L11-structs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">L11 — Structs and Unions</span></span></a>
   </div>
 </li>
       </ul>
@@ -327,7 +309,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
- <span class="menu-text">Module 8 — Libraries, Standard Structures, Algorithms</span></a>
+ <span class="menu-text">Module 7 — Modern C++: Concurrency, AI, and Vibe Coding</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -335,20 +317,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../lectures/en/L12-multithreading.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">L12 — Multithreading in C/C++</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/en/L13-ai-algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">L13 — AI Algorithms on Resource-Constrained Platforms</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/en/L14-heterogeneous-hardware.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">L14 — AI on Heterogeneous Hardware</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/en/L15-vibe-coding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">L15 — Modern Programming Practices: Vibe Coding</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">Module 8 — Libraries, Standard Structures, Algorithms</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../lectures/en/L16-preprocessor-build.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">L16 — Preprocessor, Multi-Module Programs, Build Systems</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">L16 — Preprocessor, Multi-Module Programs, Build Systems</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../lectures/en/L17-standard-libraries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">L17 — Standard Libraries and Type Conversions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">L17 — Standard Libraries and Type Conversions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../lectures/en/L18-algorithms-complexity.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">L18 — Standard Data Structures, Algorithms, and Complexity</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">L18 — Standard Data Structures, Algorithms, and Complexity</span></span></a>
   </div>
 </li>
       </ul>
@@ -363,24 +380,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#the-preprocessor" id="toc-the-preprocessor" class="nav-link active" data-scroll-target="#the-preprocessor"><span class="header-section-number">17.1</span> The Preprocessor</a></li>
-  <li><a href="#include-guards" id="toc-include-guards" class="nav-link" data-scroll-target="#include-guards"><span class="header-section-number">17.2</span> Include Guards</a></li>
-  <li><a href="#macro-pitfalls-prefer-c-alternatives" id="toc-macro-pitfalls-prefer-c-alternatives" class="nav-link" data-scroll-target="#macro-pitfalls-prefer-c-alternatives"><span class="header-section-number">17.3</span> Macro Pitfalls — Prefer C++ Alternatives</a></li>
-  <li><a href="#translation-units-odr-linkage" id="toc-translation-units-odr-linkage" class="nav-link" data-scroll-target="#translation-units-odr-linkage"><span class="header-section-number">17.4</span> Translation Units, ODR, Linkage</a></li>
-  <li><a href="#header-source-split" id="toc-header-source-split" class="nav-link" data-scroll-target="#header-source-split"><span class="header-section-number">17.5</span> Header / Source Split</a></li>
-  <li><a href="#build-systems" id="toc-build-systems" class="nav-link" data-scroll-target="#build-systems"><span class="header-section-number">17.6</span> Build Systems</a></li>
-  <li><a href="#internationalization" id="toc-internationalization" class="nav-link" data-scroll-target="#internationalization"><span class="header-section-number">17.7</span> Internationalization</a></li>
-  <li><a href="#key-terms" id="toc-key-terms" class="nav-link" data-scroll-target="#key-terms"><span class="header-section-number">17.8</span> Key Terms</a></li>
-  <li><a href="#discussion-questions" id="toc-discussion-questions" class="nav-link" data-scroll-target="#discussion-questions"><span class="header-section-number">17.9</span> Discussion Questions</a></li>
+  <li><a href="#the-preprocessor" id="toc-the-preprocessor" class="nav-link active" data-scroll-target="#the-preprocessor"><span class="header-section-number">18.1</span> The Preprocessor</a></li>
+  <li><a href="#include-guards" id="toc-include-guards" class="nav-link" data-scroll-target="#include-guards"><span class="header-section-number">18.2</span> Include Guards</a></li>
+  <li><a href="#macro-pitfalls-prefer-c-alternatives" id="toc-macro-pitfalls-prefer-c-alternatives" class="nav-link" data-scroll-target="#macro-pitfalls-prefer-c-alternatives"><span class="header-section-number">18.3</span> Macro Pitfalls — Prefer C++ Alternatives</a></li>
+  <li><a href="#translation-units-odr-linkage" id="toc-translation-units-odr-linkage" class="nav-link" data-scroll-target="#translation-units-odr-linkage"><span class="header-section-number">18.4</span> Translation Units, ODR, Linkage</a></li>
+  <li><a href="#header-source-split" id="toc-header-source-split" class="nav-link" data-scroll-target="#header-source-split"><span class="header-section-number">18.5</span> Header / Source Split</a></li>
+  <li><a href="#build-systems" id="toc-build-systems" class="nav-link" data-scroll-target="#build-systems"><span class="header-section-number">18.6</span> Build Systems</a></li>
+  <li><a href="#internationalization" id="toc-internationalization" class="nav-link" data-scroll-target="#internationalization"><span class="header-section-number">18.7</span> Internationalization</a></li>
+  <li><a href="#key-terms" id="toc-key-terms" class="nav-link" data-scroll-target="#key-terms"><span class="header-section-number">18.8</span> Key Terms</a></li>
+  <li><a href="#discussion-questions" id="toc-discussion-questions" class="nav-link" data-scroll-target="#discussion-questions"><span class="header-section-number">18.9</span> Discussion Questions</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Ali-MH-Mansour/Programming-Course-Lectures/edit/main/lectures/en/L16-preprocessor-build.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lectures/en/L16-preprocessor-build.html">Module 8 — Libraries, Standard Structures, Algorithms</a></li><li class="breadcrumb-item"><a href="../../lectures/en/L16-preprocessor-build.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">L16 — Preprocessor, Multi-Module Programs, Build Systems</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lectures/en/L16-preprocessor-build.html">Module 8 — Libraries, Standard Structures, Algorithms</a></li><li class="breadcrumb-item"><a href="../../lectures/en/L16-preprocessor-build.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">L16 — Preprocessor, Multi-Module Programs, Build Systems</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">L16 — Preprocessor, Multi-Module Programs, Build Systems</span></h1>
+<h1 class="title"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">L16 — Preprocessor, Multi-Module Programs, Build Systems</span></h1>
 <p class="subtitle lead">Module 8 · Macros, Include Guards, ODR, Makefile, CMake, Internationalization</p>
 </div>
 
@@ -398,8 +415,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="the-preprocessor" class="level2" data-number="17.1">
-<h2 data-number="17.1" class="anchored" data-anchor-id="the-preprocessor"><span class="header-section-number">17.1</span> The Preprocessor</h2>
+<section id="the-preprocessor" class="level2" data-number="18.1">
+<h2 data-number="18.1" class="anchored" data-anchor-id="the-preprocessor"><span class="header-section-number">18.1</span> The Preprocessor</h2>
 <p>Runs <strong>before</strong> the compiler — text substitution, not C parsing.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span><span class="pp">          </span><span class="co">// paste stdio.h contents</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"myutils.h"</span><span class="pp">        </span><span class="co">// paste user header</span></span>
@@ -413,8 +430,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>View preprocessor output: <code>gcc -E file.c</code></p>
 <hr>
 </section>
-<section id="include-guards" class="level2" data-number="17.2">
-<h2 data-number="17.2" class="anchored" data-anchor-id="include-guards"><span class="header-section-number">17.2</span> Include Guards</h2>
+<section id="include-guards" class="level2" data-number="18.2">
+<h2 data-number="18.2" class="anchored" data-anchor-id="include-guards"><span class="header-section-number">18.2</span> Include Guards</h2>
 <p>Prevent double-inclusion errors:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#ifndef MYUTILS_H</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define MYUTILS_H</span></span>
@@ -426,8 +443,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Or simply:</strong> <code>#pragma once</code> (supported by GCC, Clang, MSVC).</p>
 <hr>
 </section>
-<section id="macro-pitfalls-prefer-c-alternatives" class="level2" data-number="17.3">
-<h2 data-number="17.3" class="anchored" data-anchor-id="macro-pitfalls-prefer-c-alternatives"><span class="header-section-number">17.3</span> Macro Pitfalls — Prefer C++ Alternatives</h2>
+<section id="macro-pitfalls-prefer-c-alternatives" class="level2" data-number="18.3">
+<h2 data-number="18.3" class="anchored" data-anchor-id="macro-pitfalls-prefer-c-alternatives"><span class="header-section-number">18.3</span> Macro Pitfalls — Prefer C++ Alternatives</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Trap: double evaluation</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define SQUARE</span><span class="op">(</span><span class="pp">x</span><span class="op">)</span><span class="pp"> </span><span class="op">((</span><span class="pp">x</span><span class="op">)*(</span><span class="pp">x</span><span class="op">))</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>SQUARE<span class="op">(</span>i<span class="op">++);</span>   <span class="co">// evaluates i++ twice!</span></span>
@@ -441,8 +458,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">constexpr</span> <span class="dt">int</span> N <span class="op">=</span> <span class="dv">100</span><span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <hr>
 </section>
-<section id="translation-units-odr-linkage" class="level2" data-number="17.4">
-<h2 data-number="17.4" class="anchored" data-anchor-id="translation-units-odr-linkage"><span class="header-section-number">17.4</span> Translation Units, ODR, Linkage</h2>
+<section id="translation-units-odr-linkage" class="level2" data-number="18.4">
+<h2 data-number="18.4" class="anchored" data-anchor-id="translation-units-odr-linkage"><span class="header-section-number">18.4</span> Translation Units, ODR, Linkage</h2>
 <ul>
 <li><strong>Translation unit (TU):</strong> one <code>.c</code> file + all included headers.</li>
 <li><strong>Declaration:</strong> announces existence (no storage). <code>extern int counter;</code></li>
@@ -454,8 +471,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">static</span> <span class="dt">int</span> private <span class="op">=</span> <span class="dv">0</span><span class="op">;</span>   <span class="co">// internal linkage — invisible to other TUs</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <hr>
 </section>
-<section id="header-source-split" class="level2" data-number="17.5">
-<h2 data-number="17.5" class="anchored" data-anchor-id="header-source-split"><span class="header-section-number">17.5</span> Header / Source Split</h2>
+<section id="header-source-split" class="level2" data-number="18.5">
+<h2 data-number="18.5" class="anchored" data-anchor-id="header-source-split"><span class="header-section-number">18.5</span> Header / Source Split</h2>
 <p><strong>Header (<code>.h</code>) — declarations:</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#pragma once</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> <span class="op">{</span> <span class="dt">int</span> id<span class="op">;</span> <span class="dt">char</span> name<span class="op">[</span><span class="dv">50</span><span class="op">];</span> <span class="dt">double</span> grade<span class="op">;</span> <span class="op">}</span> Student<span class="op">;</span></span>
@@ -466,8 +483,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Rule:</strong> declarations in <code>.h</code>; definitions in <code>.c</code>.</p>
 <hr>
 </section>
-<section id="build-systems" class="level2" data-number="17.6">
-<h2 data-number="17.6" class="anchored" data-anchor-id="build-systems"><span class="header-section-number">17.6</span> Build Systems</h2>
+<section id="build-systems" class="level2" data-number="18.6">
+<h2 data-number="18.6" class="anchored" data-anchor-id="build-systems"><span class="header-section-number">18.6</span> Build Systems</h2>
 <p><strong>Manual:</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gcc</span> <span class="at">-c</span> main.c students.c   <span class="co"># compile each to .o</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gcc</span> main.o students.o <span class="at">-o</span> program</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -490,8 +507,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">add_executable</span>(<span class="bn">program</span> main.c students.c)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <hr>
 </section>
-<section id="internationalization" class="level2" data-number="17.7">
-<h2 data-number="17.7" class="anchored" data-anchor-id="internationalization"><span class="header-section-number">17.7</span> Internationalization</h2>
+<section id="internationalization" class="level2" data-number="18.7">
+<h2 data-number="18.7" class="anchored" data-anchor-id="internationalization"><span class="header-section-number">18.7</span> Internationalization</h2>
 <ul>
 <li><code>char</code> = 1 byte; Unicode needs 1–4 bytes (UTF-8).</li>
 <li><code>strlen</code> counts <strong>bytes</strong>, not characters.</li>
@@ -502,8 +519,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>wprintf<span class="op">(</span><span class="st">L"</span><span class="sc">%ls\n</span><span class="st">"</span><span class="op">,</span> msg<span class="op">);</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <hr>
 </section>
-<section id="key-terms" class="level2" data-number="17.8">
-<h2 data-number="17.8" class="anchored" data-anchor-id="key-terms"><span class="header-section-number">17.8</span> Key Terms</h2>
+<section id="key-terms" class="level2" data-number="18.8">
+<h2 data-number="18.8" class="anchored" data-anchor-id="key-terms"><span class="header-section-number">18.8</span> Key Terms</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 40%">
@@ -568,8 +585,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 <hr>
 </section>
-<section id="discussion-questions" class="level2" data-number="17.9">
-<h2 data-number="17.9" class="anchored" data-anchor-id="discussion-questions"><span class="header-section-number">17.9</span> Discussion Questions</h2>
+<section id="discussion-questions" class="level2" data-number="18.9">
+<h2 data-number="18.9" class="anchored" data-anchor-id="discussion-questions"><span class="header-section-number">18.9</span> Discussion Questions</h2>
 <ol type="1">
 <li>What does the preprocessor do, and why does it run before the compiler?</li>
 <li>Why do function-like macros need parentheses around each argument?</li>
@@ -988,12 +1005,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../../lectures/en/L15-vibe-coding.html" class="pagination-link" aria-label="L15 — Modern Programming Practices: Vibe Coding">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">L15 — Modern Programming Practices: Vibe Coding</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">L15 — Modern Programming Practices: Vibe Coding</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../../lectures/en/L17-standard-libraries.html" class="pagination-link" aria-label="L17 — Standard Libraries and Type Conversions">
-        <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">L17 — Standard Libraries and Type Conversions</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">L17 — Standard Libraries and Type Conversions</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
