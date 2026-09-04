@@ -24,7 +24,17 @@
     "href": "index.html#course-structure",
     "title": "Programming — Year 1",
     "section": "1.2 Course Structure",
-    "text": "1.2 Course Structure\n\n\n\nModule\nTopic\nLectures\n\n\n\n\n1\nBasics of C/C++, I/O, Linear Algorithms\nL01–L04\n\n\n2\nBranching and Loops\nL05\n\n\n3\nArrays, Pointers, Strings\nL06–L07\n\n\n4\nSubroutines\nL08\n\n\n5\nFile Handling\nL09\n\n\n6\nUser-Defined Data Types\nL10–L11\n\n\n7\nMultithreaded Programming + AI\nL12–L15\n\n\n8\nLibraries, Standard Structures, Algorithms\nL16–L18\n\n\n\n\n© 2026 Ali-MH-Mansour. All Rights Reserved. See LICENSE for terms.",
+    "text": "1.2 Course Structure\n\n\n\nModule\nTopic\nLectures\n\n\n\n\n1\nBasics of C/C++, I/O, Linear Algorithms\nL01–L04\n\n\n2\nBranching and Loops\nL05\n\n\n3\nArrays, Pointers, Strings\nL06–L07\n\n\n4\nSubroutines\nL08\n\n\n5\nFile Handling\nL09\n\n\n6\nUser-Defined Data Types\nL10–L11\n\n\n7\nMultithreaded Programming + AI\nL12–L15\n\n\n8\nLibraries, Standard Structures, Algorithms\nL16–L18",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Programming — Year 1</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#instructor-presentations",
+    "href": "index.html#instructor-presentations",
+    "title": "Programming — Year 1",
+    "section": "1.3 Instructor Presentations",
+    "text": "1.3 Instructor Presentations\nSlide decks for the first lectures (Quarto Reveal.js — open in any browser, use arrow keys to advance):\n\n\n\nLecture\nPresentation\n\n\n\n\nL00 — Course Introduction\nView slides\n\n\nL01 — C Language, Toolchain, Workflow\nView slides\n\n\n\n\n© 2026 Ali-MH-Mansour. All Rights Reserved. See LICENSE for terms.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Programming — Year 1</span>"
     ]
