@@ -36,4 +36,15 @@ Navigate using the table of contents on the left (or the menu on mobile).
 
 ---
 
+## Instructor Presentations
+
+Slide decks for the first lectures (Quarto Reveal.js — open in any browser, use arrow keys to advance):
+
+| Lecture | Presentation |
+|---------|-------------|
+| L00 — Course Introduction | [View slides](L00-presentation.html) |
+| L01 — C Language, Toolchain, Workflow | [View slides](L01-presentation.html) |
+
+---
+
 © 2026 Ali-MH-Mansour. All Rights Reserved. See [LICENSE](LICENSE) for terms.

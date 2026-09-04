@@ -1,0 +1,187 @@
+---
+title: "Course Introduction"
+subtitle: "Programming — 2026–2027 | Module 0"
+author: "Dr. Ali Mahmoud Mansour, PhD in AI and ML"
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    transition: slide
+    footer: "© 2026 Dr. Ali Mahmoud Mansour · Programming 2026–2027"
+    logo: ""
+---
+
+## Why C?
+
+Why does a 2026 curriculum still start with C?
+
+> *"Why do you think a 2026 curriculum still starts with C and not Python?"*
+
+---
+
+## C is everywhere that matters
+
+| System | Written in |
+|--------|-----------|
+| Linux kernel | C |
+| CPython | C |
+| SQLite | C |
+| Redis | C |
+| Windows kernel | C |
+| macOS kernel (XNU) | C |
+| Git | C |
+| PostgreSQL | C |
+
+---
+
+## Why C — the honest reason
+
+- **Nothing is hidden.** You allocate memory. You control how data is stored. You see what the machine does.
+- **Industry.** Linux kernel · Chrome · game engines · AI inference runtimes · embedded systems.
+- **Foundation.** C first → C++, Java, Go feel easy. Memory abstractions won't surprise you.
+
+> *"C gives you great freedom — and punishes mistakes severely."*
+
+---
+
+## What you will be able to do by January
+
+- Write, debug, and test programs in C/C++
+- Read and understand others' code
+- Apply coding style and portability rules
+- Use multithreading and standard libraries
+- Understand how AI frameworks (TensorFlow, PyTorch) use C++ underneath
+
+**External benchmark:** the course covers 100% of the CLE and 80–90% of the CLA (cppinstitute.org).
+
+---
+
+## Your toolbox
+
+Code::Blocks · VSCodium · CMake · Doxygen · Codeforces · Diagrams.net · Far Manager · Moodle
+
+---
+
+## The 2-week cycle
+
+```
+Lecture → Practice (quiz + live-coding) → Homework (online judges)
+      → admission quiz → Graded test (lab) → next topic
+```
+
+- **Slides come after the lecture.** Attendance is recorded. Write 1–2 pages in your own words.
+- **Homework is not graded** — but test problems come from homework.
+- **Register on Codeforces this week**, before the entrance test.
+
+---
+
+## Graded test rules — read carefully
+
+| Rule | Detail |
+|------|--------|
+| Time | One period; lateness does not extend it |
+| Phones | Forbidden |
+| Screen recording | **Required for the whole session. No recording = 0 points.** Install OBS Studio, test at home. |
+| Allowed resources | Course slides · cprogramming.com · ASCII table · judge platform |
+| Plagiarism + AI checks | After every test |
+
+---
+
+## Graded test — scoring
+
+Judge mechanics: unlimited attempts, partial credit counts.
+
+| Score | Points |
+|-------|--------|
+| < 60 | 0 |
+| 60–74 | 0.5 |
+| 75–99 | 0.75 |
+| 100 | 1.0 |
+
+Own laptop: screen facing instructor · light theme · taskbar visible · recorder running.
+
+---
+
+## Grading map
+
+| Component | Points |
+|-----------|--------|
+| Entrance test | 4 |
+| Tests T1–T4 (12 pts each) | 48 |
+| Test T5 | 8 |
+| **Semester total** | **60** |
+| Pass threshold | 38 |
+| Exam | 40 |
+| Bonus | up to 10 |
+
+---
+
+## Exam format
+
+Written · ~4 hours
+
+- 24-question test — **12 pts**
+- 2–3 judged programming problems — **20 pts**
+- One theory question in detail — **8 pts**
+
+---
+
+## Retakes — the rule that matters
+
+- One extra attempt per test
+- Retake windows: **November** (entrance, T1, T2) · **January** (T3–T5)
+
+> ⚠️ Retaking with existing below-threshold points **zeroes the old points regardless of outcome.** Retaking is a real decision, not a free lunch.
+
+---
+
+## AI policy
+
+| | Rule |
+|--|------|
+| ✅ Allowed | Understanding (explanations, examples) |
+| ✅ Allowed | Reviewing code **you wrote** (style, structure) |
+| ❌ Forbidden | Graded tests and exam |
+
+**Responsibility:** whatever an AI proposed and you accepted is **yours** — including its bugs.
+
+---
+
+## Entrance tests
+
+- **Informatics:** Wednesday, September 9, on paper (check LMS for room assignments)
+- **Programming:** September 7–12 on PCs during lab slots
+- Codeforces mini-tutorial video linked in the LMS — watch before the test
+
+---
+
+## Resources and communication
+
+- **LMS course** "Программирование (2026-2027)": tests · gradebook · theory · coding-style guide · judge links
+- **Optional companion:** "Programming practicum" — homework/test walkthroughs + mock tests
+- **Consultations:** posted office hours; e-mail questions in advance
+- **Self-study norm:** 4–6 h/week
+
+---
+
+## Questions?
+
+Common questions:
+
+1. *"What if I miss a graded test for a valid reason?"* → Same retake rule; one attempt, November/January.
+2. *"Can I use C++ features?"* → Per-topic requirements state what's allowed; style rules always apply.
+3. *"Are video recordings enough instead of lectures?"* → No — auxiliary and partly outdated; attendance is recorded.
+
+---
+
+## See you at Lecture 1
+
+Topic: **The C language, toolchain, and programming workflow**
+
+Install:
+
+```bash
+gcc --version   # should output a version number
+```
+
+If it's not installed, bring your laptop to your first lab session.

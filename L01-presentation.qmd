@@ -1,0 +1,352 @@
+---
+title: "Lecture 1 — Course Orientation"
+subtitle: "The C Language, Toolchain, and Programming Workflow"
+author: "Dr. Ali Mahmoud Mansour, PhD in AI and ML"
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    transition: slide
+    footer: "© 2026 Dr. Ali Mahmoud Mansour · Programming 2026–2027"
+---
+
+## Your phone is on right now.
+
+> *What is it actually doing?*
+
+- Who wrote the code that makes navigation work?
+- What language was it written in?
+- If the navigation app crashes — who is responsible?
+
+**A program is a set of instructions, written by a human, that a machine can execute.**
+
+---
+
+## What is an Algorithm?
+
+> *"I've just arrived in this city for the very first time. I don't have a phone. Give me step-by-step instructions from this room to the nearest ATM."*
+
+Interrogating student directions:
+
+- "Turn left at the big tree" — which tree? How big?
+- "Walk about 200 metres" — how do I measure that?
+- "You'll see it on your right" — what if the ATM was removed last week?
+
+---
+
+## Four properties of an Algorithm
+
+| Property | Meaning |
+|----------|---------|
+| **Definiteness** | Each step is clear and unambiguous |
+| **Finiteness** | It terminates in a finite number of steps |
+| **Input/Output** | Takes data in; produces a result |
+| **Effectiveness** | Each step is actually executable |
+
+> *"Is 'go to the nearest ATM' an algorithm? Why or why not?"*
+
+---
+
+## Algorithm as pseudocode
+
+```
+INPUT: starting room number
+OUTPUT: route to the nearest ATM
+
+STEP 1: Exit room, turn left into corridor
+STEP 2: Walk to end of corridor (~30 steps)
+STEP 3: Take staircase down to ground floor
+STEP 4: Exit building through main door
+STEP 5: Turn right; walk 50 metres
+STEP 6: ATM is on the right — use it
+STEP 7: STOP
+```
+
+**A computer follows instructions literally. It has no common sense.**
+
+---
+
+## Flowcharts
+
+```
+[Start]
+   ↓
+[Walk to ATM]
+   ↓
+[Is ATM working?]
+   ├─ YES → [Use ATM] → [End]
+   └─ NO  → [Find next ATM] → [Walk to ATM]
+```
+
+| Symbol | Meaning |
+|--------|---------|
+| **Oval** | Start / End |
+| **Rectangle** | Action step |
+| **Diamond** | Decision (yes/no) |
+| **Arrow** | Flow direction |
+
+---
+
+## What language does a computer speak?
+
+> *"I want to tell the computer to add 5 and 3. How does it actually do that?"*
+
+- The CPU executes **binary machine code** — sequences of 1s and 0s
+- Nobody writes binary by hand
+- We write in a human-readable language — something **translates**
+
+---
+
+## The language spectrum
+
+```
+Machine code → Assembly → C / C++ → Java / Go → Python
+  (binary)               (this course)           (scripting)
+
+← Harder to write                      Easier to write →
+← Faster to run                        Slower to run →
+← Less portable                        More portable →
+```
+
+**C/C++: high enough to write readable code, low enough to control what the machine does.**
+
+---
+
+## Why C and not Python?
+
+> *"If Python is so much easier, why teach C?"*
+
+1. **Nothing is hidden.** Memory allocation, data storage, machine operations — all visible.
+2. **Industry.** Linux kernel · Chrome · game engines · AI inference runtimes (TensorFlow, PyTorch).
+3. **Analogy.** Learning with a manual transmission before automatic — you understand the clutch.
+
+---
+
+## Compiled vs Interpreted
+
+| | **Compiled (C/C++)** | **Interpreted (Python)** |
+|---|---|---|
+| Translation | Once, before it runs | At runtime, line by line |
+| Speed | Fast | Slower |
+| Error detection | Before running | At runtime |
+
+**Concrete timing:**
+
+```
+Sum 100 million integers:
+  C program:     ~0.3 seconds
+  Python script: ~15 seconds   (50× slower)
+```
+
+---
+
+## Brief history of C
+
+- **1972, Bell Labs.** Dennis Ritchie designs C to rewrite Unix portably.
+- **1983.** Bjarne Stroustrup adds OOP features → **C++**.
+- **2026.** C is 54 years old — still the language of every OS kernel, embedded systems, and AI frameworks.
+
+> *"A language designed in 1972 is still used to write AI in 2026. What does that tell you?"*
+
+---
+
+## The C/C++ Toolchain
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    printf("Hello, world!\n");
+    return 0;
+}
+```
+
+> *"How does this text file become something your computer can run?"*
+
+---
+
+## Source → Executable
+
+```
+hello.c  (you write this)
+    ↓
+  [Preprocessor]  — expands #include, #define
+    ↓
+hello.i  (expanded text)
+    ↓
+  [Compiler]  — checks syntax, translates to assembly
+    ↓
+hello.s  (assembly)
+    ↓
+  [Assembler]  — translates to binary
+    ↓
+hello.o  (object file)
+    ↓
+  [Linker]  — combines with libraries
+    ↓
+hello    (executable — ready to run)
+```
+
+---
+
+## What each stage does
+
+| Stage | Job |
+|-------|-----|
+| **Preprocessor** | Text substitution — `#include` copies the header file in |
+| **Compiler** | Syntax check + translate C → assembly |
+| **Assembler** | Assembly → binary object file |
+| **Linker** | Combine object files + libraries → standalone executable |
+
+> *"When you see a linker error — what does that tell you?"*
+
+---
+
+## Compiling on the command line
+
+```bash
+gcc -Wall -std=c11 -o hello hello.c    # compile
+./hello                                 # run
+```
+
+| Flag | Meaning |
+|------|---------|
+| `-Wall` | Enable all common warnings — always use this |
+| `-o hello` | Name the output file `hello` |
+| `-std=c11` | Compile as C11 |
+| `-g` | Include debug info (for `gdb`) |
+
+---
+
+## Hello World — line by line
+
+```c
+#include <stdio.h>       // copy stdio.h here (printf's declaration)
+
+int main(void) {         // entry point — OS calls main
+    printf("Hello, world!\n");   // print to terminal; \n = newline
+    return 0;            // exit code 0 = success
+}
+```
+
+---
+
+## `#include <stdio.h>`
+
+- `#include` is a **preprocessor directive**
+- Copies the contents of `stdio.h` into this position
+- `stdio.h` = standard input/output header — declares `printf`, `scanf`
+- `<>` = search in system headers; `""` = search in your directory first
+
+> Without `#include <stdio.h>`: compiler doesn't know what `printf` is.
+
+---
+
+## `int main(void)`
+
+- `main` = the **entry point** — the OS looks for this name specifically
+- `int` = `main` returns an integer (**exit code**: `0` = success)
+- `(void)` = no arguments (later: `int main(int argc, char *argv[])`)
+- `{ … }` = function body
+
+> *"Why does the OS care about the return value of main?"*
+> Shell scripts: `program_A && program_B` — run B only if A returned 0.
+
+---
+
+## `printf("Hello, world!\n");`
+
+- `printf` = **print** **f**ormatted — writes to the terminal
+- `"Hello, world!\n"` = a **string literal**
+- `\n` = newline escape sequence — without it, the cursor stays on the same line
+- `;` = every statement ends with a semicolon
+
+**Common escape sequences:**
+
+| Sequence | Meaning |
+|----------|---------|
+| `\n` | Newline |
+| `\t` | Tab |
+| `\\` | Backslash |
+| `\"` | Double quote |
+
+---
+
+## The Edit–Compile–Run–Debug cycle
+
+```
+[Edit] → [Compile] → [Run] → [Debug] → [Edit] → ...
+```
+
+This is your working method for the whole semester.
+
+- **Edit:** write or modify source code
+- **Compile:** translate; stops and reports syntax errors
+- **Run:** execute; logic errors appear here
+- **Debug:** `printf` traces · debugger · `-Wall` warnings
+
+---
+
+## Three kinds of error
+
+| Error type | When | Example |
+|------------|------|---------|
+| **Compiler error** | During compilation | Missing `;`, undeclared variable |
+| **Runtime error** | While running | Division by zero, bad memory access |
+| **Logic error** | Program finishes — wrong output | Used `+` instead of `*` |
+
+> Logic errors are the hardest — nothing crashes. The program is just quietly wrong.
+
+---
+
+## Reading a compiler error
+
+```
+hello.c: In function 'main':
+hello.c:5:5: error: expected ';' before 'return'
+     return 0;
+     ^~~~~~
+```
+
+- `hello.c:5:5` — file, **line 5**, column 5
+- The error is **detected** on line 5; the **mistake** is on line 4
+- When in doubt, look at the line **before** the reported line
+
+---
+
+## Course structure
+
+| Module | Lectures | Topic |
+|--------|----------|-------|
+| 1 | L01–L04 | Data types, I/O, arithmetic |
+| 2 | L05 | Branching and loops |
+| 3 | L06–L07 | Arrays, pointers, strings |
+| 4 | L08 | Functions and recursion |
+| 5 | L09 | File I/O |
+| 6 | L10–L11 | Dynamic memory, user types |
+| 7 | L12–L15 | Multithreading · AI · GPU · Vibe coding |
+| 8 | L16–L18 | Libraries · Data structures · Complexity |
+
+---
+
+## Summary — what this lecture covered
+
+1. **Algorithm** — 4 properties: definiteness, finiteness, input/output, effectiveness
+2. **Pseudocode and flowcharts** — plan before you code
+3. **Language spectrum** — C/C++ is the middle ground
+4. **Compiled vs interpreted** — C is ~50× faster for compute-intensive work
+5. **History** — 1972 Bell Labs → still powering AI frameworks in 2026
+6. **Toolchain** — preprocessor → compiler → assembler → linker → executable
+7. **Hello world** — nothing left unexplained
+8. **Edit–Compile–Run–Debug** — your cycle for the semester
+9. **Three error types** — compiler · runtime · logic
+
+---
+
+## Before Lecture 2
+
+1. Verify `gcc` is installed: `gcc --version`
+2. Modify `hello.c` — change the message to print your name
+3. **Challenge:** print three lines (name · department · year) in one `printf` call
+
+Next: **Data types, declarations, operators, and operations.**

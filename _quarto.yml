@@ -1,6 +1,9 @@
 project:
   type: book
   output-dir: _book
+  render:
+    - "*.qmd"
+    - "lectures/en/*.qmd"
 
 book:
   title: "Programming — Year 1"
